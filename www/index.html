@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+		<title>Puzzle</title>		
+	</head>
+
+	<body onLoad="onLoad();">
+
+		<div id="vista-portada" class="vista" >
+
+			<img src="img/vistas/pantalla_portada.png" alt="icon"
+				width="100%" height="100%"
+				style="position:absolute; top: 0; left: 0;" />
+
+			<a onclick="cerrarPortada();verPresentacion();" 
+				style="display:block; width:20%; height:20%; position:absolute; left: 75%; top: 75%;">		
+			</a>
+
+			<a onclick="verIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+	<!--
+				<img src="img/iconos/banderas-idiomas.png" alt="icon"
+						 style="position:absolute;width:auto;height:10%; top: 80%; left: 35%;" />
+				-->
+			<a style="display:block; position:absolute;left:82%; top:0%; width:7%; height:10%;" 
+				onclick="cambiarIdiomaEspanyol();">
+			</a>
+
+			<a style="display:block; position:absolute;left:90%; top:0%; width:7%; height:10%;"
+				onclick="cambiarIdiomaIngles();">
+			</a>
+		</div>
+
+		<div id="vista-presentacion" class="vista" >
+			<img src="img/vistas/Presentacion.png" alt="icon" width="100%" height="100%" style="position:absolute; top: 0; left: 0;" />
+
+			<a onclick="cerrarPresentacion();verInstrucciones();"
+				style="display:block; width:20%; height:20%; position:absolute; left: 75%; top: 80%;">
+			</a>
+
+			<a onclick="verIndice();"
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+		</div>
+			
+		<div id="vista-instrucciones" class="vista" >
+			<img src="img/vistas/Instrucciones.png" alt="icon"
+				width="100%" height="100%"
+				style="position:absolute; top: 0; left: 0;" />
+
+			<a onclick="cerrarInstrucciones();mostrarTipoRepresentacion();"
+				style="display:block; width:20%; height:20%; position:absolute; left: 75%; top: 80%;">
+			</a>
+
+			<a onclick="verIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+		</div>
+			
+			
+		<!-- Vista Seleccionar Tipo de Manifestación -->
+		<div id="vista-seleccionar-tipo-manifestacion" class="vista" 
+			style="width:100%; height:100%; 
+					background-repeat: no-repeat;
+					background-image:url('img/vistas/pantalla_tipo_manifestacion.png');
+					background-size: 100% 100%">
+						
+			<a class="area-sprite" id="tipo-representacion-petroglifo"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 30%;"
+				onclick="seleccionarTipoRepresentacion(1);mostrarImagenInfo();">
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-pintura-rupestre"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 34%;"
+				onclick="seleccionarTipoRepresentacion(2);mostrarImagenInfo();">
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-dolmen"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 38%;"
+				onclick="seleccionarTipoRepresentacion(3);mostrarImagenInfo();">
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-menhires"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 42%;"
+				onclick="seleccionarTipoRepresentacion(4);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-monolitos"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 46%;"
+				onclick="seleccionarTipoRepresentacion(5);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-amoladores"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 50%;"
+				onclick="seleccionarTipoRepresentacion(6);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-cupulas"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 54%;"
+				onclick="seleccionarTipoRepresentacion(7);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-batea"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 58%;"
+				onclick="seleccionarTipoRepresentacion(8);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-puntos-acoplados"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 62%;"
+				onclick="seleccionarTipoRepresentacion(9);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-piedra-mitica-natural"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 66%;"
+				onclick="seleccionarTipoRepresentacion(10);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-cerro-mitico-natural"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 70%;"
+				onclick="seleccionarTipoRepresentacion(11);mostrarImagenInfo();">		
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-piedra-esfera-litica"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 74%;"
+				onclick="seleccionarTipoRepresentacion(12);mostrarImagenInfo();">		
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-piedra-geoglifo"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 78%;"
+				onclick="seleccionarTipoRepresentacion(13);mostrarImagenInfo();">	
+			</a>
+
+			<a class="area-sprite" id="tipo-representacion-piedra-micropetroglifo"
+				style="display:block; width:56%; height:4%; position:absolute; left: 23%; top: 82%;"
+				onclick="seleccionarTipoRepresentacion(14);mostrarImagenInfo();">	
+			</a>
+				 
+			<a onclick="verIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+		</div>
+		<!-- Fin Vista Seleccionar Tipo de Representación -->
+			
+		<!-- Vista Mapa -->
+		<div id="vista-mapa" 
+			class="vista" 
+			style="width:100%; height:100%;"
+			onclick="quitarMapa();mostrarImagenInfo();">
+
+			<img src="img/iconos/Dedito-a-la-izquierda.png" alt="icon"
+				style="position:absolute;width:auto;height:5%; top: 90%; left: 45%;" 
+				onclick="quitarMapa();mostrarImagenInfo();" />
+		</div>
+		<!-- Fin Vista Mapa -->
+			
+			
+		<!-- Vista Imagen Seleccionada Info (son dos la normal y la zoom) -->
+		<div id="vista-imagen-seleccionada-info" class="vista" style="width:100%;height:100%;">
+									
+			<a style="display:block; width:30%; height:6%; position:absolute; left: 70%; top: 94%;"
+				onclick="jugarYa();">
+			</a>
+
+			<a style="display:block; width:30%; height:6%; position:absolute; left: 0; top: 93%;
+					background-image:url('img/iconos/Dedito-a-la-izquierda.png');
+					background-repeat:no-repeat;
+					background-size : 32% 60%;
+					background-position : 70% 50%;
+					"
+				onclick="mostrarTipoRepresentacion();"
+				id="dedoIzquierda">
+			</a>
+				 
+			<a style="display:block; width:20%; height:6%; position:absolute; left: 36%; top: 93%;
+					background-image:url('img/iconos/lupa.png');
+					background-repeat:no-repeat;
+					background-size : 32% 60%;
+					background-position : 70% 50%;
+					"
+				onclick="mostrarInfoZoom();"
+				id="lupa">
+			</a>
+				 
+				 
+			<a class="area-sprite" id="info-mapa-ampliado"
+				style="display:block; width:25%; height:10%; position:absolute; left: 5%; top: 9%;"
+				onclick="verMapaDeTipoRepresentacion();">
+			</a>
+
+			<a onclick="verIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+							 
+		</div>
+			
+		<div id="vista-imagen-seleccionada-info-zoom" class="vista" style="width:100%;height:100%;">
+						
+			<a style="display:block; width:100%; height:100%; position:absolute; left: 0%; top: 0%;"
+				onclick="mostrarImagenInfo();">
+			</a>
+
+			<img src="img/iconos/dedito_abajo.png" alt="icon"
+				style="position:absolute;width:auto;height:5%; top: 90%; left: 90%;" 
+				onclick="mostrarImagenInfo();" />
+
+			<a style="display:block; width:30%; height:6%; position:absolute; left: 0; top: 93%;
+					background-image:url('img/iconos/Dedito-a-la-izquierda.png');
+					background-repeat:no-repeat;
+					background-size : 32% 60%;
+					background-position : 70% 50%;
+					"
+				onclick="mostrarTipoRepresentacion();">
+			</a>				 				 
+		</div>	
+		<!-- Fin Vista Imagen Seleccionada Info -->
+			
+		<!-- Vista Juego -->
+		<div id="vista-juego" class="vista" 
+			style="width:100%; height:100%;
+					background-repeat: no-repeat;
+					background-image:url('img/vistas/tablero_juego.jpg');
+					background-size: 100% 100%"
+		>
+			<div id="puzzles-deslizantes-educativos-header-juego"
+				style="width:100%; height:10%; overflow:hidden; position:relative">
+
+				<a onclick="verIndice();" 
+					style="display:block; width:20%; height:100%; position:absolute; left: 0%; top: 0%;z-index:2;">
+				</a>
+							 
+			</div>
+			
+			<div id="puzzles-deslizantes-educativos-info" 
+				style="width:100%; height:15%; overflow:hidden; position:relative">
+					 
+				<a class="tablero-sprite" id="juego-timer-icono"
+					style="display:block; width:10%; height:50%; position:absolute; left: 15%; top: 10%;">		
+				</a>
+									
+				<a class="tablero-sprite" id="juego-timer"
+					style="display:block; width:20%; height:50%; position:absolute; padding-top:10px; font-size:9px; left: 70%; top: 20%; margin-top:1%; color:black;">
+					<span style="padding:0px;margin:0px;" id="juego-minutos">00</span>
+						:
+					<span style="padding:0px;margin:0px;" id="juego-segundos">00</span>
+				</a>
+
+				<a class="tablero-sprite" id="juego-contador-movidass"
+					style="display:block; width:13%; height:50%; position:absolute; left: 78%; top: 30%; text-align:center; font-size:9px; margin-top:1%; color:black">
+					0
+				</a>
+					 
+			</div>
+			
+			<div id="puzzles-deslizantes-educativos-tabla-juego"
+				style="width:90%; height:50%;left:5%;box-shadow: 3px 3px grey; overflow:hidden; position:relative">
+	
+				<div id="tablero" 
+					style="width:100%; height:100%; overflow:hidden; position:relative; margin: 0%; left:0%; top:0%;">
+				</div>	
+			</div>
+
+			<div id="puzzles-deslizantes-educativos-barra-botones-juego"
+				style="width:100%; height:15%; overflow:hidden; position:relative">
+
+				<a style="display:block; width:10%; height:50%; position:absolute; left: 35%; top: 25%;"
+					href="javascript:pausarToggle();">	
+				</a>
+
+				<a style="display:block; width:10%; height:50%; position:absolute; left: 45%; top: 25%;"
+					href="javascript:ayudar();">	
+				</a>  
+
+				<a id ="juego_resetear" style="display:block; width:10%; height:50%; position:absolute; left: 55%; top: 25%;"
+					href="javascript:resetear();">		
+				</a>  			 
+			</div>
+
+			<div id="puzzles-deslizantes-educativos-footer-juego-tablero"
+				style="width:100%; height:10%; overflow:hidden; position:relative">
+					
+				<a style="display:block; width:40%; height:80%; position:absolute; left: 30%; top: 10%;"
+					onclick="guardarEstadoAplicacion();mostrarTipoRepresentacion();">
+				</a>				 
+			</div>
+			
+		</div>
+		<!--FIN DE TABLERO-->
+
+		<div id="vista-salir" class="vista" 
+			style="width:100%; height:100%;
+					background-repeat: no-repeat;
+					background-image:url('img/vistas/pantalla_salir.jpg');
+					background-size: 100% 100%">
+					
+			<a style="display:block; width:50%; height:40%; position:absolute; left: 0%; top: 40%;"
+				onclick="cerrarPantallaSalir();verPortada();">	
+			</a>
+
+			<a style="display:block; width:50%; height:40%; position:absolute; left: 50%; top: 40%;"
+				onclick="salirDeLaAplicacion();">
+			</a> 	
+		</div>
+
+		<div id="vista-creditos" class="vista"
+			style="width:100%; height:100%;
+					background-repeat: no-repeat;
+					background-image:url('img/vistas/CREDITOS.png');
+					background-size: 100% 100%">
+			<a onclick="verIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 0%; top: 0%;">
+			</a>
+		</div>
+
+		<div id="vista-indice" class="vista" >
+			<img src="img/vistas/indice.png" alt="icon"
+				style="position:absolute; top: 0; left: 0; width:100%; height:100%;" 
+				id="my_image"/>
+
+			<a style="display:block; position:absolute;left:20%; top:49%; width:60%; height:3%;"
+				onclick="cerrarIndice();verPortada();">
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:53%; width:60%; height:3%;"
+				onclick="cerrarIndice();verPresentacion();">	
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:56%; width:60%; height:3%;"
+				onclick="cerrarIndice();verInstrucciones();">	
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:59%; width:60%; height:3%;"
+				onclick="cerrarIndice();mostrarTipoRepresentacion();">	
+			</a>
+
+			<a id="dim3" style="display:block; position:absolute;left:20%; top:62%; width:60%; height:3%;"
+				onclick="seleccionarDimension(3,3);">
+			</a>  
+
+			<a id="dim4" style="display:block; position:absolute;left:20%; top:65%; width:60%; height:3%;"
+				onclick="seleccionarDimension(4,4);">		
+			</a>
+
+			<a id="dim6" style="display:block; position:absolute;left:20%; top:68%; width:60%; height:3%;"
+				onclick="seleccionarDimension(6,6);">	
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:71%; width:60%; height:3%;"
+				onclick="cerrarIndice();cargarUltimoJuegoGuardado();">
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:74%; width:60%; height:3%;"
+				onclick="cerrarIndice();verCreditos();">	
+			</a>
+
+			<a style="display:block; position:absolute;left:20%; top:77%; width:60%; height:3%;"
+				onclick="cerrarIndice();verPantallaSalir();">	
+			</a>
+
+			<a style="display:block; position:absolute;left:41%; top:90%; width:10%; height:10%;"
+				onclick="cambiarIdiomaEspanyol();">	
+			</a>
+
+			<a style="display:block; position:absolute;left:50%; top:90%; width:10%; height:10%;"
+				onclick="cambiarIdiomaIngles();">
+			</a>
+
+			<a onclick="cerrarIndice();" 
+				style="display:block; width:20%; height:9%; position:absolute; left: 80%; top: 0%;"
+				class="closebtn">
+			</a>
+
+			<div id="area_inter"></div>
+		</div>
+			
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/imageMapResizer.min.js"></script>
+		<script type="text/javascript" src="js/underscore-min.js"></script>
+		<script type="text/javascript" src="js/modernizr-custom.js"></script>
+		<script type="text/javascript" src="js/diccionarios.js"></script>
+		<script type="text/javascript" src="js/auxiliar.js"></script>
+		<script type="text/javascript" src="js/juego.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/almacen.js"></script>
+		
+		<script type="text/javascript">				
+			function onLoad(){
+				document.addEventListener("deviceready", onDeviceReady, false);
+			}
+			
+			function onDeviceReady(){
+				// Se puede usar el API de phonegap de manera segura
+			}
+			
+			document.addEventListener("pause", onPause, false);
+			
+			function onPause(){
+				// Se puede guardar el estado de la aplicacion
+			}
+			
+			document.addEventListener("backbutton", onBackKeyDown, false);
+			
+			function onBackKeyDown(e) {
+				// Se puede manejar el boton de ir atras
+				e.preventDefault();
+			}
+			
+			function salirDeLaAplicacion(){
+				navigator.app.exitApp();
+			}
+		</script>
+	</body>
+</html>
