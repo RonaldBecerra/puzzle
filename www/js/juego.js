@@ -87,10 +87,15 @@ function resetear(){
 // */
 function ayudar(){
     
-    var anchoDeCelda = parseInt($("#celda-0-0").css("width"),10);
+    const anchoDeCelda = parseInt($("#celda-0-0").css("width"),10);
+    const altoDeCelda = parseInt($("#celda-0-0").css("height"),10);
+
+    const valueWidth = Math.floor(0.2*anchoDeCelda);
+    const valueHeight = Math.floor(0.8*altoDeCelda);
+    const fontSize = (valueWidth > valueHeight) ? valueHeight : valueWidth;
     
     $(".celda").css({
-        "font-size":""+Math.floor(0.2*anchoDeCelda)+"px"
+        "font-size":""+fontSize+"px"
     });
     $(".texto-ayuda").css("display", "inline");
     // Se establece el intervalo de tiempo en el que se muestra la ayuda

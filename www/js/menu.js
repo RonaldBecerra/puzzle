@@ -98,7 +98,6 @@ function jugarYa(){
 // * Obtiene el path de la imagen seleccionada
 // */
 function seleccionarImagen(numeroImagen){
-    
     imagenSeleccionadaIndex = numeroImagen;
     url_imagen_elegida = diccionario_imagenes[numeroImagen];
 }
