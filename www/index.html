@@ -29,11 +29,11 @@
 						 style="position:absolute;width:auto;height:10%; top: 80%; left: 35%;" />
 				-->
 			<a style="display:block; position:absolute;left:82%; top:0%; width:7%; height:10%;" 
-				onclick="cambiarIdiomaEspanyol();">
+				onclick="cambiarIdioma('es');">
 			</a>
 
 			<a style="display:block; position:absolute;left:90%; top:0%; width:7%; height:10%;"
-				onclick="cambiarIdiomaIngles();">
+				onclick="cambiarIdioma('en');">
 			</a>
 		</div>
 
@@ -363,11 +363,11 @@
 			</a>
 
 			<a style="display:block; position:absolute;left:41%; top:90%; width:10%; height:10%;"
-				onclick="cambiarIdiomaEspanyol();">	
+				onclick="cambiarIdioma('es');">	
 			</a>
 
 			<a style="display:block; position:absolute;left:50%; top:90%; width:10%; height:10%;"
-				onclick="cambiarIdiomaIngles();">
+				onclick="cambiarIdioma('en');">
 			</a>
 
 			<a onclick="cerrarIndice();" 
@@ -384,7 +384,7 @@
 		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<!-- <script type="text/javascript" src="js/modernizr-custom.js"></script> -->
 		<script type="text/javascript" src="js/diccionarios.js"></script>
-		<script type="text/javascript" src="js/auxiliar.js"></script>
+		<script type="text/javascript" src="js/global.js"></script>
 		<script type="text/javascript" src="js/juego.js"></script>
 		<script type="text/javascript" src="js/menu.js"></script>
 		<script type="text/javascript" src="js/almacen.js"></script>
@@ -401,13 +401,13 @@
 			document.addEventListener("pause", onPause, false);
 			
 			function onPause(){
-				// Se puede guardar el estado de la aplicacion
+				// Se puede guardar el estado de la aplicación
 			}
 			
 			document.addEventListener("backbutton", onBackKeyDown, false);
 			
 			function onBackKeyDown(e) {
-				// Se puede manejar el boton de ir atras
+				// Se puede manejar el boton de ir atrás
 				e.preventDefault();
 			}
 			

@@ -24,8 +24,6 @@ $(document).ready(function(){
     //$('map').imageMapResize();
     //$("#my_image").css({"width":"100%","height":"100%"});
 
-
-
 });
 
 
@@ -34,9 +32,9 @@ var dimension_x=3;
 var dimension_y=3;
 
 
-// /*
-// * Oculta todas las vistas de la aplicación
-// */
+/*
+ * Oculta todas las vistas de la aplicación
+ */
 function ocultarVistas(){
     ultimaVista = vistaActual;
     $(".vista").css("display","none");
@@ -47,9 +45,9 @@ function mostrarVistaAnterior(){
 }
 
 
-// /*
-// * Sólo muestra la primera vista. Allí se selecciona el tipo de representación
-// */
+/*
+ * Sólo muestra la primera vista. Allí se selecciona el tipo de representación
+ */
 function mostrarTipoRepresentacion(){
     ocultarVistas();
     $("#vista-seleccionar-tipo-manifestacion").css("display","block");
@@ -58,18 +56,18 @@ function mostrarTipoRepresentacion(){
 
 }
 
-// /*
-// * Sólo muestra la última vista. Allí se juega.
-// */
+/*
+ * Sólo muestra la última vista. Allí se juega.
+ */
 function mostrarJuego(){
     ocultarVistas();
     $("#vista-juego").css("display","block");
     vistaActual = "vista-juego";
 }
 
-// /*
-// * Crea el nuevo tablero con los parámetros introducidos por el usuario
-// */
+/*
+ * Crea el nuevo tablero con los parámetros introducidos por el usuario
+ */
 function jugarYa(){
     
     $("#tablero").remove();
@@ -94,17 +92,17 @@ function jugarYa(){
                          //había terminado el juego y quiera volver a empezar
 }
 
-// /*
-// * Obtiene el path de la imagen seleccionada
-// */
+/*
+ * Obtiene el path de la imagen seleccionada
+ */
 function seleccionarImagen(numeroImagen){
     imagenSeleccionadaIndex = numeroImagen;
     url_imagen_elegida = diccionario_imagenes[numeroImagen];
 }
 
-// /*
-// * Obtiene la posición de la blanca para la imagen seleccionada dadas sus dimensiones
-// */
+/*
+ * Obtiene la posición de la blanca para la imagen seleccionada dadas sus dimensiones
+ */
 function seleccionarDimension(x,y){
     dimension_x = parseInt(x,10);
     dimension_y = parseInt(y,10);
@@ -123,20 +121,18 @@ function seleccionarDimension(x,y){
 }
 
 function resaltarDimension(dim){
-        var dimen = "#dim"+dim;
-        var top = $(dimen).css("top");
-        console.log(top);
-        var left = $(dimen).css("left");
-        console.log(dim);
-        $("#area_inter").css("left", left);
-        $("#area_inter").css("top", top);
-        $("#area_inter").css("display", "block");
+    var dimen = "#dim"+dim;
+    var top = $(dimen).css("top");
+    var left = $(dimen).css("left");
+    $("#area_inter").css("left", left);
+    $("#area_inter").css("top", top);
+    $("#area_inter").css("display", "block");
 
 }
 
-// /*
-// * Resalta las áreas interactivas seleccionadas por el usuario
-// */
+/*
+ * Resalta las áreas interactivas seleccionadas por el usuario
+ */
 function resaltarAreasSprite(event){
     
     $(".area-sprite").css({
@@ -154,9 +150,9 @@ function resaltarAreasSprite(event){
 }
 
 
-// /*
-// * Muestra la vista educativa de la representación seleccionada
-// */
+/*
+ * Muestra la vista educativa de la representación seleccionada
+ */
 function mostrarImagenInfo(){
     
     seleccionarImagen("1"); // Accion por defecto
@@ -183,12 +179,12 @@ function mostrarImagenInfo(){
 }
 
 
-// /*
-// * Obtiene el diccionario de imágenes y su respectivo diccionario de información.
-// * Se usan diccionarios de esta manera porque es posible que se agreguen más imagenes
-// * para un tipo dado de representación. Actualmente sólo hay uno por cada tipo.
-// * Estos diccionarios sólo guardan los paths.
-// */
+/*
+ * Obtiene el diccionario de imágenes y su respectivo diccionario de información.
+ * Se usan diccionarios de esta manera porque es posible que se agreguen más imagenes
+ * para un tipo dado de representación. Actualmente sólo hay uno por cada tipo.
+ * Estos diccionarios sólo guardan los paths.
+ */
 function seleccionarTipoRepresentacion(numeroTipoRepresentacionSeleccionada){
     
     tipoRepresentacion = parseInt(numeroTipoRepresentacionSeleccionada,10);
@@ -198,16 +194,18 @@ function seleccionarTipoRepresentacion(numeroTipoRepresentacionSeleccionada){
 }
 
 
-// /*
-// * Muestra la vista del mapa para un tipo dado de representación
-// */
+/*
+ * Muestra la vista del mapa para un tipo dado de representación
+ */
 function verMapaDeTipoRepresentacion(){
     var url_mapa = diccionario_vistas[idioma]["mapa"][tipoRepresentacion];
 
-    $("#vista-mapa").append("<img id='imagen_mapa' src='"+url_mapa+"' \
-                            width='100%' height='auto'\
-                            style='position:absolute; top: 25%; left: 0;'\
-                            >");
+    $("#vista-mapa").append(
+        `<img id='imagen_mapa' src='`+url_mapa+`' 
+            width='100%' height='90%'
+            style='position:absolute; bottom: 10%; left: 0;'>`
+    );
+
 
     
     ocultarVistas();
@@ -215,41 +213,41 @@ function verMapaDeTipoRepresentacion(){
     vistaActual = "vista-mapa";
 }
 
-// /*
-// * Borra de memoria el mapa del tipo de representación después de salir de
-// * su vista
-// */
+/*
+ * Borra de memoria el mapa del tipo de representación después de salir de
+ * su vista
+ */
 function quitarMapa(){
     $("#imagen_mapa").remove();
 }
 
 
-// /*
-// * Muestra el menú principal
-// */
+/*
+ * Muestra el menú principal
+ */
 function abrirMenuEmergente(){
     $("#vista-menu-emergente").css("width", "70%");
     
 }
 
-// /*
-// * Muestra el menú de configuración
-// */
+/*
+ * Muestra el menú de configuración
+ */
 function abrirMenuConfiguracion(){
     $("#vista-menu-configuracion").css("width", "70%");
     
 }
 
-// /*
-// * Cierra el menú principal
-// */
+/*
+ * Cierra el menú principal
+ */
 function cerrarMenuEmergente(){
     $("#vista-menu-emergente").css("width", "0%");
 }
 
-// /*
-// * Cierra el menú de configuración
-// */
+/*
+ * Cierra el menú de configuración
+ */
 function cerrarMenuConfiguracion(){
     $("#vista-menu-configuracion").css("width", "0%");
 }
@@ -353,34 +351,24 @@ function cerrarCreditos(){
     $("#vista-creditos").css("display", "none");
 }
 
-function cambiarIdiomaEspanyol(){
-    idioma = "es";
+function cambiarIdioma(nuevoIdioma){
+    idioma = nuevoIdioma;
 
-    $("#vista-portada img")[0].src = diccionario_vistas["es"]["fondos"]["portada"];
-    $("#vista-indice img")[0].src = diccionario_vistas["es"]["fondos"]["indice"];
-    $("#vista-presentacion img")[0].src = diccionario_vistas["es"]["fondos"]["presentacion"];
-    $("#vista-instrucciones img")[0].src = diccionario_vistas["es"]["fondos"]["instrucciones"];
-    $("#vista-seleccionar-tipo-manifestacion").css("background-image","url("+diccionario_vistas["es"]["fondos"]["seleccionar"]+")");
-    $("#vista-salir").css("background-image","url("+diccionario_vistas["es"]["fondos"]["salir"]+")");
-    $("#vista-creditos").css("background-image","url("+diccionario_vistas["es"]["fondos"]["creditos"]+")");
-    $("#vista-juego").css("background-image","url("+diccionario_vistas["es"]["fondos"]["tablero"]+")");
+    $("#vista-portada img")[0].src = diccionario_vistas[idioma]["fondos"]["portada"];
+    $("#vista-indice img")[0].src = diccionario_vistas[idioma]["fondos"]["indice"];
+    $("#vista-presentacion img")[0].src = diccionario_vistas[idioma]["fondos"]["presentacion"];
+    $("#vista-instrucciones img")[0].src = diccionario_vistas[idioma]["fondos"]["instrucciones"];
+    $("#vista-seleccionar-tipo-manifestacion").css("background-image","url("+diccionario_vistas[idioma]["fondos"]["seleccionar"]+")");
+    $("#vista-salir").css("background-image","url("+diccionario_vistas[idioma]["fondos"]["salir"]+")");
+    $("#vista-creditos").css("background-image","url("+diccionario_vistas[idioma]["fondos"]["creditos"]+")");
+    $("#vista-juego").css("background-image","url("+diccionario_vistas[idioma]["fondos"]["tablero"]+")");
 
-    $("#lupa").css("background-image","url('img/iconos/lupa.png')");
-    $("#dedoIzquierda").css("background-image","url('img/iconos/Dedito-a-la-izquierda.png')");
-}
-
-function cambiarIdiomaIngles(){
-    idioma = "en";
-    
-    $("#vista-portada img")[0].src = diccionario_vistas["en"]["fondos"]["portada"];
-    $("#vista-indice img")[0].src = diccionario_vistas["en"]["fondos"]["indice"];
-    $("#vista-presentacion img")[0].src = diccionario_vistas["en"]["fondos"]["presentacion"];
-    $("#vista-instrucciones img")[0].src = diccionario_vistas["en"]["fondos"]["instrucciones"];
-    $("#vista-seleccionar-tipo-manifestacion").css("background-image","url("+diccionario_vistas["en"]["fondos"]["seleccionar"]+")");
-    $("#vista-salir").css("background-image","url("+diccionario_vistas["en"]["fondos"]["salir"]+")");
-    $("#vista-creditos").css("background-image","url("+diccionario_vistas["en"]["fondos"]["creditos"]+")");
-    $("#vista-juego").css("background-image","url("+diccionario_vistas["en"]["fondos"]["tablero"]+")");
-    
-    $("#lupa").css("background-image","none");
-    $("#dedoIzquierda").css("background-image","none");
+    if (idioma == "es"){
+        $("#lupa").css("background-image","url('img/iconos/lupa.png')");
+        $("#dedoIzquierda").css("background-image","url('img/iconos/Dedito-a-la-izquierda.png')");   
+    }
+    else {
+        $("#lupa").css("background-image","none");
+        $("#dedoIzquierda").css("background-image","none");     
+    }
 }
