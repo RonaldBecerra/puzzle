@@ -6,16 +6,16 @@
  *    
  *    Proyecto de Servicio Comunitario
  *        Puzzles Deslizantes Educativos: Manifestaciones Rupestres Venezolanas
-*/
+ */
 
 
 var almacen = window.localStorage; //Permite guardar de manera persistente
                                    //los datos de la última partida
 
 
-// /*
-// * Se guardan las variables importantes de aux.js y las posiciones del tablero.
-// */
+/*
+ * Se guardan las variables importantes de aux.js y las posiciones del tablero.
+ */
 function guardarEstadoAplicacion(){
     
     almacen.setItem("dimX", dimX);
@@ -46,18 +46,14 @@ function guardarEstadoAplicacion(){
             var orden = celda.attr("data-order");
             almacen.setItem("celda-"+i+"-"+j+"-data-order", orden);
             
-        }
-        
-    }
-    
-    
-    
+        }    
+    }  
 }
 
 
-// /*
-// * Se borran los datos de la última partida guardada.
-// */
+/*
+ * Se borran los datos de la última partida guardada.
+ */
 function borrarEstadoAplicacion(){
     
     almacen.removeItem("dimX");
@@ -91,9 +87,9 @@ function borrarEstadoAplicacion(){
 }
 
 
-// /*
-// * Carga la última partida guardada imitando los pasos que siguió el usuario
-// */
+/*
+ * Carga la última partida guardada imitando los pasos que siguió el usuario
+ */
 function cargarUltimoJuegoGuardado(){
     
     tipoRepresentacion = almacen.getItem("tipoRepresentacion");
@@ -147,9 +143,9 @@ function cargarUltimoJuegoGuardado(){
     
 }
 
-// /*
-// * Deduce los porcentajes de posición de una celda dado su data-order
-// */
+/*
+ * Deduce los porcentajes de posición de una celda dado su data-order
+ */
 function actualizarPosicionCelda(celda, ordenCelda){
     
     var orden = parseInt(ordenCelda, 10);

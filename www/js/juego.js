@@ -127,7 +127,6 @@ function generarCeldas(){
 }
 
 /*
- * 
  * Prepara las celdas para que se adapten al tamaño de la pantalla usando
  * porcentajes.
  */
@@ -137,7 +136,10 @@ function prepararResponsive(){
         "width":(""+(100/dimY)+"%"),
         "height" : (""+(100/dimY)+"%"),
         "margin" : "0%",
-        "padding" : "0%"
+        "padding" : "0%",
+        "display" : "flex",
+        "justify-content" : "center",
+        "align-items" : "center",
     });
 }
 
@@ -258,13 +260,13 @@ function inicializarTablero(){
                 'background-repeat': 'no-repeat',
                 'background-image': "url('"+url_imagen+"')",
                 'background-size': porcentaje1+" "+porcentaje2,
-                'background-position-x': ""+(anchoCeldas*i)+"%", 
-                'background-position-y': ""+(alturaCeldas*j)+"%",
-                'position':'absolute',
+                //'background-position-x': ""+(anchoCeldas*i)+"%", 
+                //'background-position-y': ""+(alturaCeldas*j)+"%",
+                'position':'relative',
                 'height':''+(tamanoCelda)+"%",
                 'width' : ''+(tamanoCelda)+"%",
-                'left' : ""+posicionCeldaX+"%",
-                'top':""+posicionCeldaY+"%",
+                //'left' : ""+posicionCeldaX+"%",
+                //'top':""+posicionCeldaY+"%",
                 'font-size' : '0px'
             });
             $(".texto-ayuda").css("display", "none");

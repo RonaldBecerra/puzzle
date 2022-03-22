@@ -294,6 +294,7 @@ function cerrarPantallaSalir(){
     $("#vista-salir").css("display", "none");
 }
 
+// Cuando mostramos el texto informativo acerca de una manifestación en una vista individual, sin la imagen
 function mostrarInfoZoom(){
     
     // Se obtiene el path de la vista de información
@@ -301,8 +302,15 @@ function mostrarInfoZoom(){
     $("#vista-imagen-seleccionada-info-zoom").css({
         'background-repeat': 'no-repeat',
         "background-image": "url("+url_imagen_info_zoom+")",
-        'background-size':"100% 100%"
+        'background-size':"100% 100%",
     });
+
+    // Cuando estamos en una PC, la imagen a mostrar debe tener la misma orientación que el resto de las vistas.
+    if (!esDispositivoMovil){
+        $("#vista-imagen-seleccionada-info-zoom").css({
+            'transform': 'rotate(90deg)',
+        }); 
+    }
     
     ocultarVistas();
     $("#vista-imagen-seleccionada-info-zoom").css("display","block");
