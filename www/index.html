@@ -251,11 +251,7 @@
 			
 			<div id="puzzles-deslizantes-educativos-tabla-juego"
 				style="width:90%; height:50%;left:5%;box-shadow: 3px 3px grey; overflow:hidden; position:relative">
-	
-				<div id="tablero" 
-					style="width:100%; height:100%; overflow:hidden; position:relative; margin: 0%; left:0%; top:0%;
-						display: flex; flex-wrap: wrap">
-				</div>	
+				<div id="tablero"></div>	
 			</div>
 
 			<div id="puzzles-deslizantes-educativos-barra-botones-juego"
@@ -292,12 +288,12 @@
 					background-size: 100% 100%">
 					
 			<a style="display:block; width:50%; height:40%; position:absolute; left: 0%; top: 40%;"
-				onclick="cerrarPantallaSalir();verPortada();">	
+				onclick="salirDeLaAplicacion();">
 			</a>
 
 			<a style="display:block; width:50%; height:40%; position:absolute; left: 50%; top: 40%;"
-				onclick="salirDeLaAplicacion();">
-			</a> 	
+				onclick="cerrarPantallaSalir(); verPortada();">	
+			</a>
 		</div>
 
 		<div id="vista-creditos" class="vista"
@@ -405,7 +401,16 @@
 			}
 			
 			function salirDeLaAplicacion(){
-				navigator.app.exitApp();
+				if (esDispositivoMovil){
+					navigator.app.exitApp();
+					return false;
+				}
+				// Caso PC. Se ha verificado que funciona con Chrome y Microsoft Edge.
+				// Probablemente si esta aplicación consistiera en un sitio web en donde 
+				// se navega entre varias páginas, habiendo un historial de navegación 
+				// entre ellas, esto no funcionaría
+				window.close();
+				return false;
 			}
 		</script>
 	</body>
