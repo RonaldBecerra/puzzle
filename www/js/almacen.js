@@ -8,6 +8,8 @@
  *        Puzzles Deslizantes Educativos: Manifestaciones Rupestres Venezolanas
  */
 
+ // FALTA AJUSTARLO AL NUEVO ORDEN
+
 
 var almacen = window.localStorage; //Permite guardar de manera persistente
                                    //los datos de la última partida
