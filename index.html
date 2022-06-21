@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link id="size-stylesheet" rel="stylesheet" type="text/css" href="css/narrow.css"/>
+	<title>Puzzle</title>		
+</head>
+
+<body class="centeredFlex">
+	<header class="centeredFlex">
+		<div class="centeredFlex headerFooterBackground">
+			<div class="header-side" style="display:flex; justify-content:flex-start; align-items:center">
+				<span></span>
+				<img id="hamburger-menu" src="img/icons/hamburger-menu.png" onclick="openIndex()"
+					 onmouseover="this.style.height='90%'" onmouseout="this.style.height='80%'"
+					 style="height:80%; filter:invert(100%);">
+			</div>
+			<img id="header-label">
+			<div id="languageMenu" class="header-side" style="justify-content:flex-end; padding-right:3%">
+				<div class="centeredFlex">
+					<img class="language_icon" src="img/icons/spain.png" onclick="change_language('spanish')">
+				</div>
+
+				<div class="centeredFlex">
+					<img class="language_icon" src="img/icons/uk.png" onclick="change_language('english')">
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Middle section with red color-->
+	<main class="centeredFlex"></main>
+
+	<footer class="centeredFlex">
+		<div class="centeredFlex headerFooterBackground" style="flex-direction: row;">
+
+			<!--Text: All rights reserved -->
+			<div id="footer-label" style="font-family:'Century Gothic'; text-align:center"></div>
+
+			<!-- Hands pointing to left/right, and the magnifying glass on the center -->
+			<div id="footer-elements" class="whole" style="display:none; justify-content:flex-start">
+				<div class="centeredFlex" style="width:calc(100%/3); height:100%">
+					<img id="handToLeft" class="footer_icon" src="img/icons/pointing-hand.png">
+				</div>
+				<div class="centeredFlex" style="width:calc(100%/3); height:100%">
+					<img id="magnifyingGlass" class="footer_icon" src="img/icons/magnifying-glass.png">
+				</div>
+				<div class="centeredFlex" style="width:calc(100%/3); height:100%">
+					<img id="handToRight" class="footer_icon" src="img/icons/pointing-hand.png"
+						style="transform: scaleX(-1)">
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+	<!-- Drawer navigator -->
+	<div id="index-view" style="display:none;">
+		<div></div>
+	</div>
+</body>
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+<!-- Import global variables and constants -->
+<script type="text/javascript" src="js/global.js"></script>
+
+<!-- Import the texts of the application -->
+<script type="text/javascript" src="js/texts/email.js"></script>
+<script type="text/javascript" src="js/texts/figureParts.js"></script>
+<script type="text/javascript" src="js/texts/imagesCombinationsDescriptions.js"></script>
+<script type="text/javascript" src="js/texts/mainButtons.js"></script>
+<script type="text/javascript" src="js/texts/mainLabels.js"></script>
+<script type="text/javascript" src="js/texts/manifestationsDefinitions.js"></script>
+<script type="text/javascript" src="js/texts/quizQuestions.js"></script>
+<script type="text/javascript" src="js/texts/quizResults.js"></script>
+
+<!-- Import the functions that change the views -->
+<script type="text/javascript" src="js/functions/mainFunctions.js"></script>
+<!-- <script type="text/javascript" src="js/diccionarios.js"></script>
+<script type="text/javascript" src="js/juego.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/almacen.js"></script> -->
+
+<!-- Import the functions that are invoked putting an underscore (_) -->
+<script type="text/javascript" src="js/underscore-min.js"></script>
+
+<script type="text/javascript" src="js/imageMapResizer.min.js"></script>
+
+</html>

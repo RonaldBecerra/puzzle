@@ -1,0 +1,343 @@
+/* We don't want to display anything that is marked only for narrow */
+.narrowOnly{
+	display: none;
+}
+
+/* ------------------- FORMAT FOR THE HEADER -------------------- */
+
+/* It's the red box with rounded borders that appears on the header and the footer */
+.headerFooterBackground{
+	flex-direction: row;
+	border-radius: 15px;
+	background: #670001;
+	width: 96.5%;
+	height: 70%;
+	color: #f9efec;
+}
+
+#hamburger-menu{
+	width: 20%;
+}
+
+/* The part that says "EDUCATIONAL SLIDING PUZZLE" */
+#header-label{
+	width: 45%;
+	height: 70%;
+}
+
+/* The two lateral sides of the header-label, in one of which is the hamburger menu */
+.header-side{
+	width: 27.5%;
+	height: 100%;
+}
+.header-side span{
+	width: 12%;
+}
+
+/* Menu in which the user can change the language of the app */
+#languageMenu{
+	min-width: 20%; 
+	height: 100%; 
+	display: flex; 
+	justify-content: flex-end;
+}
+#languageMenu div, #languageMenu a{
+	width: 25%;
+}
+
+/* For the english/spanish buttons that appear on the language menu */
+.language_icon{
+	position:absolute; 
+	height: 70%;
+}
+.language_icon:hover{
+	height: 80%;
+}
+
+/* ------------------- END OF FORMAT FOR THE HEADER -------------------- */
+
+/* ------------------- FORMAT FOR THE FRONT PAGE -------------------- */
+#frontPage-title {
+	width: 55%;
+	height: 47%;
+}
+
+#frontPage-hand {
+	height: 18%;
+	left: 80%;
+	bottom: 6%;
+}
+#frontPage-hand:hover{
+	height: 19%;
+}
+/* ------------------- END OF FORMAT FOR THE FRONT PAGE -------------------- */
+
+#relatedToApp{
+	height: 90%;
+	width: 74%%;
+}
+
+/*For the two red borders of the whole view, with vertical text*/
+.viewBorder{
+	width: 5%; 
+	height: 100%; 
+	display: flex;
+	justify-content: center;
+	align-items: flex-end; 
+	padding-bottom: 2vh;
+}
+
+/* For the images (not the slider figures) that appear on the center of the main-background */
+.central_img{
+	height: 100%;
+	width: 74%;
+	align-items: center;
+}
+
+/* For the two spaces that are on the side of the "img" div */
+.img-side{
+	position: relative;
+	width: 17%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 2vh;
+	padding-right: 0.95vw;
+}
+
+/*For the menus that may appear on the left and/or the right of the view*/
+.columnMenu{
+	height: 100%; 
+	width: 40%; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: flex-start; 
+	align-items: center; 
+	background-image: url('../img/fondo_intro.jpg');
+}
+
+.whiteBackground_blackBorder{
+	border-radius: 15px;
+	border-style: solid;
+	border-color: black;
+	background: white;
+	padding: 2%;
+	border-width: 3px;
+}
+
+/* ------------- FORMAT FOR BUTTONS THAT DISPLAY ON LATERAL MENUS ------------ */
+
+/*Buttons that display the different main views */
+.mainMenuButton{
+	background-size: cover;
+	width: 100%;
+	height: 6.5vh;
+	outline: none;
+	font-family: 'FontRupes'; 
+	font-size: 2vw;
+}
+
+/*Text of a lateral menu button*/
+.text_mb{
+	color: white;
+	font-weight: lighter;
+	font-size: 2vmax;
+}
+
+/*Subclass of mainMenuButton*/
+.darkRed_mb{
+	background-image: url('../img/button/button_darkred.png');
+}
+
+/*Subclass of mainMenuButton*/
+.red_mb{
+	background-image: url('../img/button/button_red.png');
+}
+
+/*Subclass of mainMenuButton*/
+.gray_mb{
+	background-image: url('../img/button/button_gray.png');
+}
+
+/*Subclass of mainMenuButton*/
+.orange_mb{
+	background-image: url('../img/button/button_orange.png');
+}
+
+/* ------------- END OF FORMAT FOR BUTTONS THAT DISPLAY ON LATERAL MENUS ------------ */
+
+
+/* Large texts of definitions of Petroglyphs and Rock Paintings */
+#definition{
+	width: 95%; 
+	font-family: 'FontTexto'; 
+	font-size: 1.55vmin;
+}
+
+/* Description that appears above a slider figure */
+#figureDesc{
+	font-size: 1.8vw; 
+	width: 97%;
+}
+
+/* Kind of a slider figure (e.g. Anthropomorphic) */
+#figureKind{
+	font-size: 2.6vw;
+}
+
+/* Label that has information related to a figure, like its name, location, etc. */
+#figureRotulo{
+	width: 100%; 
+	padding-left: 74%; 
+	padding-bottom: 5%;
+	font-size: 1.4vw;
+}
+
+/* Each of the three parts of the slider figure */
+.figureSection{
+	width: 60%;
+}
+
+.arrowContainer{
+	width: 20%;
+}
+
+.arrowContainer img{
+	height: 10%;
+}
+
+.arrowContainer img:hover{
+	height: 14%;
+}
+
+/* ------------- FORMAT FOR ELEMENTS RELATED TO THE QUIZ ------------ */
+
+/* Format of a question that is not the last one */
+#normalQuestion{
+	font-size: 2vw;
+}
+
+/* Format of a possible answer of a question that is not the last one */
+.normalQAnswer{
+	padding-left: 10px; 
+	font-size: 2vw; 
+	font-family: 'FontTexto';
+}
+
+/* Button in which the user selects an option for an answer */
+input[type=radio] {
+	width: 15px;
+	height:15px;
+}
+
+/* Description of the last question. It also appears above a slider figure */
+#lastQDesc{
+	max-height: 55%;
+}
+#lastQDesc p{
+	font-size: 1.3vmax;
+}
+
+/* Box of choosable options in the last question */
+#kind_rotulos select{
+	font-size: 1.7vmin;
+	max-width: 54%;
+}
+
+/* The two sides of the box of the choosable options */
+#kind_rotulos div{
+	min-width: 23%;
+	padding-bottom: 5%;
+}
+
+/* It appears in the last question of the quiz */
+#finishButton{
+	border-radius: 8px;
+	border-style: solid;
+	border-color: black;
+	background: #ed1c24; /*Similar to red*/
+	padding: 7%;
+	cursor: default;
+	color: black;
+	font-size: 1.7vmin;
+}
+
+/* ------------- END OF FORMAT FOR ELEMENTS RELATED TO THE QUIZ ------------ */
+
+
+/* ------------- FORMAT FOR ELEMENTS RELATED TO SENDING THE EMAIL ------------ */
+
+#sendEmailDesc{
+	font-size: 3.5vmin;
+}
+
+/* For the text input boxes that are used to enter the send email fields*/
+.emailInput{
+	width: 85%; 
+}
+.emailInput label{
+	font-size: 2.4vmin; 
+}
+.emailInput input{
+	height: 28%; 
+	width: 100%; 
+	font-size: 2.4vmin; 
+	padding-left: 5px; 
+	padding-right: 5px;
+}
+
+#sendEmailButton{
+	border-radius: 8px;
+	border-style: solid;
+	border-color: black;
+	background: #4285F4; /*Blue color used by Google*/
+	padding: 9%;
+	cursor: default;
+	color: black;
+}
+#sendEmailButton p{
+	font-size: 2.8vmin; 
+}
+
+/* ------------- END OF FORMAT FOR ELEMENTS RELATED TO SENDING THE EMAIL ------------ */
+
+
+/* ------------- FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
+
+#results-container {
+	min-width: 65%;
+	max-width: 80%; 
+	min-height: 50%;
+	max-height: 70%;
+	font-size: 2.7vmin;
+}
+
+#results-title{
+	font-size: 4.5vmin; 
+}
+
+/* Try again and Back to main menu */
+.results_clickableText:hover{
+	font-weight: bold; 
+	font-size: 2.8vmin;
+}
+
+/* ------------- END OF FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
+
+
+/* ------------------- FORMAT FOR THE FOOTER -------------------- */
+
+/* The part that says "All rights reserved. ©FUNDABITAT, 2022" */
+#footer-label{
+	font-size: 1.8vw; 
+}
+
+.footer_icon{
+	position: absolute;
+	width: 25%;
+	height: 60%;
+}
+.footer_icon:hover{
+	height: 70%;
+}
+/* ------------------- END OF FORMAT FOR THE FOOTER -------------------- */
