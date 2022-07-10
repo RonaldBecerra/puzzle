@@ -61,7 +61,7 @@ function change_language(newLanguage){
 	if (language !== newLanguage){
 		language = newLanguage;
 
-		// We translate the texts and images of the of the main labels (header, footer and front page image)
+		// We translate the texts and images of the of the main labels (header, footer, front page image and index image)
 		let object, div;
 		let texts = mainLabels_texts[newLanguage];
 		for (i=0; i < texts.length; i++){
@@ -195,12 +195,12 @@ function changeFooter(kind){
 
 function openIndex(){
 	indexView = true;
-    document.getElementById("index-view").style.display = "flex";
-    $("#index-view").animate({"width":"70%", "flex-grow":"1"}, 100);
+    document.getElementById("index-view-container").style.display = "flex";
+    $("#index-view-container").animate({"width":"100%",}, 100);
 }
 
 function closeIndex(){
 	indexView = false;
-	$("#index-view").animate({"width":"0%", "display":"none"}, 100);
+	$("#index-view-container").animate({"width":"0%", "display":"none"}, 100);
 }
 

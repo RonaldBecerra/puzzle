@@ -9,9 +9,9 @@
 .headerFooterBackground{
 	flex-direction: row;
 	border-radius: 15px;
-	background: #670001;
-	width: 96.5%;
-	height: 70%;
+	background: #780000;
+	width: var(--content-width);
+	height: 75%;
 	color: #f9efec;
 }
 
@@ -341,3 +341,46 @@ input[type=radio] {
 	height: 70%;
 }
 /* ------------------- END OF FORMAT FOR THE FOOTER -------------------- */
+
+
+/* ------------------- FORMAT FOR THE INDEX ---------------------- */
+
+/* Transparent part whose purpose is that the user can close the index by touching or clicking it */
+#index-empty{
+	width: 30%;
+}
+
+/* Space so that the close button does not appear at the end */
+#index-header-space{
+	width: 2%;
+}
+
+/* X button to close the index */
+#index-closeX{
+	width: 7%;
+}
+
+/* Same title that appears on the front page */
+#index-title {
+	width: 60%;
+	height: 90%;
+}
+
+/* The part that says "EDUCATIONAL SLIDING PUZZLE" */
+#index-label{
+	width: 70%;
+	height: 58%;
+}
+
+/* Menu in which the user can change the language of the app */
+#index-languageMenu{
+	width: 15%; 
+	height: 100%; 
+	display: flex; 
+	justify-content: space-between;
+}
+#index-languageMenu div, #index-languageMenu a{
+	width: 13%;
+}
+
+/* ------------------- END OF FORMAT FOR THE INDEX -------------------- */

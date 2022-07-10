@@ -10,7 +10,7 @@
 </head>
 
 <body class="centeredFlex">
-	<header class="centeredFlex">
+	<header class="header centeredFlex">
 		<div class="centeredFlex headerFooterBackground">
 			<div class="header-side" style="display:flex; justify-content:flex-start; align-items:center">
 				<span></span>
@@ -31,10 +31,10 @@
 		</div>
 	</header>
 
-	<!-- Middle section with red color-->
-	<main class="centeredFlex"></main>
+	<!-- Middle section where is the principal content -->
+	<main class="main centeredFlex"></main>
 
-	<footer class="centeredFlex">
+	<footer class="footer centeredFlex">
 		<div class="centeredFlex headerFooterBackground" style="flex-direction: row;">
 
 			<!--Text: All rights reserved -->
@@ -58,8 +58,74 @@
 	</footer>
 
 	<!-- Drawer navigator -->
-	<div id="index-view" style="display:none;">
-		<div></div>
+	<div id="index-view-container" style="display:none;">
+		<div id="index-view">
+			<!-- Header with close button -->
+			<div class="header centeredFlex">
+				<div class="centeredFlex headerFooterBackground" style="justify-content:flex-end; align-items:center">
+					<img id="index-closeX" src="img/icons/closeX.png" onclick="closeIndex()"
+						 onmouseover="this.style.height='60%'" onmouseout="this.style.height='50%'"
+						 style="height:50%; filter:invert(100%);">
+					<span id="index-header-space"></span>
+				</div>
+			</div>
+
+			<!-- Image with the title: "Venezuelan Rockart manifestations" -->
+			<div class="centeredFlex" style="height:calc(0.29 * var(--main-container-height)); width:100%">
+				<div class="centeredFlex" style="height:100%; width:var(--content-width)">
+					<img id="index-title">
+				</div>
+			</div>
+
+			<!-- The part that says "EDUCATIONAL SLIDING PUZZLE" -->
+			<div class="header centeredFlex">
+				<!-- This is to fill the lower half with yellow background -->
+				<span class="whole centeredFlex">
+					<span style="background:linear-gradient(to bottom, Transparent 50%, var(--index-yellow) 50%); height:100%; width: var(--content-width)"></span>
+				</span>
+
+				<!-- Image with the mentioned text -->
+				<div class="centeredFlex headerFooterBackground" style="position:absolute">
+					<img id="index-label">
+				</div>
+			</div>
+
+			<div class="centeredFlex" style="height:calc(0.71 * var(--main-container-height) - var(--header-footer-container-height))">
+				<div class="centeredFlex" style="height:100%; width: var(--content-width); background-color: var(--index-yellow)">
+
+				</div>
+			</div>
+
+<!-- 			<div class="whole centeredFlex" style="height: var(--main-container-height)">
+				<div style="height:100%; width: var(--content-width)">
+					<div style="height:29%; background-color: white"></div>
+					<div style="height:71%; background-color: black"></div>
+				</div>
+			</div> -->
+
+			<!-- Footer with the language menu -->
+			<div class="footer centeredFlex">
+				<!-- This is to fill the upper half with yellow background -->
+				<span class="whole centeredFlex">
+					<span style="background:linear-gradient(to bottom, var(--index-yellow) 50%, Transparent 50%); height:100%; width: var(--content-width)"></span>
+				</span>
+
+				<div class="centeredFlex headerFooterBackground" style="position:absolute">
+					<div id="index-languageMenu">
+						<div class="centeredFlex">
+							<img class="index-language_icon" src="img/icons/spain.png" onclick="change_language('spanish')">
+						</div>
+
+						<div class="centeredFlex">
+							<img class="index-language_icon" src="img/icons/uk.png" onclick="change_language('english')">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Transparent part whose purpose is that the user can close the index by touching or clicking it -->
+		<div id="index-empty" style="height:100%" onclick="closeIndex()"></div>
 	</div>
 </body>
 
