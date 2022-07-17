@@ -23,16 +23,19 @@ const possible_languages = ["spanish", "english"];
 var indexView = false; // Determines if the index (drawer navigator) is opened.
 var frontPage = false; // The initial page that appears when opening the app.
 var relatedToApp = false; // It refers to any of the views: Presentation, Instructions, etc.
+var closingApp = false; // Indicates if the user is in the view that lets exiting the application
 // ------ END
 
 // ------ BEGIN: Variables related to the board game ---------------
-var boardNumRows = 3; 
-var boardNumColumns = 3;
+var boardNumRowsColumns = 3; 
 var startX, startY; // Coordinates of the point in which the user touches or clicks the screen
 var endX, endY; // Coordinates of the point in which the user stops touching or clicking the screen
 // ------ END
 
 var url_imagen;
+
+
+//////////////////////////////////   DESCARTADO  ///////////////////////////////////////////////
 
 //El tamaño de la pantalla del dispositivo determina los demás tamaños
 var anchoDePantalla = window.screen.availWidth;
@@ -60,16 +63,18 @@ var diccionario_posicion_blanca_juego;
 
 var vistaActual = "vista-seleccionar-tipo-manifestacion";
 
-const imagesThatVaryWithLanguage = {
+//////////////////////////////////   FIN  DESCARTADO  ///////////////////////////////////////////////
+
+const relatedToApp_sources = {
 	spanish: {
 		presentation: "img/text/presentation_es.png",
 		instructions: "img/text/instructions_es.png",
-		credits: null,
+		credits: "img/text/credits_es.png",
 	},
 	english: {
 		presentation: "img/text/presentation_en.png",
 		instructions: "img/text/instructions_en.png",
-		credits: null,
+		credits: "img/text/credits_en.png",
 	},
 }
 

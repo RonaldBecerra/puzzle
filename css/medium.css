@@ -324,6 +324,10 @@ input[type=radio] {
 
 /* ------------- END OF FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
 
+#exitView{
+	width: 65%;
+	height: 58%;
+}
 
 /* ------------------- FORMAT FOR THE FOOTER -------------------- */
 
@@ -370,6 +374,25 @@ input[type=radio] {
 #index-label{
 	width: 70%;
 	height: 58%;
+}
+
+#index-hand {
+	height: 21%;
+	width: 16%;
+	top: 2%;
+	left: 10%;
+}
+
+.index-clickableText{
+	font-family: 'Century Gothic';
+	font-size: 2.6vh;
+	
+	/* This is for a text to be bigger but not the font-size, just streched */
+	transform:scale(1.6,1);
+}
+.index-clickableText:hover{
+	color: white;
+	cursor: default;
 }
 
 /* Menu in which the user can change the language of the app */

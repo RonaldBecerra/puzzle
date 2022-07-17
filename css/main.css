@@ -44,7 +44,7 @@ body {
 	height: var(--header-footer-container-height); 
 }
 
-.main {
+main {
 	width: var(--content-width);
 	height: var(--main-container-height);
 }
@@ -88,6 +88,12 @@ body {
 	height: 80%;
 }
 
+@font-face {
+	font-family:Epistolar;
+	src: url(../ttf/EPISTOLAR.ttf);
+}
+
+/* --------------- Unused for the moment --------------------------- */
 .centeredBold_FontTexto{
 	text-align: center; 
 	font-family: 'FontTexto';

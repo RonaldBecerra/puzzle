@@ -75,7 +75,7 @@
 /* For the images with text that represent the Presentation and Instructions views */
 #relatedToApp{
 	height: 90%;
-	width: 45%;
+	width: 38%;
 }
 
 /*For the two red borders of the whole view, with vertical text*/
@@ -325,6 +325,11 @@ input[type=radio] {
 
 /* ------------- END OF FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
 
+#exitView{
+	width: 50%;
+	height: 60%;
+}
+
 
 /* ------------------- FORMAT FOR THE FOOTER -------------------- */
 
@@ -371,6 +376,25 @@ input[type=radio] {
 #index-label{
 	width: 55%;
 	height: 60%;
+}
+
+#index-hand {
+	height: 30%;
+	width: 12%;
+	top: 2%;
+	left: 10%;
+}
+
+.index-clickableText{
+	font-family: 'Century Gothic';
+	font-size: 3vh;
+	
+	/* This is for a text to be bigger but not the font-size, just streched */
+	transform:scale(1.9,1);
+}
+.index-clickableText:hover{
+	color: white;
+	cursor: default;
 }
 
 /* Menu in which the user can change the language of the app */

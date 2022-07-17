@@ -72,17 +72,20 @@ function change_language(newLanguage){
 			}
 		}
 
+		// We generate the texts of the index
+		generate_indexOptions(newLanguage);
+
 		// Case when the user is in any of the views: presentation, instructions or credits
 		// NOTE: A non-empty string works as a "true"
 		if (relatedToApp){
-			document.getElementById("relatedToApp").src = imagesThatVaryWithLanguage[language][relatedToApp];
+			document.getElementById("relatedToApp").src = relatedToApp_sources[language][relatedToApp];
 		}
 	}
 }
 
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = false;
+	frontPage = relatedToApp = closingApp = false;
 }
 
 function changeToView(kind){
@@ -103,7 +106,7 @@ function loadRelatedToApp(kind){
 	changeToView("relatedToApp_view");
 	relatedToApp = kind;
 
-	document.getElementById("relatedToApp").src = imagesThatVaryWithLanguage[language][relatedToApp];
+	document.getElementById("relatedToApp").src = relatedToApp_sources[language][relatedToApp];
 
 	let {handToLeft, handToRight} = getFooterElements();
 	switch (kind){
@@ -159,7 +162,26 @@ function poblateMainTag(kind){
 			}
 			break;
 		case "chooseManifestation_view":
-			break;	
+			break;
+		// VIew in which the user can close the application
+		case "exit_view":
+			if (!closingApp){
+				let source = mainLabels_texts[language].find(element => element.identifier === "exitView").content;
+				div.innerHTML =
+					`<div class="whole centeredFlex">
+						<img id="exitView" src="` + source + `">
+
+						<a style="display:block; width:50%; height:40%; position:absolute; left: 0%; top: 40%;"
+							onclick="exitApp()">
+						</a>
+
+						<a style="display:block; width:50%; height:40%; position:absolute; left: 50%; top: 40%;"
+							onclick="changeToView('frontPage_view')">	
+						</a>
+					</div>`;
+				closingApp = true;
+			}
+			break;
 		default:
 			break;
 	}
@@ -181,26 +203,17 @@ function changeDisplaying(arrayDisplay, arrayNotDisplay){
    here we make it display the correct case.
  */
 function changeFooter(kind){
+	// This disappears in the credits view, so by default we respawn it here
+	changeDisplaying(["handToRight"],[]);
+
 	switch (kind){
 		// Presentation, instructions or credits
 		case "relatedToApp_view":
 			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass"]);
 			break;
-		// Currently, this case will only be the front page
+		// Front page, exit view
 		default:
 			changeDisplaying(["footer-label"], ["footer-elements"]);
 			break;
 	}
 }
-
-function openIndex(){
-	indexView = true;
-    document.getElementById("index-view-container").style.display = "flex";
-    $("#index-view-container").animate({"width":"100%",}, 100);
-}
-
-function closeIndex(){
-	indexView = false;
-	$("#index-view-container").animate({"width":"0%", "display":"none"}, 100);
-}
-
