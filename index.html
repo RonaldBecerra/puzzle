@@ -19,7 +19,8 @@
 					 onmouseover="this.style.height='90%'" onmouseout="this.style.height='80%'"
 					 style="height:80%; filter:invert(100%);">
 			</div>
-			<img id="header-label">
+			<!-- <img id="header-label"> -->
+			<span id="header-label"></span>
 			<div id="languageMenu" class="header-side" style="justify-content:flex-end; padding-right:3%">
 				<div class="centeredFlex">
 					<img class="language_icon" src="img/icons/spain.png" onclick="change_language('spanish')">
@@ -88,7 +89,7 @@
 
 				<!-- Image with the mentioned text -->
 				<div class="centeredFlex headerFooterBackground" style="position:absolute">
-					<img id="index-label">
+					<span id="index-label"></span>
 				</div>
 			</div>
 
@@ -134,17 +135,15 @@
 <!-- Import global variables and constants -->
 <script type="text/javascript" src="js/global.js"></script>
 
-<!-- Import the texts of the application -->
-<script type="text/javascript" src="js/texts/mainLabels.js"></script>
-<script type="text/javascript" src="js/texts/indexOptions.js"></script>
+<!-- Import the dictionaries of the application -->
+<script type="text/javascript" src="js/dictionaries/mainLabels.js"></script>
+<script type="text/javascript" src="js/dictionaries/indexOptions.js"></script>
+<script type="text/javascript" src="js/dictionaries/manifestationsOptions.js"></script>
 
 <!-- Import the functions that change the views -->
 <script type="text/javascript" src="js/functions/mainFunctions.js"></script>
 <script type="text/javascript" src="js/functions/indexFunctions.js"></script>
-<!-- <script type="text/javascript" src="js/diccionarios.js"></script>
-<script type="text/javascript" src="js/juego.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
-<script type="text/javascript" src="js/almacen.js"></script> -->
+<script type="text/javascript" src="js/functions/manifestationsMenuFunctions.js"></script>
 
 <!-- Import the functions that are invoked putting an underscore (_) -->
 <script type="text/javascript" src="js/underscore-min.js"></script>

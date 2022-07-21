@@ -15,6 +15,16 @@
 
 	/* Yellow color that appears as part of the background of the index */
 	--index-yellow: #ec7700;
+
+	/* Colors for the manifestations */
+	--red-manifestation: #cd3201;
+	--purple-manifestation: #9a32cc;
+	--green-manifestation: #339933;
+	--gray-manifestation: #999999;
+	--blue-manifestation: #0098ca;
+	--burgundy-manifestation: #660001;
+	--orange-manifestation: #cc6601;
+	--ocher-manifestation: #cc9900;
 }
 
 html {
@@ -42,6 +52,16 @@ body {
 .header {
 	width: 100%; 
 	height: var(--header-footer-container-height); 
+}
+
+/* It's the red box with rounded borders that appears on the header and the footer */
+.headerFooterBackground{
+	flex-direction: row;
+	border-radius: 10px;
+	background: #780000;
+	width: var(--content-width);
+	height: 75%;
+	color: #f9efec;
 }
 
 main {

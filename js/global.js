@@ -23,7 +23,13 @@ const possible_languages = ["spanish", "english"];
 var indexView = false; // Determines if the index (drawer navigator) is opened.
 var frontPage = false; // The initial page that appears when opening the app.
 var relatedToApp = false; // It refers to any of the views: Presentation, Instructions, etc.
+var choosingManifestation = false; // Menu with buttons to choose the manifestation which will be used as the image for the game
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
+// ------ END
+
+// ------ BEGIN: Variables and constants related to choosing the manifestation ---------------
+const manifestationButtonsColors = ["red","purple","green","green","green","gray","gray","gray","gray","blue","blue","burgundy","orange","ocher"];
+var chosenManifestation = -1; // It stores the index of the last chosen manifestation 
 // ------ END
 
 // ------ BEGIN: Variables related to the board game ---------------
@@ -32,10 +38,10 @@ var startX, startY; // Coordinates of the point in which the user touches or cli
 var endX, endY; // Coordinates of the point in which the user stops touching or clicking the screen
 // ------ END
 
-var url_imagen;
-
 
 //////////////////////////////////   DESCARTADO  ///////////////////////////////////////////////
+
+var url_imagen;
 
 //El tamaño de la pantalla del dispositivo determina los demás tamaños
 var anchoDePantalla = window.screen.availWidth;

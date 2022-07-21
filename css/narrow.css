@@ -6,16 +6,6 @@
 
 /* ------------------- FORMAT FOR THE HEADER -------------------- */
 
-/* It's the red box with rounded borders that appears on the header and the footer */
-.headerFooterBackground{
-	flex-direction: row;
-	border-radius: 10px;
-	background: #780000;
-	width: var(--content-width);
-	height: 75%;
-	color: #f9efec;
-}
-
 #hamburger-menu{
 	width: 35%;
 }
@@ -23,7 +13,12 @@
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
 #header-label{
 	width: 52%;
-	height: 50%;
+	text-align: center;
+	font-family: 'Epistolar';
+	font-size: 2.5vw;
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
+	transform:scale(1.5,1.3);
 }
 
 /* The two lateral sides of the header-label, in one of which is the hamburger menu */
@@ -77,232 +72,21 @@
 	width: 95%;
 }
 
-/*For the two red borders of the whole view, with vertical text*/
-.viewBorder{
-	display: none;
+/* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
+#chooseManifestation-label{
+	height: 27%;
+	width: 83%;
 }
 
-/* For the images (not the slider figures) that appear on the center of the main-background */
-.central_img{
-	height: 100%;
-	width: 84%;
-	flex-grow: 1; /* This makes it fill the container when there are not img-sides */
+.manifestationsMenu-button{
+	height: 5.8%;
+	width: 50%;
+	font-size: 3.1vw;
+	border-radius: 4px; 
+	transform:scale(1.4,1);
 }
 
-/* For the two spaces that are on the side of the "img" div */
-.img-side{
-	position: relative;
-	width: 8%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	padding-bottom: 2vh;
-}
-
-/*For the menus that may appear on the left and/or the right of the view*/
-.columnMenu{
-	display: none;
-}
-
-.whiteBackground_blackBorder{
-	border-radius: 15px;
-	border-style: solid;
-	border-color: black;
-	background: white;
-	padding: 2%;
-	border-width: 3px;
-}
-
-/* ------------- FORMAT FOR BUTTONS THAT DISPLAY ON LATERAL MENUS ------------ */
-
-/*Buttons that display the different main views */
-.mainMenuButton{
-	background-size: cover;
-	width: 100%;
-	height: 6.5vh;
-	outline: none;
-	font-family: 'FontRupes'; 
-	font-size: 2vw;
-}
-
-/*Text of a lateral menu button*/
-.text_mb{
-	color: white;
-	font-weight: lighter;
-	font-size: 1.65vmax;
-}
-
-/*Subclass of mainMenuButton*/
-.darkRed_mb{
-	background-image: url('../img/button/button_darkred.png');
-}
-
-/*Subclass of mainMenuButton*/
-.red_mb{
-	background-image: url('../img/button/button_red.png');
-}
-
-/*Subclass of mainMenuButton*/
-.gray_mb{
-	background-image: url('../img/button/button_gray.png');
-}
-
-/*Subclass of mainMenuButton*/
-.orange_mb{
-	background-image: url('../img/button/button_orange.png');
-}
-
-/* ------------- END OF FORMAT FOR BUTTONS THAT DISPLAY ON LATERAL MENUS ------------ */
-
-
-/* Large texts of definitions of Petroglyphs and Rock Paintings */
-#definition{
-	width: 95%; 
-	font-family: 'FontTexto'; 
-	font-size: 0.9vmax;
-}
-
-/* Description that appears above a slider figure */
-#figureDesc{
-	font-size: 1.7vw; 
-	width: 97%;
-}
-
-/* Kind of a slider figure (e.g. Anthropomorphic) */
-#figureKind{
-	font-size: 4.5vw;
-}
-
-/* Label that has information related to a figure, like its name, location, etc. */
-#figureRotulo{
-	width: 100%; 
-	padding-left: 75%; 
-	padding-bottom: 5%;
-	font-size: 2.5vw;
-}
-
-/* Each of the three parts of the slider figure */
-.figureSection{
-	width: 100%;
-}
-
-.arrowContainer{
-	display: none;
-}
-
-/* ------------- FORMAT FOR ELEMENTS RELATED TO THE QUIZ ------------ */
-
-/* Format of a question that is not the last one */
-#normalQuestion{
-	font-size: 1.9vw;
-}
-
-/* Format of a possible answer of a question that is not the last one */
-.normalQAnswer{
-	padding-left: 10px; 
-	font-size: 1.9vw; 
-	font-family: 'FontTexto';
-}
-
-/* Button in which the user selects an option for an answer */
-input[type=radio] {
-	width: 10px;
-	height:10px;
-}
-
-/* Description of the last question. It also appears above a slider figure */
-#lastQDesc{
-	max-height: 85%;
-}
-#lastQDesc p{
-	font-size: 1.2vmax;
-}
-
-/* Box of choosable options in the last question */
-#kind_rotulos select{
-	font-size: 2.4vmin;
-	width: 38%;
-}
-
-/* The two sides of the box of the choosable options */
-#kind_rotulos div{
-	width: 31%;
-	padding-bottom: 10%;
-}
-
-/* It appears in the last question of the quiz */
-#finishButton{
-	border-radius: 8px;
-	border-style: solid;
-	border-color: black;
-	background: #ed1c24; /*Similar to red*/
-	padding: 7%;
-	cursor: default;
-	color: black;
-	font-size: 2vmin;
-}
-
-/* ------------- END OF FORMAT FOR ELEMENTS RELATED TO THE QUIZ ------------ */
-
-
-/* ------------- FORMAT FOR ELEMENTS RELATED TO SENDING THE EMAIL ------------ */
-
-#sendEmailDesc{
-	font-size: 3.2vh;
-}
-
-/* For the text input boxes that are used to enter the send email fields*/
-.emailInput{
-	width: 90%; 
-}
-.emailInput label{
-	font-size: 2vh; 
-}
-.emailInput input{
-	height: 28%; 
-	width: 100%; 
-	font-size: 2vh; 
-	padding-left: 5px; 
-	padding-right: 5px;
-}
-
-#sendEmailButton{
-	border-radius: 8px;
-	border-style: solid;
-	border-color: black;
-	background: #4285F4; /*Blue color used by Google*/
-	padding: 9%;
-	cursor: default;
-	color: black;
-}
-#sendEmailButton p{
-	font-size: 2.2vh; 
-}
-
-/* ------------- END OF FORMAT FOR ELEMENTS RELATED TO SENDING THE EMAIL ------------ */
-
-
-/* ------------- FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
-
-#results-container {
-	min-width: 70%;
-	max-width: 80%; 
-	min-height: 50%;
-	max-height: 70%;
-	font-size: 2.5vh;
-}
-
-#results-title{
-	font-size: 4vh; 
-}
-
-/* Try again and Back to main menu */
-.results_clickableText:hover{
-	font-weight: bold; 
-	font-size: 2.6vh;
-}
-
-/* ------------- END OF FORMAT FOR SHOWING THE QUIZ RESULTS ------------ */
+/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
 #exitView{
 	width: 85%;
@@ -352,8 +136,12 @@ input[type=radio] {
 
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
 #index-label{
-	width: 77%;
-	height: 48%;
+	text-align: center;
+	font-family: 'Epistolar';
+	font-size: 2.5vw;
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
+	transform:scale(1.5,1.3);
 }
 
 #index-hand {
@@ -366,7 +154,7 @@ input[type=radio] {
 .index-clickableText{
 	font-family: 'Century Gothic';
 	font-size: 2.25vh;
-	/* This is for a text to be bigger but not the font-size, just streched */
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
 }
 .index-clickableText:hover{
@@ -385,5 +173,4 @@ input[type=radio] {
 #index-languageMenu div, #index-languageMenu a{
 	width: 13%;
 }
-
 /* ------------------- END OF FORMAT FOR THE INDEX -------------------- */

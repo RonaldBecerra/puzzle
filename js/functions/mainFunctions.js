@@ -63,7 +63,7 @@ function change_language(newLanguage){
 
 		// We translate the texts and images of the of the main labels (header, footer, front page image and index image)
 		let object, div;
-		let texts = mainLabels_texts[newLanguage];
+		let texts = mainLabels[newLanguage];
 		for (i=0; i < texts.length; i++){
 			object = texts[i];
 			div = document.getElementById(object.identifier);
@@ -80,12 +80,15 @@ function change_language(newLanguage){
 		if (relatedToApp){
 			document.getElementById("relatedToApp").src = relatedToApp_sources[language][relatedToApp];
 		}
+		else if (choosingManifestation){
+			generateManifestationsButtons();
+		}
 	}
 }
 
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = closingApp = false;
+	frontPage = relatedToApp = closingApp = choosingManifestation = false;
 }
 
 function changeToView(kind){
@@ -116,7 +119,7 @@ function loadRelatedToApp(kind){
 			break;
 		case "instructions":
 			handToLeft.onclick = () => loadRelatedToApp("presentation");
-			handToRight.onclick = () => changeToView("frontPage_view");
+			handToRight.onclick = () => changeToView('manifestations_menu');
 			break;
 		case "credits":
 			handToLeft.onclick = () => changeToView("frontPage_view");
@@ -145,9 +148,8 @@ function poblateMainTag(kind){
 
 				// The only time "language" could be null is when the app is starting
 				if (language!=null){
-					document.getElementById("frontPage-title").src = mainLabels_texts[language][0].content;
+					document.getElementById("frontPage-title").src = mainLabels[language][0].content;
 				}
-
 			}
 			break;
 		// Presentation, instructions or credits
@@ -158,15 +160,29 @@ function poblateMainTag(kind){
 							style="display:flex; flex-direction:row; justify-content:center; align-items:flex-end; bottom:2%">
 						<img id="relatedToApp">
 					</div>`;
-				relatedToApp = kind;
 			}
 			break;
-		case "chooseManifestation_view":
+		case "manifestations_menu":
+			if (!choosingManifestation){
+				let source = mainLabels[language].find(element => element.identifier === "chooseManifestation-label").content;
+				div.innerHTML =
+					`<div class="whole centeredFlex" style="flex-direction:column">
+						<div class="centeredFlex" style="height:17.59%; width:100%">
+							<img id="chooseManifestation-label" src="` + source + `">
+						</div>
+
+						<div id="manifestationsMenu-container" class="centeredFlex" 
+							 style="height:82.41%; width:100%; flex-direction:column">
+						</div>
+					</div>`;
+			}
+			generateManifestationsButtons();
+			choosingManifestation = true;
 			break;
 		// VIew in which the user can close the application
 		case "exit_view":
 			if (!closingApp){
-				let source = mainLabels_texts[language].find(element => element.identifier === "exitView").content;
+				let source = mainLabels[language].find(element => element.identifier === "exitView").content;
 				div.innerHTML =
 					`<div class="whole centeredFlex">
 						<img id="exitView" src="` + source + `">
