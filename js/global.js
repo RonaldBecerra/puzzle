@@ -17,18 +17,19 @@ var language = null;
 const possible_languages = ["spanish", "english"];
 
 /* ------ BEGIN: Variables that determine if the user is currently in a determined view ---------------
- * They can have the "false" value, but for the true case a string may be used instead, since 
+ * They can have the "false" value, but for the true case a string or a number may be used instead, since 
  * many views can share the same kind, so the variable also specifies which is the current one.
  */
 var indexView = false; // Determines if the index (drawer navigator) is opened.
 var frontPage = false; // The initial page that appears when opening the app.
-var relatedToApp = false; // It refers to any of the views: Presentation, Instructions, etc.
+var relatedToApp = false; // It refers to any of the views: Presentation, Instructions or Credits.
 var choosingManifestation = false; // Menu with buttons to choose the manifestation which will be used as the image for the game
+var manifestationView = false; // Where appears an image and a description of the manifestation
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
 // ------ END
 
-// ------ BEGIN: Variables and constants related to choosing the manifestation ---------------
-const manifestationButtonsColors = ["red","purple","green","green","green","gray","gray","gray","gray","blue","blue","burgundy","orange","ocher"];
+// ------ BEGIN: Variables and constants related to the manifestations ---------------
+const manifestationsColors = ["red","purple","green","green","green","gray","gray","gray","gray","blue","blue","burgundy","orange","ocher"];
 var chosenManifestation = -1; // It stores the index of the last chosen manifestation 
 // ------ END
 
@@ -70,17 +71,3 @@ var diccionario_posicion_blanca_juego;
 var vistaActual = "vista-seleccionar-tipo-manifestacion";
 
 //////////////////////////////////   FIN  DESCARTADO  ///////////////////////////////////////////////
-
-const relatedToApp_sources = {
-	spanish: {
-		presentation: "img/text/presentation_es.png",
-		instructions: "img/text/instructions_es.png",
-		credits: "img/text/credits_es.png",
-	},
-	english: {
-		presentation: "img/text/presentation_en.png",
-		instructions: "img/text/instructions_en.png",
-		credits: "img/text/credits_en.png",
-	},
-}
-

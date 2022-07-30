@@ -159,7 +159,6 @@
 	transform:scale(1.6,1);
 }
 .index-clickableText:hover{
-	color: white;
 	cursor: default;
 }
 

@@ -28,14 +28,14 @@ function generateManifestationsButtons(){
 		}
 		str += `<button class="manifestationsMenu-button" name="manButton_` + i.toString() + `"
 						style="border: 1px solid #333;
-								border-color: var(--` + manifestationButtonsColors[i] + `-manifestation);
+								border-color: var(--` + manifestationsColors[i] + `-manifestation);
 								box-shadow: 
 									inset -4px -3px 5px -2px rgba(0, 0, 0, 0.8),
 								 	inset 2px 3px 5px 0px #d3a063;
 								font-family:'Epistolar';
 								color: ` + color + `;
 								font-weight: ` + fontWeight + `;
-								background-color: var(--` + manifestationButtonsColors[i] + `-manifestation)
+								background-color: var(--` + manifestationsColors[i] + `-manifestation)
 							   "
 						onmouseover = "this.style.color = 'white'; this.style.fontWeight = 'bold'";
 						onmouseout = "this.style.color = '`+ color + `'; this.style.fontWeight = '`+ fontWeight + `'"
@@ -80,7 +80,7 @@ function manifestationsButtonsListeners(){
 		button.addEventListener('mousedown', () => startPress(button, index), false);
 		button.addEventListener('touchstart', () => startPress(button, index), false);
 
-		button.addEventListener('mouseup', () => changeToView("frontPage_view"), false);
-		button.addEventListener('touchend', () => changeToView("frontPage_view"), false);
+		button.addEventListener('mouseup', () => loadManifestationView(index), false);
+		button.addEventListener('touchend', () => loadManifestationView(index), false);
 	}
 }

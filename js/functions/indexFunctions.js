@@ -7,11 +7,17 @@
 function generate_indexOptions(newLanguage){
 	let div, texts, str = "";
 
+	let positionSelectedDimensions = (boardNumRowsColumns < 6) ? boardNumRowsColumns+1 : 6;
 	div = document.getElementById("index-options");
 	texts = indexOptions_texts[newLanguage];
 
 	for (i=0; i < texts.length; i++){
-		str += `<div class="index-clickableText"` + indexOptions_functions[i] + `>` 
+		let color = (positionSelectedDimensions === i) ? 'blue' : 'black';
+		str += `<div class="index-clickableText"` + indexOptions_functions[i] +
+						`style = "color: `+ color + `"
+						onmouseover = "this.style.color = 'white'"
+						onmouseout = "this.style.color = '` + color +`'"
+					>` 
 				+ texts[i] + `</div>`;
 	}
 	div.innerHTML = str;

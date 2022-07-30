@@ -68,8 +68,8 @@
 /* ------------------- END OF FORMAT FOR THE FRONT PAGE -------------------- */
 
 #relatedToApp{
-	height: 90%;
-	width: 95%;
+	height: 86%;
+	width: 96%;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
@@ -81,7 +81,7 @@
 .manifestationsMenu-button{
 	height: 5.8%;
 	width: 50%;
-	font-size: 3.1vw;
+	font-size: 3.2vw;
 	border-radius: 4px; 
 	transform:scale(1.4,1);
 }
@@ -158,7 +158,6 @@
 	transform:scale(1.2,1);
 }
 .index-clickableText:hover{
-	color: white;
 	cursor: default;
 }
 

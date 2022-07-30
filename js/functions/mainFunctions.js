@@ -88,7 +88,7 @@ function change_language(newLanguage){
 
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = closingApp = choosingManifestation = false;
+	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = false;
 }
 
 function changeToView(kind){
@@ -134,6 +134,7 @@ function loadRelatedToApp(kind){
    Here we build that internal part according to it.
  */
 function poblateMainTag(kind){
+	console.log("Entré a poblateMainTag, con kind = ", kind);
 	let div = document.getElementsByTagName("main")[0];
 
 	switch (kind){
@@ -162,6 +163,7 @@ function poblateMainTag(kind){
 					</div>`;
 			}
 			break;
+		// Where the user can choose the manifestation with which will play
 		case "manifestations_menu":
 			if (!choosingManifestation){
 				let source = mainLabels[language].find(element => element.identifier === "chooseManifestation-label").content;
@@ -178,6 +180,17 @@ function poblateMainTag(kind){
 			}
 			generateManifestationsButtons();
 			choosingManifestation = true;
+			break;
+		// Where appears an image and a description of the manifestation
+		case "manifestation_view":
+			if (!manifestationView){
+				div.innerHTML =
+					`<div id="manifestation-view-container" class="whole centeredFlex" style="flex-direction:column; justify-content:flex-start">
+						<div id="map-label" style="height:14.3%; width:100%; background-color:blue"></div>
+						<div id="manifestation-image" style="height:65%; width:100%; background-color:green"></div>
+						<div id="manifestation-description" style="height:20.7%; width:100%; background-color:red"></div>
+					</div>`;
+			}
 			break;
 		// VIew in which the user can close the application
 		case "exit_view":
@@ -226,6 +239,10 @@ function changeFooter(kind){
 		// Presentation, instructions or credits
 		case "relatedToApp_view":
 			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass"]);
+			break;
+		// Where appears an image and a description of the manifestation
+		case "manifestation_view":
+			changeDisplaying(["footer-elements","magnifyingGlass"], ["footer-label"]);
 			break;
 		// Front page, exit view
 		default:
