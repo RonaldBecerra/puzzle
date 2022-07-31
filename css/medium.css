@@ -82,11 +82,30 @@
 	height: 5.8%;
 	width: 42%;
 	font-size: 2.4vh;
-	border-radius: 5px; 
+	border-radius: 5px;
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.4,1);
 }
-
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
+
+
+/* ------------------- FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
+#manifestation-view-container{
+	width: 81%;
+}
+
+#manifestation-minimap{
+	width: 25%;
+}
+
+#manifestation-description{
+	font-size: 2.2vh;
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
+	transform:scale(1.3,1);
+}
+/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
 
 #exitView{
 	width: 65%;
@@ -152,7 +171,6 @@
 }
 
 .index-clickableText{
-	font-family: 'Century Gothic';
 	font-size: 2.6vh;
 	
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/

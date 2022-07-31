@@ -7,7 +7,7 @@ function generateManifestationsButtons(){
 	let div, texts, str = "";
 
 	div = document.getElementById("manifestationsMenu-container");
-	texts = manifestationsOptions_texts[language];
+	texts = manifestations_options[language];
 
 	/* The order of the box-shadow params is:
 	 *       x offset, y offset, blur size, spread size, color
@@ -18,7 +18,7 @@ function generateManifestationsButtons(){
 	 */
 	for (i=0; i < texts.length; i++){
 		let color, fontWeight;
-		if (i===chosenManifestation){
+		if (i === chosenManifestation){
 			color = 'yellow';
 			fontWeight = 'bold';
 		}

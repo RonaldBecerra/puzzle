@@ -83,6 +83,9 @@ function change_language(newLanguage){
 		else if (choosingManifestation){
 			generateManifestationsButtons();
 		}
+		else if (manifestationView){
+			loadManifestationView(chosenManifestation);
+		}
 	}
 }
 
@@ -134,7 +137,6 @@ function loadRelatedToApp(kind){
    Here we build that internal part according to it.
  */
 function poblateMainTag(kind){
-	console.log("Entré a poblateMainTag, con kind = ", kind);
 	let div = document.getElementsByTagName("main")[0];
 
 	switch (kind){
@@ -186,9 +188,13 @@ function poblateMainTag(kind){
 			if (!manifestationView){
 				div.innerHTML =
 					`<div id="manifestation-view-container" class="whole centeredFlex" style="flex-direction:column; justify-content:flex-start">
-						<div id="map-label" style="height:14.3%; width:100%; background-color:blue"></div>
-						<div id="manifestation-image" style="height:65%; width:100%; background-color:green"></div>
-						<div id="manifestation-description" style="height:20.7%; width:100%; background-color:red"></div>
+						<div id="map-label" style="height:14.3%; width:100%; flex-direction:row; align-items:center">
+							<img id="manifestation-minimap" style="height:88%">
+						</div>
+						<img id="manifestation-image" style="height:65%; width:100%">
+						<div style="display:flex; height:20.7%; width:100%; justify-content:center; align-items:center">
+							<div id="manifestation-description" style="text-align:left"></div>
+						</div>
 					</div>`;
 			}
 			break;

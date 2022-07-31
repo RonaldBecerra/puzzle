@@ -3,6 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	position: relative;
+	font-family: 'Century Gothic';
 }
 
 :root {
@@ -106,6 +107,11 @@ main {
 }
 .index-language_icon:hover{
 	height: 80%;
+}
+
+#manifestation-description span{
+	font-style: italic;
+	font-weight: bold;	
 }
 
 @font-face {
