@@ -17,26 +17,6 @@ function onBackKeyDown(e) {
 	e.preventDefault();
 }
 
-// Function to listen the current size, so we can apply the correct css file
-$(function() {
-	adjustStyle($(this).width(), $(this).height());
-	$(window).resize(function() {
-		adjustStyle($(this).width(), $(this).height());
-	});
-});
-
-// It calls the correct css file depending on the 
-function adjustStyle(width, height) {
-	let rel = width/height;
-	if (rel < 0.8) {
-		$("#size-stylesheet").attr("href", "css/narrow.css");
-	} else if (rel < 1.42) {
-		$("#size-stylesheet").attr("href", "css/medium.css");
-	} else {
-		$("#size-stylesheet").attr("href", "css/wide.css"); 
-	}
-}
-
 function exitApp(){
 	if (isMobileDevice){
 		navigator.app.exitApp();
@@ -50,9 +30,28 @@ function exitApp(){
 	return false;
 }
 
+// It calls the correct css file depending on the 
+function adjustStyle(width, height) {
+	let rel = width/height;
+	if (rel < 0.8) {
+		sizeStyleSheet = 'narrow';
+		document.getElementById("size-stylesheet").href = "css/narrow.css";
+	} else if (rel < 1.42) {
+		sizeStyleSheet = 'medium';
+		document.getElementById("size-stylesheet").href = "css/medium.css";
+	} else {
+		sizeStyleSheet = 'wide';
+		document.getElementById("size-stylesheet").href = "css/wide.css";
+	}
+}
+
 // Here we put everything that needs to be initialized when the page is loaded
 window.onload = async function(){
-	// ---> First, we must load the index here (creo)
+	// Apply the correct css file, according to the initial dimensions
+	adjustStyle(window.innerWidth, window.innerHeight);
+	// This is to listen the current size, so we can apply the correct css file
+	window.addEventListener('resize', () => adjustStyle(window.innerWidth, window.innerHeight));
+
 	poblateMainTag("frontPage_view");
 	change_language('spanish');
 }
@@ -86,12 +85,15 @@ function change_language(newLanguage){
 		else if (manifestationView){
 			loadManifestationView(chosenManifestation);
 		}
+		else if (magnifiedMap){
+			loadMagnifiedMap(chosenManifestation);
+		}
 	}
 }
 
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = false;
+	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = magnifiedMap = false;
 }
 
 function changeToView(kind){
@@ -193,8 +195,17 @@ function poblateMainTag(kind){
 						</div>
 						<img id="manifestation-image" style="height:65%; width:100%">
 						<div style="display:flex; height:20.7%; width:100%; justify-content:center; align-items:center">
-							<div id="manifestation-description" style="text-align:left"></div>
+							<div id="manifestation-description" style="text-align:left; text-shadow: 1px 0px 0px black;"></div>
 						</div>
+					</div>`;
+			}
+			break;
+		// Where appears a map covering all the main view
+		case "magnified_map":
+			if (!magnifiedMap){
+				div.innerHTML = 
+					`<div class="whole centeredFlex">
+						<img id="magnified-map-image">
 					</div>`;
 			}
 			break;
@@ -249,6 +260,10 @@ function changeFooter(kind){
 		// Where appears an image and a description of the manifestation
 		case "manifestation_view":
 			changeDisplaying(["footer-elements","magnifyingGlass"], ["footer-label"]);
+			break;
+		case "magnified_map": // Where appears a map covering all the main view
+		case "magnified_description":
+			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight"]);
 			break;
 		// Front page, exit view
 		default:

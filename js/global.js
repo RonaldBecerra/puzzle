@@ -10,6 +10,10 @@ window.mobileAndTabletCheck = function() {
     return check;
 };
 
+// String that indicates the kind of stylesheet used at the moment: 
+// 'wide', 'medium' or 'narrow';
+var sizeStyleSheet = null;
+
 // It is "true" in case a mobile device is used, like a phone or a tablet, and "false" in case a PC is used
 const isMobileDevice = window.mobileAndTabletCheck();
 
@@ -25,6 +29,7 @@ var frontPage = false; // The initial page that appears when opening the app.
 var relatedToApp = false; // It refers to any of the views: Presentation, Instructions or Credits.
 var choosingManifestation = false; // Menu with buttons to choose the manifestation which will be used as the image for the game
 var manifestationView = false; // Where appears an image and a description of the manifestation
+var magnifiedMap = false; // The map of the manifestation covers all the main view
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
 // ------ END
 
@@ -42,32 +47,32 @@ var endX, endY; // Coordinates of the point in which the user stops touching or 
 
 //////////////////////////////////   DESCARTADO  ///////////////////////////////////////////////
 
-var url_imagen;
+// var url_imagen;
 
-//El tamaño de la pantalla del dispositivo determina los demás tamaños
-var anchoDePantalla = window.screen.availWidth;
-//var anchoDeTablero = 0.92 * anchoDePantalla;
-var anchoDeTablero = parseInt($("#imagen_seleccionada_tablero").css("background-size-x"),10);
-var anchoDeCelda = 0.32 * anchoDePantalla;
-var espacioDeCelda = 0.01 * anchoDePantalla;
+// //El tamaño de la pantalla del dispositivo determina los demás tamaños
+// var anchoDePantalla = window.screen.availWidth;
+// //var anchoDeTablero = 0.92 * anchoDePantalla;
+// var anchoDeTablero = parseInt($("#imagen_seleccionada_tablero").css("background-size-x"),10);
+// var anchoDeCelda = 0.32 * anchoDePantalla;
+// var espacioDeCelda = 0.01 * anchoDePantalla;
 
-var ultimaVista = "";
+// var ultimaVista = "";
 
-var elemTocado; //Elemento que recibe el touch event
+// var elemTocado; //Elemento que recibe el touch event
 
-var intervaloDeTiempoID = null;
+// var intervaloDeTiempoID = null;
 
-var numMovidas = 0;
+// var numMovidas = 0;
 
-var tipoRepresentacion = 0;
+// var tipoRepresentacion = 0;
 
-var imagenSeleccionadaIndex = 0;
-var diccionario_imagenes = {};
-var diccionario_imagen_info = {};
-var diccionario_posicion_blanca = {};
+// var imagenSeleccionadaIndex = 0;
+// var diccionario_imagenes = {};
+// var diccionario_imagen_info = {};
+// var diccionario_posicion_blanca = {};
 
-var diccionario_posicion_blanca_juego;
+// var diccionario_posicion_blanca_juego;
 
-var vistaActual = "vista-seleccionar-tipo-manifestacion";
+// var vistaActual = "vista-seleccionar-tipo-manifestacion";
 
 //////////////////////////////////   FIN  DESCARTADO  ///////////////////////////////////////////////

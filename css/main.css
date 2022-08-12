@@ -111,11 +111,11 @@ main {
 
 #manifestation-description span{
 	font-style: italic;
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 @font-face {
-	font-family:Epistolar;
+	font-family: Epistolar;
 	src: url(../ttf/EPISTOLAR.ttf);
 }
 

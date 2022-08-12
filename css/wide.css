@@ -107,6 +107,11 @@
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
 }
+
+#magnified-map-image{
+	width: 100%;
+	height: 100%;
+}
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
 
 #exitView{
