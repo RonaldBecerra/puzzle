@@ -8,6 +8,7 @@
 
 #hamburger-menu{
 	width: 35%;
+	height: 10%;
 }
 
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
@@ -101,7 +102,21 @@
 
 #manifestation-description{
 	width: 99%;
-	font-size: 2.4vw;
+	font-size: 3vw;
+
+	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
+	transform:scale(1,0.82);
+}
+
+#manifestation-label{
+	font-size: 1.6vh;
+	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
+	transform:scale(1,0.75);
+
+}
+#manifestation-label span{
+	font-size: 2.057vh;
+	font-weight: bold;
 }
 
 #magnified-map-image{

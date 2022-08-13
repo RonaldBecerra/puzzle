@@ -33,7 +33,7 @@ function exitApp(){
 // It calls the correct css file depending on the 
 function adjustStyle(width, height) {
 	let rel = width/height;
-	if (rel < 0.8) {
+	if (rel < 0.7) {
 		sizeStyleSheet = 'narrow';
 		document.getElementById("size-stylesheet").href = "css/narrow.css";
 	} else if (rel < 1.42) {
@@ -190,12 +190,17 @@ function poblateMainTag(kind){
 			if (!manifestationView){
 				div.innerHTML =
 					`<div id="manifestation-view-container" class="whole centeredFlex" style="flex-direction:column; justify-content:flex-start">
-						<div id="map-label" style="height:14.3%; width:100%; flex-direction:row; align-items:center">
+						<div id="map-label" style="display:flex; height:14.3%; width:100%; flex-direction:row; justify-content:space-between; align-items:center">
 							<img id="manifestation-minimap" style="height:88%">
+							<div class="centeredFlex">
+								<div id="manifestation-label" 
+									style="height:100%; text-align:right; font-style:italic;">
+								</div>
+							</div>
 						</div>
 						<img id="manifestation-image" style="height:65%; width:100%">
-						<div style="display:flex; height:20.7%; width:100%; justify-content:center; align-items:center">
-							<div id="manifestation-description" style="text-align:left; text-shadow: 1px 0px 0px black;"></div>
+						<div class="centeredFlex" style="height:20.7%; width:100%">
+							<div id="manifestation-description" style="text-align:left; overflow:auto"></div>
 						</div>
 					</div>`;
 			}
@@ -203,10 +208,7 @@ function poblateMainTag(kind){
 		// Where appears a map covering all the main view
 		case "magnified_map":
 			if (!magnifiedMap){
-				div.innerHTML = 
-					`<div class="whole centeredFlex">
-						<img id="magnified-map-image">
-					</div>`;
+				div.innerHTML = `<img id="magnified-map-image">`;
 			}
 			break;
 		// VIew in which the user can close the application

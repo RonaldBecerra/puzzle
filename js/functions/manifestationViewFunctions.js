@@ -21,6 +21,9 @@ function loadManifestationView(num){
 	minimap.src = "img/maps/minimaps/" + manifestationsColors[num] + ".png";
 	minimap.onclick = () => loadMagnifiedMap(num);
 
+	// Label
+	document.getElementById("manifestation-label").innerHTML = manifestations_texts[language][num].label;
+
 	// Description
 	document.getElementById("manifestation-description").innerHTML = manifestations_texts[language][num].description;
 }

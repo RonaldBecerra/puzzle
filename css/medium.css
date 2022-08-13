@@ -102,6 +102,20 @@
 #manifestation-description{
 	width: 99%;
 	font-size: 1.8vh;
+	text-shadow:var(--sneaky-shadow);
+}
+
+#manifestation-label{
+	font-size: 1.8vh;
+	text-shadow:var(--sneaky-shadow);
+
+	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
+	transform:scale(1,0.75);
+
+}
+#manifestation-label span{
+	font-size: 2.3vh;
+	font-weight: bold;
 }
 
 #magnified-map-image{

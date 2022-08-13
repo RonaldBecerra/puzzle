@@ -26,6 +26,9 @@
 	--burgundy-manifestation: #660001;
 	--orange-manifestation: #cc6601;
 	--ocher-manifestation: #cc9900;
+
+	/* Shadow for letters, when we only want to make them look thicker without bolding them */
+	--sneaky-shadow: 1px 0px 0px;
 }
 
 html {

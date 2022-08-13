@@ -103,9 +103,23 @@
 #manifestation-description{
 	width: 82.5%;
 	font-size: 1.11vw;
+	text-shadow:var(--sneaky-shadow);
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
+}
+
+#manifestation-label{
+	font-size: 2.2vh;
+	text-shadow:var(--sneaky-shadow);
+
+	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
+	transform:scale(1,0.75);
+
+}
+#manifestation-label span{
+	font-size: 2.8vh;
+	font-weight: bold;
 }
 
 #magnified-map-image{
