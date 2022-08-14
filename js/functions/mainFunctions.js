@@ -88,12 +88,19 @@ function change_language(newLanguage){
 		else if (magnifiedMap){
 			loadMagnifiedMap(chosenManifestation);
 		}
+		else if (magnifiedDescription){
+			loadMagnifiedDescription(chosenManifestation);
+		}
 	}
 }
 
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = magnifiedMap = false;
+	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = magnifiedMap = magnifiedDescription = false;
+
+	// Delete the listeners that could have been added. 
+	// If the function to remove is null, this doesn't do anything (does not throw an exception)
+	window.removeEventListener('resize', resizeListenerFunction);
 }
 
 function changeToView(kind){
@@ -199,16 +206,22 @@ function poblateMainTag(kind){
 							</div>
 						</div>
 						<img id="manifestation-image" style="height:65%; width:100%">
-						<div class="centeredFlex" style="height:20.7%; width:100%">
-							<div id="manifestation-description" style="text-align:left; overflow:auto"></div>
+						<div class="centeredFlex" style="height:20.7%; width:100%; overflow:hidden">
+							<div id="manifestation-description" style="text-align:left"></div>
 						</div>
 					</div>`;
 			}
 			break;
 		// Where appears a map covering all the main view
-		case "magnified_map":
+		case "magnified_map": 
 			if (!magnifiedMap){
 				div.innerHTML = `<img id="magnified-map-image">`;
+			}
+			break;
+		// Where appears the description of the manifestation covering all the main view
+		case "magnified_description": 
+			if (!magnifiedDescription){
+				div.innerHTML = `<div id="magnified-description" style="text-align:left; overflow:hidden">`;
 			}
 			break;
 		// VIew in which the user can close the application
@@ -264,7 +277,7 @@ function changeFooter(kind){
 			changeDisplaying(["footer-elements","magnifyingGlass"], ["footer-label"]);
 			break;
 		case "magnified_map": // Where appears a map covering all the main view
-		case "magnified_description":
+		case "magnified_description": // Where appears the description of the manifestation covering all the main view
 			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight"]);
 			break;
 		// Front page, exit view

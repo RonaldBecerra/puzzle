@@ -20,6 +20,10 @@ const isMobileDevice = window.mobileAndTabletCheck();
 var language = null;
 const possible_languages = ["spanish", "english"];
 
+// Sometimes we put a 'resize' listener to the window, so we must have that function in the global
+// scope to be able to remove it
+var resizeListenerFunction = null;
+
 /* ------ BEGIN: Variables that determine if the user is currently in a determined view ---------------
  * They can have the "false" value, but for the true case a string or a number may be used instead, since 
  * many views can share the same kind, so the variable also specifies which is the current one.
@@ -30,6 +34,7 @@ var relatedToApp = false; // It refers to any of the views: Presentation, Instru
 var choosingManifestation = false; // Menu with buttons to choose the manifestation which will be used as the image for the game
 var manifestationView = false; // Where appears an image and a description of the manifestation
 var magnifiedMap = false; // The map of the manifestation covers all the main view
+var magnifiedDescription = false; // The description of the manifestattion covers all the main view
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
 // ------ END
 

@@ -56,6 +56,12 @@ function manifestationsButtonsListeners(){
 		chosenManifestation = index;
 		buttonPressed = button;
 
+		// In a PC case we only want to navigate to the next view if the user ends pressing over
+		// the same button that started pressing
+		if (!isMobileDevice){
+			endPressingManifestationMenuButton(button);
+		}
+
 		document.addEventListener('mouseup', endPress, false);
 		document.addEventListener('touchend', endPress, false);
 	}
@@ -80,7 +86,17 @@ function manifestationsButtonsListeners(){
 		button.addEventListener('mousedown', () => startPress(button, index), false);
 		button.addEventListener('touchstart', () => startPress(button, index), false);
 
-		button.addEventListener('mouseup', () => loadManifestationView(index), false);
-		button.addEventListener('touchend', () => loadManifestationView(index), false);
+		/* In a mobile device we want to navigate to the next view, even if the user ends pressing
+		 * on the surface of a different button that is not which started pressing, because the finger
+		 * could have slipped
+		 */
+		if (isMobileDevice){
+			endPressingManifestationMenuButton(button);
+		}
 	}
+}
+
+function endPressingManifestationMenuButton(button){
+	button.addEventListener('mouseup', () => loadManifestationView(chosenManifestation), false);
+	button.addEventListener('touchend', () => loadManifestationView(chosenManifestation), false);
 }

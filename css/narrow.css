@@ -122,6 +122,11 @@
 #magnified-map-image{
 	transform: rotate(-90deg);
 }
+
+#magnified-description{
+	width: 93%;
+	font-size: 2.35vh;
+}
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
 
 #exitView{

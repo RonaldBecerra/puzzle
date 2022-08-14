@@ -112,7 +112,7 @@ main {
 	height: 80%;
 }
 
-#manifestation-description span{
+#manifestation-description span, #magnified-description span{
 	font-style: italic;
 	font-weight: bold;
 }

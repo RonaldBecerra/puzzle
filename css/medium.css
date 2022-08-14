@@ -14,7 +14,7 @@
 	width: 45%;
 	text-align: center;
 	font-family: 'Epistolar';
-	font-size: 2.3vh;
+	font-size: 2.2vh;
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.5,1);
@@ -102,16 +102,15 @@
 #manifestation-description{
 	width: 99%;
 	font-size: 1.8vh;
-	text-shadow:var(--sneaky-shadow);
+	text-shadow: var(--sneaky-shadow);
 }
 
 #manifestation-label{
 	font-size: 1.8vh;
-	text-shadow:var(--sneaky-shadow);
+	text-shadow: var(--sneaky-shadow);
 
 	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
 	transform:scale(1,0.75);
-
 }
 #manifestation-label span{
 	font-size: 2.3vh;
@@ -121,6 +120,15 @@
 #magnified-map-image{
 	width: 100%;
 	height: 90%;
+}
+
+#magnified-description{
+	width: 60%;
+	font-size: 2.6vh;
+	text-shadow: var(--sneaky-shadow);
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
+	transform:scale(1.2,1);
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
 
