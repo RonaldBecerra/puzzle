@@ -82,19 +82,14 @@
 	height: 5.8%;
 	width: 42%;
 	font-size: 2.4vh;
-	border-radius: 5px;
-
-	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.4,1);
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-
-/* ------------------- FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
-#manifestation-view-container{
+#manifestation-viewAndGame-container{
 	width: 81%;
 }
 
+/* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-minimap{
 	width: 25%;
 }
@@ -130,7 +125,7 @@
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
 }
-/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
+/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 
 #exitView{
 	width: 65%;

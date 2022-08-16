@@ -90,12 +90,11 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-
-/* ------------------- FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
-#manifestation-view-container{
+#manifestation-viewAndGame-container{
 	width: 92%;
 }
 
+/* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-minimap{
 	width: 24%;
 }
@@ -127,7 +126,7 @@
 	width: 93%;
 	font-size: 2.35vh;
 }
-/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
+/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 
 #exitView{
 	width: 85%;

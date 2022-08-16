@@ -35,6 +35,7 @@ var choosingManifestation = false; // Menu with buttons to choose the manifestat
 var manifestationView = false; // Where appears an image and a description of the manifestation
 var magnifiedMap = false; // The map of the manifestation covers all the main view
 var magnifiedDescription = false; // The description of the manifestattion covers all the main view
+var gameView = false; // Where the user can play with the puzzle
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
 // ------ END
 

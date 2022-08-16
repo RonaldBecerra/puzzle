@@ -12,7 +12,7 @@ function loadManifestationView(num){
 
 	handToLeft.onclick = () => changeToView('manifestations_menu');
 	magnifyingGlass.onclick = () => loadMagnifiedDescription(num);
-	handToRight.onclick = () => changeToView("frontPage_view");
+	handToRight.onclick = () => loadGameView(num);
 
 	// Central image
 	document.getElementById("manifestation-image").src = manifestations_figures[num].preview;
@@ -31,15 +31,11 @@ function loadManifestationView(num){
 			"inset -2px -3px 10px -0.5px " + varColor + "," +
 			" inset 2px 3px 10px -0.5px " + varColor;
 	}
-	minimap.onmouseout = function(){
-		minimap.style.boxShadow = "none";
-	}
 
-	// Label
-	document.getElementById("manifestation-label").innerHTML = manifestations_texts[language][num].label;
-
-	// Description
-	document.getElementById("manifestation-description").innerHTML = manifestations_texts[language][num].description;
+	// Label and description
+	let info = manifestations_texts[language][num];
+	document.getElementById("manifestation-label").innerHTML = info.label;
+	document.getElementById("manifestation-description").innerHTML = info.description;
 }
 
 // To load where appears a map covering all the main view
@@ -96,4 +92,3 @@ function setReturnToManifestatonView(num){
 	let {handToLeft} = getFooterElements();
 	handToLeft.onclick = () => loadManifestationView(num);
 }
-

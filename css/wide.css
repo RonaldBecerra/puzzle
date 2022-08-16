@@ -90,12 +90,11 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-
-/* ------------------- FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
-#manifestation-view-container{
+#manifestation-viewAndGame-container{
 	width: 65%;
 }
 
+/* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-minimap{
 	width: 20%;
 }
@@ -134,7 +133,7 @@
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
 }
-/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS PREVIEW -------------------- */
+/* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 
 #exitView{
 	width: 50%;

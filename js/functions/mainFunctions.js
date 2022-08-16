@@ -196,17 +196,17 @@ function poblateMainTag(kind){
 		case "manifestation_view":
 			if (!manifestationView){
 				div.innerHTML =
-					`<div id="manifestation-view-container" class="whole centeredFlex" style="flex-direction:column; justify-content:flex-start">
-						<div id="map-label" style="display:flex; height:14.3%; width:100%; flex-direction:row; justify-content:space-between; align-items:center">
-							<img id="manifestation-minimap" style="height:88%">
+					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
+						<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center">
+							<img id="manifestation-minimap" style="height:88%" onmouseout="this.style.boxShadow='none'">
 							<div class="centeredFlex">
 								<div id="manifestation-label" 
 									style="height:100%; text-align:right; font-style:italic;">
 								</div>
 							</div>
 						</div>
-						<img id="manifestation-image" style="height:65%; width:100%">
-						<div class="centeredFlex" style="height:20.7%; width:100%; overflow:hidden">
+						<img id="manifestation-image">
+						<div class="centeredFlex" style="overflow:hidden">
 							<div id="manifestation-description" style="text-align:left"></div>
 						</div>
 					</div>`;
@@ -222,6 +222,19 @@ function poblateMainTag(kind){
 		case "magnified_description": 
 			if (!magnifiedDescription){
 				div.innerHTML = `<div id="magnified-description" style="text-align:left; overflow:hidden">`;
+			}
+			break;
+		// Where appears the description of the manifestation covering all the main view
+		case "game_view": 
+			if (!gameView){
+				div.innerHTML =
+					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
+						<div style="background-color:blue">
+						</div>
+						<img id="manifestation-image">
+						<div class="centeredFlex" style="background-color:green">
+						</div>
+					</div>`;
 			}
 			break;
 		// VIew in which the user can close the application
