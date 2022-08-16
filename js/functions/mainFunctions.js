@@ -91,6 +91,9 @@ function change_language(newLanguage){
 		else if (magnifiedDescription){
 			loadMagnifiedDescription(chosenManifestation);
 		}
+		else if (gameView){
+			loadGameView(chosenManifestation);
+		}
 	}
 }
 
@@ -109,7 +112,7 @@ function changeToView(kind){
 	changeFooter(kind);
 }
 
-// This returns the HTML elements located in the footer
+// This returns the HTML elements located in the footer, except the default label and the save game button
 getFooterElements = () => ({
 	handToLeft: document.getElementById("handToLeft"),
 	magnifyingGlass: document.getElementById("magnifyingGlass"), 
@@ -277,8 +280,8 @@ function changeDisplaying(arrayDisplay, arrayNotDisplay){
    here we make it display the correct case.
  */
 function changeFooter(kind){
-	// This disappears in the credits view, so by default we respawn it here
-	changeDisplaying(["handToRight"],[]);
+	// These elements are hidden in some viewies, so by default we respawn them here
+	changeDisplaying(["magnifyingGlass", "handToRight"],[]);
 
 	switch (kind){
 		// Presentation, instructions or credits
@@ -287,13 +290,13 @@ function changeFooter(kind){
 			break;
 		// Where appears an image and a description of the manifestation
 		case "manifestation_view":
-			changeDisplaying(["footer-elements","magnifyingGlass"], ["footer-label"]);
+			changeDisplaying(["footer-elements"], ["footer-label"]);
 			break;
 		case "magnified_map": // Where appears a map covering all the main view
 		case "magnified_description": // Where appears the description of the manifestation covering all the main view
 			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight"]);
 			break;
-		// Front page, exit view
+		// Front page, manifestations menu, exit view
 		default:
 			changeDisplaying(["footer-label"], ["footer-elements"]);
 			break;
