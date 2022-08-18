@@ -59,7 +59,7 @@ function manifestationsButtonsListeners(){
 		// In a PC case we only want to navigate to the next view if the user ends pressing over
 		// the same button that started pressing
 		if (!isMobileDevice){
-			endPressingManifestationMenuButton(button);
+			endPressingManifestationMenuButtonListener(button);
 		}
 
 		document.addEventListener('mouseup', endPress, false);
@@ -91,12 +91,12 @@ function manifestationsButtonsListeners(){
 		 * could have slipped
 		 */
 		if (isMobileDevice){
-			endPressingManifestationMenuButton(button);
+			endPressingManifestationMenuButtonListener(button);
 		}
 	}
 }
 
-function endPressingManifestationMenuButton(button){
+function endPressingManifestationMenuButtonListener(button){
 	button.addEventListener('mouseup', () => loadManifestationView(chosenManifestation), false);
 	button.addEventListener('touchend', () => loadManifestationView(chosenManifestation), false);
 }

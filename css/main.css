@@ -1,7 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	/*box-sizing: border-box;*/
 	position: relative;
 	font-family: 'Century Gothic';
 }
@@ -73,6 +73,44 @@ main {
 	height: var(--main-container-height);
 }
 
+/* ------------ FORMAT SHARED BY THE MANIFESTATIONS VIEW AND THE PUZZLE GAME --------------- */
+#manifestation-viewAndGame-container{
+	height: 100%; 
+	flex-direction: column; 
+	justify-content: flex-start;
+}
+#manifestation-viewAndGame-container > div, #manifestation-viewAndGame-container > img{
+	width: 100%;
+}
+/* Top of the manifestation image */
+#manifestation-viewAndGame-container > div:first-child{
+	height: 14.3%;
+}
+/* Manifestation image */
+#manifestation-image{
+	height: 65%; 
+}
+/* Bottom of the manifestation image */
+#manifestation-image + div{
+	height: 20.7%;
+}
+/* ------------ END OF FORMAT FOR THE MANIFESTATIONS PREVIEW AND THE PUZZLE GAME --------------- */
+
+/* For the description that is below the image in the manifestation view*/
+#manifestation-description span, #magnified-description span{
+	font-style: italic;
+	font-weight: bold;
+}
+
+/* Shared properties by the sliding cells of the puzzle game */
+.slidingCell{
+    margin: 0%;
+    padding: 0%;
+    position: absolute;
+    /* Red border that indicates the separation between one cell and another */
+    outline: 1px solid #961907;
+}
+
 .footer{
 	bottom: 0px;
 	width: 100%;
@@ -110,35 +148,6 @@ main {
 }
 .index-language_icon:hover{
 	height: 80%;
-}
-
-/* ------------ FORMAT FOR THE MANIFESTATIONS VIEW AND THE PUZZLE GAME --------------- */
-#manifestation-viewAndGame-container{
-	height: 100%; 
-	flex-direction: column; 
-	justify-content: flex-start;
-}
-#manifestation-viewAndGame-container > div, #manifestation-viewAndGame-container > img{
-	width: 100%;
-}
-/* Top of the manifestation image */
-#manifestation-viewAndGame-container > div:first-child{
-	height: 14.3%;
-}
-/* Manifestation image */
-#manifestation-image{
-	height: 65%; 
-}
-/* Bottom of the manifestation image */
-#manifestation-image + div{
-	height: 20.7%;
-}
-/* ------------ END OF FORMAT FOR THE MANIFESTATIONS PREVIEW AND THE PUZZLE GAME --------------- */
-
-/* For the description that is below the image in the manifestation view*/
-#manifestation-description span, #magnified-description span{
-	font-style: italic;
-	font-weight: bold;
 }
 
 @font-face {

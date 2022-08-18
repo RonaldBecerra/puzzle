@@ -97,13 +97,28 @@ function change_language(newLanguage){
 	}
 }
 
+// This is put in some listeners, and we store it in a global function to be able to remove it in them
+function preventDefault(event){
+	event.preventDefault();
+}
+
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
-	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = magnifiedMap = magnifiedDescription = false;
+	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = 
+	magnifiedMap = magnifiedDescription = gameView = false;
 
 	// Delete the listeners that could have been added. 
 	// If the function to remove is null, this doesn't do anything (does not throw an exception)
-	window.removeEventListener('resize', resizeListenerFunction);
+	window.removeEventListener('resize', window.adjustMapDimensions);
+
+	document.removeEventListener('mousedown', startSelectionDuringGame);
+	document.removeEventListener('touchstart', startSelectionDuringGame);
+
+	document.removeEventListener('mousemove', preventDefault);
+	document.removeEventListener('touchmove', preventDefault);
+
+	document.removeEventListener('mouseup', endSelectionDuringGame);
+	document.removeEventListener('touchend', endSelectionDuringGame);
 }
 
 function changeToView(kind){
@@ -232,10 +247,18 @@ function poblateMainTag(kind){
 			if (!gameView){
 				div.innerHTML =
 					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
-						<div style="background-color:blue">
+						<div class="centeredFlex">
+							<img src="img/icons/animated-hourglass.gif">
 						</div>
-						<img id="manifestation-image">
-						<div class="centeredFlex" style="background-color:green">
+
+						<!-- Where the sliding cells are located -->
+						<div id="manifestation-image"
+							style="display:flex; flex-flow:row wrap; justify-content:flex-start;
+									align-items:flex-start; background-color:rgba(105, 44, 44, 0.2); box-shadow: 3px 3px grey"
+						>
+						</div>
+
+						<div class="centeredFlex">
 						</div>
 					</div>`;
 			}
@@ -301,4 +324,9 @@ function changeFooter(kind){
 			changeDisplaying(["footer-label"], ["footer-elements"]);
 			break;
 	}
+}
+
+// Returns an integer between the min and the max indicated
+function getRandomInt(min, max){
+	return Math.floor(Math.random(min, max) * (max - min)) + min;
 }

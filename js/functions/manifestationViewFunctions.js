@@ -75,7 +75,7 @@ function loadMagnifiedMap(num){
 	window.addEventListener('resize', adjustMapDimensions);
 
 	// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
-	resizeListenerFunction = adjustMapDimensions;
+	window.adjustMapDimensions = adjustMapDimensions;
 }
 
 // To load where appears a map covering all the main view

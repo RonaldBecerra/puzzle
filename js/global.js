@@ -20,14 +20,10 @@ const isMobileDevice = window.mobileAndTabletCheck();
 var language = null;
 const possible_languages = ["spanish", "english"];
 
-// Sometimes we put a 'resize' listener to the window, so we must have that function in the global
-// scope to be able to remove it
-var resizeListenerFunction = null;
-
 /* ------ BEGIN: Variables that determine if the user is currently in a determined view ---------------
  * They can have the "false" value, but for the true case a string or a number may be used instead, since 
  * many views can share the same kind, so the variable also specifies which is the current one.
- */
+ultracold */
 var indexView = false; // Determines if the index (drawer navigator) is opened.
 var frontPage = false; // The initial page that appears when opening the app.
 var relatedToApp = false; // It refers to any of the views: Presentation, Instructions or Credits.
@@ -45,9 +41,14 @@ var chosenManifestation = -1; // It stores the index of the last chosen manifest
 // ------ END
 
 // ------ BEGIN: Variables related to the board game ---------------
-var boardNumRowsColumns = 3; 
+var boardNumRowsColumns = 3; // There is always the same number of rows as columns
+var gameDimensionsObject = {}; // This will have some properties that will be calculated when starting the game
+var emptyPosition = null; // Number of the cell that will not have displayed any part of the image
 var startX, startY; // Coordinates of the point in which the user touches or clicks the screen
-var endX, endY; // Coordinates of the point in which the user stops touching or clicking the screen
+var originCell = null; // Cell where the user started pressing
+var numMovements = 0; // Number of moves required so far to complete the game
+var gameCompleted = false; 
+var gamePaused = false;
 // ------ END
 
 
@@ -56,7 +57,7 @@ var endX, endY; // Coordinates of the point in which the user stops touching or 
 // var url_imagen;
 
 // //El tamaño de la pantalla del dispositivo determina los demás tamaños
-// var anchoDePantalla = window.screen.availWidth;
+//var anchoDePantalla = window.screen.availWidth;
 // //var anchoDeTablero = 0.92 * anchoDePantalla;
 // var anchoDeTablero = parseInt($("#imagen_seleccionada_tablero").css("background-size-x"),10);
 // var anchoDeCelda = 0.32 * anchoDePantalla;
