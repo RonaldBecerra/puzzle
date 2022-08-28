@@ -20,6 +20,7 @@ function loadGameView(num){
 		 */
 		magnifiedImgPercentageDim: (100 * boardNumRowsColumns),
 	}
+	changeTextsInGame(language);
 	generateCells(num);
 	startGame();
 
@@ -35,6 +36,18 @@ function loadGameView(num){
 	// Listeners for when the user ends pressing some point
 	document.addEventListener('mouseup', endSelectionDuringGame);
 	document.addEventListener('touchend', endSelectionDuringGame);
+}
+
+// Activated when the user is entering in this view and when then changes the language
+function changeTextsInGame(newLanguage){
+	let texts = game_texts[newLanguage];
+	for (i=0; i < texts.length; i++){
+		let elem = texts[i];
+		let id = elem.identifier;
+		if (null != id){
+			document.getElementById(elem.identifier).innerHTML = elem.content;
+		}
+	}
 }
 
 // Creates "div" elements inside the "manifestation-image" div,
@@ -66,7 +79,8 @@ function generateCells(num){
 	// Here we make one of the cells to be empty
 	emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
 	let emptyCell = getCellByPosition(emptyPosition);
-	emptyCell.style['background-image'] = "none";
+	emptyCell.style.backgroundImage = "none";
+	emptyCell.style.outline = "none";
 }
 
 function generateCellStyle(col, row, num){
@@ -80,6 +94,7 @@ function generateCellStyle(col, row, num){
 		width: ` + cellPercentageDim + `%;
 		left: ` + (col*cellPercentageDim) + `%;
 		top: ` + (row*cellPercentageDim) + `%;
+		outline: 1px solid #961907;
 	`;
 }
 
@@ -95,9 +110,19 @@ function isEmptyCell(cell){
 }
 
 // Once the cells are created, we can start the game
+// Also we need to restore the default values
 function startGame(){
-	numMovements = 0;
+	gamePaused = false;
+	remainingTimeSeconds = 3600;
+
+	document.getElementById("game-time").innerHTML = "60:00";
+	document.getElementById("movements-number").innerHTML = "0";
+
+	// If we don't put this and previously existed a time interval, the showed time will run faster,
+	// because it will have the two intervals running
+	window.clearInterval(timeIntervalID);
 	shuffleCells();
+	runTheClock();
 }
 
 // Shuffles all the cells on the board to start the game
@@ -126,13 +151,38 @@ function shuffleCells(){
 
 // It swaps the position of two cells, given their orders 
 function swapCells(order1, order2){
-	let cell_1 = getCellByPosition(order1);
-	let cell_2 = getCellByPosition(order2);
+	let c1 = getCellByPosition(order1);
+	let c2 = getCellByPosition(order2);
 
 	// NOTE: To swap the background image is only necessary for when we are moving a cell to the empty space
-	[cell_1.style.backgroundImage, cell_2.style.backgroundImage] = [cell_2.style.backgroundImage, cell_1.style.backgroundImage];
-	[cell_1.style.backgroundPosition, cell_2.style.backgroundPosition] = [cell_2.style.backgroundPosition, cell_1.style.backgroundPosition];
-	[cell_1.innerHTML, cell_2.innerHTML] = [cell_2.innerHTML, cell_1.innerHTML];
+	[c1.style.backgroundImage, c1.style.outline, c1.style.backgroundPosition, c1.innerHTML, 
+	c2.style.backgroundImage, c2.style.outline, c2.style.backgroundPosition, c2.innerHTML] 
+	= 
+	[c2.style.backgroundImage, c2.style.outline, c2.style.backgroundPosition, c2.innerHTML, 
+	c1.style.backgroundImage, c1.style.outline, c1.style.backgroundPosition, c1.innerHTML];
+}
+
+// This calls the function that updates the clock every second (1000 miliseconds)
+function runTheClock(){
+	// The "window.setInterval" function returns an id that later
+	// we need to know to clear that interval
+    timeIntervalID = window.setInterval(updateClock,1000);
+}
+
+// Decreases the total time in 1 second and expresses it as minutes:seconds
+function updateClock(){
+	let div = document.getElementById("game-time");
+	remainingTimeSeconds--;
+
+	let minutes = Math.floor(remainingTimeSeconds/60);
+	let seconds = remainingTimeSeconds % 60;
+
+	// We alert the user that time is running out
+	if (minutes < 10){
+		div.style.color = "red";
+	}
+
+	div.innerHTML = appendZeroIfLess10(minutes) + ":" + appendZeroIfLess10(seconds);
 }
 
 // This is activated when the user starts pressing some point (touching or with the mouse)
@@ -173,11 +223,11 @@ function endSelectionDuringGame(event){
 		}
 
 		// We determine the direction of the movement
-		if ( (Math.abs(deltaX) >= Math.abs(deltaY)) && ((deltaX > 0) && moveCellToEmpty('right') || (deltaX < 0) && moveCellToEmpty('left')) ){
-			console.log("Ejecuté el movimiento horizontalmente");
-		}
-		else if ( (deltaY < 0) && moveCellToEmpty('up') || (deltaY > 0) && moveCellToEmpty('down') ){
-			console.log("Ejecuté el movimiento verticalmente");
+		let horizontalMov = (Math.abs(deltaX) >= Math.abs(deltaY)) && ((deltaX > 0) && moveCellToEmpty('right') || (deltaX < 0) && moveCellToEmpty('left'));
+		let verticalMov = !horizontalMov && ((deltaY < 0) && moveCellToEmpty('up') || (deltaY > 0) && moveCellToEmpty('down'));
+
+		if (horizontalMov || verticalMov){
+			increaseNumberOfMovements();
 		}
 	}
 }
@@ -223,13 +273,44 @@ function moveCellToEmpty(direction){
 	return false;
 }
 
-/* Shows for a short period of time (expressed in miliseconds) the number corresponding to the cell.
+// NOTE: verified that JavaScript chooses the correct type between string and integer in this case
+function increaseNumberOfMovements(){
+	let div = document.getElementById("movements-number");
+	div.innerHTML = ++div.innerHTML;
+}
+
+// 
+function playOrPause(){
+	let img = document.getElementById("playOrPauseImg");
+	if (gamePaused){
+		img.src = "img/icons/pause.png";
+		gamePaused = false;
+	}
+	else{
+		img.src = "img/icons/play.png";
+		gamePaused = true;
+	}
+}
+
+/* Shows for a short period of time (expressed in miliseconds) the number corresponding to each cell.
  * The goal is to have an ordered grid  0 -> 1 -> 2 -> ... -> (boardNumRowsColumns^2 - 1)
  * when counting from the top left cell to the bottom right one.
  */
 function gameHelp(){
-	document.querySelectorAll(".help-text").forEach(e => {
-		e.style.display = "inline";
-		setTimeout(() => {e.style.display = "none"},2000);
-	});
+	document.querySelectorAll(".help-text").forEach(e => {e.style.display = "inline"});
+	setTimeout(() => {
+		/* We need to repeat the query because the user could have swiped the cells, so 
+		 * they wouldn't have the same original properties. If we use the same query instead, 
+		 * the numbers on the two swapped cells don't dissapear.
+		 */
+		document.querySelectorAll(".help-text").forEach(e => {e.style.display = "none"})}, 
+		2000
+	);
+}
+
+// Message: "Are you sure you want to restart the game?\nYour progress will be lost"
+function resetGame(){
+	if (confirm(game_texts[language][1].content)){
+		startGame();
+	}
 }

@@ -46,40 +46,9 @@ var gameDimensionsObject = {}; // This will have some properties that will be ca
 var emptyPosition = null; // Number of the cell that will not have displayed any part of the image
 var startX, startY; // Coordinates of the point in which the user touches or clicks the screen
 var originCell = null; // Cell where the user started pressing
-var numMovements = 0; // Number of moves required so far to complete the game
-var gameCompleted = false; 
+var remainingTimeSeconds = 3600; // Time remaining to end the game, expressed in seconds.
+var timeIntervalID = null; // Id returned by the window.setInterval function. This is needed to later clear that interval.
 var gamePaused = false;
+var userWon = false;
+var userLost = false; // The user loses when the remainingTimeSeconds reaches zero
 // ------ END
-
-
-//////////////////////////////////   DESCARTADO  ///////////////////////////////////////////////
-
-// var url_imagen;
-
-// //El tamaño de la pantalla del dispositivo determina los demás tamaños
-//var anchoDePantalla = window.screen.availWidth;
-// //var anchoDeTablero = 0.92 * anchoDePantalla;
-// var anchoDeTablero = parseInt($("#imagen_seleccionada_tablero").css("background-size-x"),10);
-// var anchoDeCelda = 0.32 * anchoDePantalla;
-// var espacioDeCelda = 0.01 * anchoDePantalla;
-
-// var ultimaVista = "";
-
-// var elemTocado; //Elemento que recibe el touch event
-
-// var intervaloDeTiempoID = null;
-
-// var numMovidas = 0;
-
-// var tipoRepresentacion = 0;
-
-// var imagenSeleccionadaIndex = 0;
-// var diccionario_imagenes = {};
-// var diccionario_imagen_info = {};
-// var diccionario_posicion_blanca = {};
-
-// var diccionario_posicion_blanca_juego;
-
-// var vistaActual = "vista-seleccionar-tipo-manifestacion";
-
-//////////////////////////////////   FIN  DESCARTADO  ///////////////////////////////////////////////

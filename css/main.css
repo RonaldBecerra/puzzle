@@ -85,6 +85,10 @@ main {
 /* Top of the manifestation image */
 #manifestation-viewAndGame-container > div:first-child{
 	height: 14.3%;
+	display: flex; 
+	flex-direction: row; 
+	justify-content: space-between; 
+	align-items: center;
 }
 /* Manifestation image */
 #manifestation-image{
@@ -106,9 +110,7 @@ main {
 .slidingCell{
     margin: 0%;
     padding: 0%;
-    position: absolute;
-    /* Red border that indicates the separation between one cell and another */
-    outline: 1px solid #961907;
+    position: absolute;  
 }
 
 .footer{

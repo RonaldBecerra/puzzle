@@ -92,14 +92,9 @@ function change_language(newLanguage){
 			loadMagnifiedDescription(chosenManifestation);
 		}
 		else if (gameView){
-			loadGameView(chosenManifestation);
+			changeTextsInGame(newLanguage);
 		}
 	}
-}
-
-// This is put in some listeners, and we store it in a global function to be able to remove it in them
-function preventDefault(event){
-	event.preventDefault();
 }
 
 // In this function we also restore variables that indicate the state of the view to their default values
@@ -119,6 +114,9 @@ function restoreDefaultValues(){
 
 	document.removeEventListener('mouseup', endSelectionDuringGame);
 	document.removeEventListener('touchend', endSelectionDuringGame);
+
+	// We don't want the time to continue running when we leave the game view
+	window.clearInterval(timeIntervalID);
 }
 
 function changeToView(kind){
@@ -215,7 +213,7 @@ function poblateMainTag(kind){
 			if (!manifestationView){
 				div.innerHTML =
 					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
-						<div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center">
+						<div>
 							<img id="manifestation-minimap" style="height:88%" onmouseout="this.style.boxShadow='none'">
 							<div class="centeredFlex">
 								<div id="manifestation-label" 
@@ -247,8 +245,22 @@ function poblateMainTag(kind){
 			if (!gameView){
 				div.innerHTML =
 					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
-						<div class="centeredFlex">
-							<img src="img/icons/animated-hourglass.gif">
+						<div>
+							<div id="hourglass-time-container" class="centeredFlex" style="height:100%; flex-direction:column">
+								<img style="height:73%" src="img/icons/animated-hourglass.gif">
+								<div class="centeredFlex" style="flex-grow:1; width:100%">
+									<div id="game-time" style="text-align:center, color:black"></div>
+								</div>
+							</div>
+
+							<div id="movements-container" style="height:100%; flex-direction:column">
+								<div class="centeredFlex" style="height:73%; align-items:flex-end">
+									<div id="movements-title"></div>
+								</div>
+								<div class="centeredFlex"style="display:flex; flex-grow:1; width:100%">
+									<div id="movements-number" style=""></div>
+								</div>
+							</div>
 						</div>
 
 						<!-- Where the sliding cells are located -->
@@ -258,7 +270,19 @@ function poblateMainTag(kind){
 						>
 						</div>
 
-						<div class="centeredFlex">
+						<!-- Play/pause, help and restart buttons -->
+						<div>
+							<div class="gameButtons-container centeredFlex" style="flex-direction:row; height:70%; width: 100">
+								<div class="centeredFlex">
+									<img id="playOrPauseImg" src="img/icons/pause.png" onclick="playOrPause()">
+								</div>
+								<div class="centeredFlex">
+									<img src="img/icons/game-help.png" onclick="gameHelp()">
+								</div>
+								<div class="centeredFlex">
+									<img src="img/icons/restart.png" onclick="resetGame()">
+								</div>
+							</div>
 						</div>
 					</div>`;
 			}
@@ -324,9 +348,4 @@ function changeFooter(kind){
 			changeDisplaying(["footer-label"], ["footer-elements"]);
 			break;
 	}
-}
-
-// Returns an integer between the min and the max indicated
-function getRandomInt(min, max){
-	return Math.floor(Math.random(min, max) * (max - min)) + min;
 }
