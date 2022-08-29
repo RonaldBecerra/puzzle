@@ -24,21 +24,25 @@ function loadGameView(num){
 	generateCells(num);
 	startGame();
 
-	// Listeners for when the user starts pressing some point
+	//Listeners for when the user starts pressing some point.
 	document.addEventListener('mousedown', startSelectionDuringGame);
 	document.addEventListener('touchstart', startSelectionDuringGame);
 
-	// Listeners for when the user is moving the selection, necessary in this case
-	// to ensure that the end selection listener is fired when the movement is too fast
-	document.addEventListener('mousemove', preventDefault);
-	document.addEventListener('touchmove', preventDefault);
+	/* Listeners for when the user is moving the selection, necessary in this case.
+	 * to ensure that the end selection listener is fired when the movement is too fast.
+	 *
+	 * NOTE: Putting passive as true is to prevent scrolling at the same time as sliding a cell.
+	 * But that means scrolling is not possible with the touch screen, neither zooming the view.
+	 */
+	document.addEventListener('mousemove', preventDefault, {passive:false});
+	document.addEventListener('touchmove', preventDefault, {passive:false});
 
 	// Listeners for when the user ends pressing some point
 	document.addEventListener('mouseup', endSelectionDuringGame);
 	document.addEventListener('touchend', endSelectionDuringGame);
 }
 
-// Activated when the user is entering in this view and when then changes the language
+// Activated when the user is entering in this view, and also when then changes the language
 function changeTextsInGame(newLanguage){
 	let texts = game_texts[newLanguage];
 	for (i=0; i < texts.length; i++){
@@ -112,15 +116,21 @@ function isEmptyCell(cell){
 // Once the cells are created, we can start the game
 // Also we need to restore the default values
 function startGame(){
-	gamePaused = false;
+	gameEnded = false;
 	remainingTimeSeconds = 3600;
+
+	// This could occur when the user has just ended the game and restarts it
+	if (gamePaused){
+		playOrPause();
+	}
 
 	document.getElementById("game-time").innerHTML = "60:00";
 	document.getElementById("movements-number").innerHTML = "0";
 
 	// If we don't put this and previously existed a time interval, the showed time will run faster,
 	// because it will have the two intervals running
-	window.clearInterval(timeIntervalID);
+	stopTheClock();
+
 	shuffleCells();
 	runTheClock();
 }
@@ -144,12 +154,32 @@ function shuffleCells(){
 	for (i=0; i < numberPositions; i++){
 		newPosition = permutation[i];
 		if (i != newPosition){
-			swapCells(i, newPosition, false);
+			swapCells(i, newPosition);
 		}
 	}
 }
 
-// It swaps the position of two cells, given their orders 
+// int getInvCount(int arr[])
+// {
+//     int inv_count = 0;
+//     for (int i = 0; i < 9 - 1; i++)
+//         for (int j = i+1; j < 9; j++)
+//              // Value 0 is used for empty space
+//              if (arr[j] && arr[i] &&  arr[i] > arr[j])
+//                   inv_count++;
+//     return inv_count;
+// }
+ 
+// // This function returns true if given 8 puzzle is solvable.
+// function isSolvable(arrayPuzzle){
+//     // Count inversions in given 8 puzzle
+//     int invCount = getInvCount((int *)puzzle);
+ 
+//     // return true if inversion count is even.
+//     return (invCount%2 == 0);
+// }
+
+// It swaps the position of two cells, given their orders (the originals, not necessarily which they show)
 function swapCells(order1, order2){
 	let c1 = getCellByPosition(order1);
 	let c2 = getCellByPosition(order2);
@@ -157,38 +187,53 @@ function swapCells(order1, order2){
 	// NOTE: To swap the background image is only necessary for when we are moving a cell to the empty space
 	[c1.style.backgroundImage, c1.style.outline, c1.style.backgroundPosition, c1.innerHTML, 
 	c2.style.backgroundImage, c2.style.outline, c2.style.backgroundPosition, c2.innerHTML] 
-	= 
+	=
 	[c2.style.backgroundImage, c2.style.outline, c2.style.backgroundPosition, c2.innerHTML, 
 	c1.style.backgroundImage, c1.style.outline, c1.style.backgroundPosition, c1.innerHTML];
+
+	return ;
 }
 
 // This calls the function that updates the clock every second (1000 miliseconds)
 function runTheClock(){
 	// The "window.setInterval" function returns an id that later
 	// we need to know to clear that interval
-    timeIntervalID = window.setInterval(updateClock,1000);
+    timeIntervalID = window.setInterval(updateTheClock,1000);
+}
+
+function stopTheClock(){
+	if (timeIntervalID){
+        window.clearInterval(timeIntervalID);
+        timeIntervalID = null;	
+	}
 }
 
 // Decreases the total time in 1 second and expresses it as minutes:seconds
-function updateClock(){
-	let div = document.getElementById("game-time");
-	remainingTimeSeconds--;
-
-	let minutes = Math.floor(remainingTimeSeconds/60);
-	let seconds = remainingTimeSeconds % 60;
-
-	// We alert the user that time is running out
-	if (minutes < 10){
-		div.style.color = "red";
+function updateTheClock(){
+	// This means the user lost the game
+	if (remainingTimeSeconds == 0){
+		userLost();
 	}
+	else {
+		let div = document.getElementById("game-time");
+		remainingTimeSeconds--;
 
-	div.innerHTML = appendZeroIfLess10(minutes) + ":" + appendZeroIfLess10(seconds);
+		let minutes = Math.floor(remainingTimeSeconds/60);
+		let seconds = remainingTimeSeconds % 60;
+
+		// We alert the user that time is running out
+		if (minutes < 10){
+			div.style.color = "red";
+		}
+
+		div.innerHTML = appendZeroIfLess10(minutes) + ":" + appendZeroIfLess10(seconds);
+	}
 }
 
 // This is activated when the user starts pressing some point (touching or with the mouse)
 function startSelectionDuringGame(event){
 	// If we don't put this, sometimes the end selection listener is not fired
-	event.preventDefault();
+	//event.preventDefault();
 
 	// We only store the origin element of selection if it represents a cell of the board game
 	originCell = event.target.classList.contains("slidingCell") ? event.target : 
@@ -228,6 +273,7 @@ function endSelectionDuringGame(event){
 
 		if (horizontalMov || verticalMov){
 			increaseNumberOfMovements();
+			verifyIfPuzzleWasSolved();
 		}
 	}
 }
@@ -279,16 +325,29 @@ function increaseNumberOfMovements(){
 	div.innerHTML = ++div.innerHTML;
 }
 
-// 
+/* If the game was not paused, it pauses it an viceversa.
+ * That means locking or unlocking the clock, the cells and the help button.
+ */
 function playOrPause(){
-	let img = document.getElementById("playOrPauseImg");
-	if (gamePaused){
-		img.src = "img/icons/pause.png";
-		gamePaused = false;
-	}
-	else{
-		img.src = "img/icons/play.png";
-		gamePaused = true;
+	if (!gameEnded){
+		let img1 = document.getElementById("playOrPauseImg");
+		let img2 = document.getElementById("clockImage");
+		let query = document.querySelectorAll(".slidingCell");
+
+		if (gamePaused){
+			img1.src = "img/icons/pause.png";
+			img2.style.visibility = "visible"; // We show the clock
+			query.forEach(e => {e.style.pointerEvents = "auto"}); // We unlock the cells
+			gamePaused = false;
+			runTheClock();
+		}
+		else{
+			img1.src = "img/icons/play.png";
+			img2.style.visibility = "hidden"; // We hide the clock
+			query.forEach(e => {e.style.pointerEvents = "none"}); // We lock the cells
+			gamePaused = true;
+			stopTheClock();	
+		}
 	}
 }
 
@@ -297,15 +356,17 @@ function playOrPause(){
  * when counting from the top left cell to the bottom right one.
  */
 function gameHelp(){
-	document.querySelectorAll(".help-text").forEach(e => {e.style.display = "inline"});
-	setTimeout(() => {
-		/* We need to repeat the query because the user could have swiped the cells, so 
-		 * they wouldn't have the same original properties. If we use the same query instead, 
-		 * the numbers on the two swapped cells don't dissapear.
-		 */
-		document.querySelectorAll(".help-text").forEach(e => {e.style.display = "none"})}, 
-		2000
-	);
+	if (!gamePaused && !gameEnded){
+		document.querySelectorAll(".help-text").forEach(e => {e.style.display = "inline"});
+		setTimeout(() => {
+			/* We need to repeat the query because the user could have swiped the cells, so 
+			 * they wouldn't have the same original properties. If we use the same query instead, 
+			 * the numbers on the two swapped cells don't dissapear.
+			 */
+			document.querySelectorAll(".help-text").forEach(e => {e.style.display = "none"})}, 
+			2000 // 2 seconds
+		);
+	}
 }
 
 // Message: "Are you sure you want to restart the game?\nYour progress will be lost"
@@ -313,4 +374,40 @@ function resetGame(){
 	if (confirm(game_texts[language][1].content)){
 		startGame();
 	}
+}
+
+// Activated everytime the user swaps two cells
+function verifyIfPuzzleWasSolved(){
+	let gameCompleted = true;
+	let cellsList = document.querySelectorAll(".help-text");
+
+	for (i=0; i < cellsList.length; i++){
+		if (i != cellsList[i].innerHTML){
+			gameCompleted = false;
+			break;
+		}
+	}
+	if (gameCompleted){
+		userWon();
+	}
+}
+
+// This is called when the remaining time is zero seconds
+function userLost(){
+	setEndOfGame();
+	alert(game_texts[language][2].content);
+}
+
+// This is called when the user managed to complete the puzzle
+function userWon(){
+	setEndOfGame();
+	// The setTimeout is to not show the message before the last cell is moved to its place visually
+	setTimeout(()=>{alert(game_texts[language][3].content)}, 200);
+}
+
+// Called both when the user lost or when the user managed to complete the puzzle
+function setEndOfGame(){
+	// We pause the game because we don't want the time to continue running, neither the user slide the cells
+	playOrPause(); // If the time was running, it's because the game was not paused, so this pauses the game
+	gameEnded = true;
 }

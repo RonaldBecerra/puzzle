@@ -109,8 +109,8 @@ function restoreDefaultValues(){
 	document.removeEventListener('mousedown', startSelectionDuringGame);
 	document.removeEventListener('touchstart', startSelectionDuringGame);
 
-	document.removeEventListener('mousemove', preventDefault);
-	document.removeEventListener('touchmove', preventDefault);
+	document.removeEventListener('mousemove', preventDefault, {passive:false});
+	document.removeEventListener('touchmove', preventDefault, {passive:false});
 
 	document.removeEventListener('mouseup', endSelectionDuringGame);
 	document.removeEventListener('touchend', endSelectionDuringGame);
@@ -247,7 +247,7 @@ function poblateMainTag(kind){
 					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
 						<div>
 							<div id="hourglass-time-container" class="centeredFlex" style="height:100%; flex-direction:column">
-								<img style="height:73%" src="img/icons/animated-hourglass.gif">
+								<img id="clockImage" style="height:73%" src="img/icons/animated-hourglass.gif">
 								<div class="centeredFlex" style="flex-grow:1; width:100%">
 									<div id="game-time" style="text-align:center, color:black"></div>
 								</div>

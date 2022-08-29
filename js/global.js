@@ -49,6 +49,5 @@ var originCell = null; // Cell where the user started pressing
 var remainingTimeSeconds = 3600; // Time remaining to end the game, expressed in seconds.
 var timeIntervalID = null; // Id returned by the window.setInterval function. This is needed to later clear that interval.
 var gamePaused = false;
-var userWon = false;
-var userLost = false; // The user loses when the remainingTimeSeconds reaches zero
+var gameEnded = false; // The games when the remainingTimeSeconds reaches zero or the user solves the puzzle
 // ------ END
