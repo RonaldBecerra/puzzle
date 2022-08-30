@@ -118,6 +118,7 @@ function isEmptyCell(cell){
 function startGame(){
 	gameEnded = false;
 	remainingTimeSeconds = 3600;
+	document.getElementById("game-time").style.color = "black";
 
 	// This could occur when the user has just ended the game and restarts it
 	if (gamePaused){
@@ -145,8 +146,11 @@ function shuffleCells(){
 	// Used to ensure cells don't all stay in the same position after shuffling
 	let originalPermutation = [...permutation].join(',');
 
-	while (permutation.join(',') === originalPermutation){
+	// Here we ensure that we don't start with the puzzle solved, and neither with an impossible one
+	let possiblePuzzle = false;
+	while ((!possiblePuzzle) || (permutation.join(',') === originalPermutation)){
 		permutation = _.shuffle(permutation);
+		possiblePuzzle = puzzleSolvable(permutation, numberPositions);
 	}
 
 	// Here is where we put the cells in their new order
@@ -159,25 +163,33 @@ function shuffleCells(){
 	}
 }
 
-// int getInvCount(int arr[])
-// {
-//     int inv_count = 0;
-//     for (int i = 0; i < 9 - 1; i++)
-//         for (int j = i+1; j < 9; j++)
-//              // Value 0 is used for empty space
-//              if (arr[j] && arr[i] &&  arr[i] > arr[j])
-//                   inv_count++;
-//     return inv_count;
-// }
+// Counts the number of inversions in an array [0,1,2,...]
+// Source: https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/
+function getInvCount(arrayPuzzle, arrayPuzzleLength){
+	let inv_count = 0;
+	for (i=0; i < arrayPuzzleLength-1; i++){
+		for (j=i+1; j < arrayPuzzleLength; j++){
+			// An inversion is counted when a cell that is not the blank one has a higher numeration
+			// than another cell that appears later in the array, and is not the blank one either.
+			if (!isEmptyCell(getCellByPosition(arrayPuzzle[i])) && !isEmptyCell(getCellByPosition(arrayPuzzle[j])) 
+				&& arrayPuzzle[i] > arrayPuzzle[j]){
+				inv_count++;
+			}
+		}
+	}
+	return inv_count;
+}
  
-// // This function returns true if given 8 puzzle is solvable.
-// function isSolvable(arrayPuzzle){
-//     // Count inversions in given 8 puzzle
-//     int invCount = getInvCount((int *)puzzle);
- 
-//     // return true if inversion count is even.
-//     return (invCount%2 == 0);
-// }
+// This function returns true if given array, representing an ordering of the puzzle, is solvable.
+// It is solvable when the number of inversions is even.
+// Source: https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/
+function puzzleSolvable(arrayPuzzle, arrayPuzzleLength){
+	// Count inversions in given puzzle
+	let invCount = getInvCount(arrayPuzzle, arrayPuzzleLength);
+
+	// Return true if inversion count is even.
+	return (invCount % 2 == 0);
+}
 
 // It swaps the position of two cells, given their orders (the originals, not necessarily which they show)
 function swapCells(order1, order2){
@@ -190,44 +202,6 @@ function swapCells(order1, order2){
 	=
 	[c2.style.backgroundImage, c2.style.outline, c2.style.backgroundPosition, c2.innerHTML, 
 	c1.style.backgroundImage, c1.style.outline, c1.style.backgroundPosition, c1.innerHTML];
-
-	return ;
-}
-
-// This calls the function that updates the clock every second (1000 miliseconds)
-function runTheClock(){
-	// The "window.setInterval" function returns an id that later
-	// we need to know to clear that interval
-    timeIntervalID = window.setInterval(updateTheClock,1000);
-}
-
-function stopTheClock(){
-	if (timeIntervalID){
-        window.clearInterval(timeIntervalID);
-        timeIntervalID = null;	
-	}
-}
-
-// Decreases the total time in 1 second and expresses it as minutes:seconds
-function updateTheClock(){
-	// This means the user lost the game
-	if (remainingTimeSeconds == 0){
-		userLost();
-	}
-	else {
-		let div = document.getElementById("game-time");
-		remainingTimeSeconds--;
-
-		let minutes = Math.floor(remainingTimeSeconds/60);
-		let seconds = remainingTimeSeconds % 60;
-
-		// We alert the user that time is running out
-		if (minutes < 10){
-			div.style.color = "red";
-		}
-
-		div.innerHTML = appendZeroIfLess10(minutes) + ":" + appendZeroIfLess10(seconds);
-	}
 }
 
 // This is activated when the user starts pressing some point (touching or with the mouse)
@@ -319,6 +293,42 @@ function moveCellToEmpty(direction){
 	return false;
 }
 
+// This calls the function that updates the clock every second (1000 miliseconds)
+function runTheClock(){
+	// The "window.setInterval" function returns an id that later
+	// we need to know to clear that interval
+	timeIntervalID = window.setInterval(updateTheClock,1000);
+}
+
+function stopTheClock(){
+	if (timeIntervalID){
+		window.clearInterval(timeIntervalID);
+		timeIntervalID = null;	
+	}
+}
+
+// Decreases the total time in 1 second and expresses it as minutes:seconds
+function updateTheClock(){
+	// This means the user lost the game
+	if (remainingTimeSeconds == 0){
+		userLost();
+	}
+	else {
+		let div = document.getElementById("game-time");
+		remainingTimeSeconds--;
+
+		let minutes = Math.floor(remainingTimeSeconds/60);
+		let seconds = remainingTimeSeconds % 60;
+
+		// We alert the user that time is running out with the red color
+		if (minutes < 10){
+			div.style.color = "red";
+		}
+
+		div.innerHTML = appendZeroIfLess10(minutes) + ":" + appendZeroIfLess10(seconds);
+	}
+}
+
 // NOTE: verified that JavaScript chooses the correct type between string and integer in this case
 function increaseNumberOfMovements(){
 	let div = document.getElementById("movements-number");
@@ -371,9 +381,23 @@ function gameHelp(){
 
 // Message: "Are you sure you want to restart the game?\nYour progress will be lost"
 function resetGame(){
-	if (confirm(game_texts[language][1].content)){
-		startGame();
-	}
+	// if (confirm(game_texts[language][1].content)){
+	// 	startGame();
+	// }
+	openConfirmationModal();
+	confirm(game_texts[language][1].content);
+}
+
+// To open the modal in which the user confirms if they want to reset the game
+// We don't use the JavaScript version because it prevents the clock from running
+function openConfirmationModal(){
+	modalView = true;
+    document.getElementById("game-modal-container").style.display = "flex";
+}
+
+function closeConfirmationModal(){
+	modalView = false;
+	document.getElementById("game-modal-container").style.display = "none";
 }
 
 // Activated everytime the user swaps two cells
@@ -395,14 +419,14 @@ function verifyIfPuzzleWasSolved(){
 // This is called when the remaining time is zero seconds
 function userLost(){
 	setEndOfGame();
-	alert(game_texts[language][2].content);
+	alert(game_texts[language][5].content);
 }
 
 // This is called when the user managed to complete the puzzle
 function userWon(){
 	setEndOfGame();
 	// The setTimeout is to not show the message before the last cell is moved to its place visually
-	setTimeout(()=>{alert(game_texts[language][3].content)}, 200);
+	setTimeout(()=>{alert(game_texts[language][5].content)}, 200);
 }
 
 // Called both when the user lost or when the user managed to complete the puzzle

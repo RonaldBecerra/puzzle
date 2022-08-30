@@ -27,7 +27,7 @@ function generateManifestationsButtons(){
 			fontWeight = 'normal';			
 		}
 		str += `<button class="manifestationsMenu-button" name="manButton_` + i.toString() + `"
-						style="border: 1px solid #333;
+						style="border: 1px solid;
 								border-color: var(--` + manifestationsColors[i] + `-manifestation);
 								box-shadow: 
 									inset -4px -3px 5px -2px rgba(0, 0, 0, 0.8),

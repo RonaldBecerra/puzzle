@@ -100,7 +100,7 @@ function change_language(newLanguage){
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
 	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = 
-	magnifiedMap = magnifiedDescription = gameView = false;
+	magnifiedMap = magnifiedDescription = gameView = modalView = false;
 
 	// Delete the listeners that could have been added. 
 	// If the function to remove is null, this doesn't do anything (does not throw an exception)
@@ -284,10 +284,29 @@ function poblateMainTag(kind){
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<!-- Modal. Only used in the game to confirm restart -->
+					<div id="game-modal-container" class="whole" style="display:none; flex-direction:column; align-items:center">
+						<!-- Transparent part whose purpose is that the user can close the modal by touching or clicking it -->
+						<div class="whole" onclick="closeConfirmationModal()"></div>
+
+						<div class="centeredFlex" style="position:absolute; z-index:2; min-height:30%; min-width:30%; 
+														background-color:white; border-radius:8px">
+							<div style="display:flex; flex-direction:column; position:absolute; height:calc(100% - 25px); width:calc(100% - 25px)">
+								<div style="display:flex; flex-grow:1; flex-direction:row; justify-content:left; align-items:center">
+									<div id="game-modal-text" style="text-align:left; font-family:Arial"></div>
+								</div>
+
+								<div id="game-modal-view-buttons-container" style="display:flex; flex-direction:row; height:38%; width:100%">
+								</div>
+							</div>
+						</div>
+
 					</div>`;
 			}
 			break;
-		// VIew in which the user can close the application
+		// View in which the user can close the application
 		case "exit_view":
 			if (!closingApp){
 				let source = mainLabels[language].find(element => element.identifier === "exitView").content;
