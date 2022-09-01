@@ -187,6 +187,16 @@
 .footer_icon:hover{
 	height: 65%;
 }
+
+/* Only used during the puzzle game */
+#footer-save-game{
+	min-width: 29%;
+	font-size: 3vw;
+	border-radius: 4px;
+
+	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
+	transform:scale(1.4,1);
+}
 /* ------------------- END OF FORMAT FOR THE FOOTER -------------------- */
 
 

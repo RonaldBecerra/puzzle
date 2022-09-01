@@ -240,7 +240,7 @@ function poblateMainTag(kind){
 				div.innerHTML = `<div id="magnified-description" style="text-align:left; overflow:hidden">`;
 			}
 			break;
-		// Where appears the description of the manifestation covering all the main view
+		// Where the user can play with the puzzle
 		case "game_view": 
 			if (!gameView){
 				div.innerHTML =
@@ -346,7 +346,8 @@ function changeDisplaying(arrayDisplay, arrayNotDisplay){
 }
 
 /* The "footer" may vary according to the view. The possibilities are already built but
-   here we make it display the correct case.
+   here we make it display the correct case. This is the opposite as what we do with the
+   main tag, which is empty by default and we fill it according to the case.
  */
 function changeFooter(kind){
 	// These elements are hidden in some viewies, so by default we respawn them here
@@ -355,19 +356,23 @@ function changeFooter(kind){
 	switch (kind){
 		// Presentation, instructions or credits
 		case "relatedToApp_view":
-			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass"]);
+			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "footer-save-game"]);
 			break;
 		// Where appears an image and a description of the manifestation
 		case "manifestation_view":
-			changeDisplaying(["footer-elements"], ["footer-label"]);
+			changeDisplaying(["footer-elements"], ["footer-label", "footer-save-game"]);
 			break;
 		case "magnified_map": // Where appears a map covering all the main view
 		case "magnified_description": // Where appears the description of the manifestation covering all the main view
-			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight"]);
+			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight", "footer-save-game"]);
+			break;
+		// Where the user can play with the puzzle
+		case "game_view":
+			changeDisplaying(["footer-save-game"], ["footer-label", "footer-elements"]);
 			break;
 		// Front page, manifestations menu, exit view
 		default:
-			changeDisplaying(["footer-label"], ["footer-elements"]);
+			changeDisplaying(["footer-label"], ["footer-elements", "footer-save-game"]);
 			break;
 	}
 }

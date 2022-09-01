@@ -20,6 +20,9 @@ const isMobileDevice = window.mobileAndTabletCheck();
 var language = null;
 const possible_languages = ["spanish", "english"];
 
+// Here we storage the file that will be used to save or load a game
+var fileToSaveOrRead = null;
+
 /* ------ BEGIN: Variables that determine if the user is currently in a determined view ---------------
  * They can have the "false" value, but for the true case a string or a number may be used instead, since 
  * many views can share the same kind, so the variable also specifies which is the current one.

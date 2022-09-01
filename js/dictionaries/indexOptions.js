@@ -38,7 +38,7 @@ const indexOptions_functions = [
 	`onClick = "closeIndex(); boardNumRowsColumns=3; changeToView('manifestations_menu'); generate_indexOptions(language)"`, // 4
 	`onClick = "closeIndex(); boardNumRowsColumns=4; changeToView('manifestations_menu'); generate_indexOptions(language)"`, // 5
 	`onClick = "closeIndex(); boardNumRowsColumns=6; changeToView('manifestations_menu'); generate_indexOptions(language)"`, // 6
-	`onClick = "closeIndex(); changeToView('presentation')"`, // 7
+	`onClick = "loadGame()"`, // 7
 	`onClick = "closeIndex(); loadRelatedToApp('credits')"`, // 8
 	`onClick = "closeIndex(); changeToView('exit_view')"`, // 9
 ];
