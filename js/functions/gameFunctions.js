@@ -49,7 +49,7 @@ function changeTextsInGame(newLanguage){
 		let elem = texts[i];
 		let id = elem.identifier;
 		if (null != id){
-			document.getElementById(elem.identifier).innerHTML = elem.content;
+			document.getElementById(id).innerHTML = elem.content;
 		}
 	}
 }
@@ -381,37 +381,31 @@ function gameHelp(){
 
 // Message: "Are you sure you want to restart the game?\nYour progress will be lost"
 function resetGame(){
-	// if (confirm(game_texts[language][1].content)){
-	// 	startGame();
-	// }
-	openConfirmationModal();
-	confirm(game_texts[language][1].content);
+	if (gameEnded){
+		startGame();
+	}
+	else {
+		$("#modalConfirmAcceptCancel").modal('show');
+	}	
 }
 
-// To open the modal in which the user confirms if they want to reset the game
-// We don't use the JavaScript version because it prevents the clock from running
-function openConfirmationModal(){
-	modalView = true;
-    document.getElementById("game-modal-container").style.display = "flex";
-}
-
-function closeConfirmationModal(){
-	modalView = false;
-	document.getElementById("game-modal-container").style.display = "none";
+// To hide the modal that appears when the user clicks the reset button
+function hideResetGameModal(){
+	$("#modalConfirmAcceptCancel").modal('hide');
 }
 
 // Activated everytime the user swaps two cells
 function verifyIfPuzzleWasSolved(){
-	let gameCompleted = true;
+	let gameCompleted_aux = true;
 	let cellsList = document.querySelectorAll(".help-text");
 
 	for (i=0; i < cellsList.length; i++){
 		if (i != cellsList[i].innerHTML){
-			gameCompleted = false;
+			gameCompleted_aux = false;
 			break;
 		}
 	}
-	if (gameCompleted){
+	if (gameCompleted_aux){
 		userWon();
 	}
 }
@@ -426,7 +420,7 @@ function userLost(){
 function userWon(){
 	setEndOfGame();
 	// The setTimeout is to not show the message before the last cell is moved to its place visually
-	setTimeout(()=>{alert(game_texts[language][5].content)}, 200);
+	setTimeout(()=>{alert(game_texts[language][6].content)}, 200);
 }
 
 // Called both when the user lost or when the user managed to complete the puzzle

@@ -33,7 +33,6 @@ var magnifiedMap = false; // The map of the manifestation covers all the main vi
 var magnifiedDescription = false; // The description of the manifestattion covers all the main view
 var gameView = false; // Where the user can play with the puzzle
 var closingApp = false; // Indicates if the user is in the view that lets exiting the application
-var modalView = false; // It is true when the user is confirming if they want to restart the current game
 // ------ END
 
 // ------ BEGIN: Variables and constants related to the manifestations ---------------

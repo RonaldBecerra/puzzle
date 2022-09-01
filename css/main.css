@@ -1,7 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	/*box-sizing: border-box;*/
+	box-sizing: border-box;
 	position: relative;
 	font-family: 'Century Gothic';
 }
@@ -32,7 +32,8 @@
 }
 
 html {
-	font-size: 62.5%;
+	/*font-size: 62.5%;*/
+	-webkit-text-size-adjust: 100%;
 }	
 
 .whole {
@@ -113,6 +114,11 @@ main {
     position: absolute;  
 }
 
+/* For the confirmation modal that appears in the game */
+#lblTitleConfirmAcceptCancel, #lblMsgConfirmAcceptCancel, #btnAcceptConfirm, #btnCancelConfirm{
+	font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+	
 .footer{
 	bottom: 0px;
 	width: 100%;
@@ -141,16 +147,6 @@ main {
 	border-right-style: solid;
 	flex-direction:column;
 	align-items: center;
-}
-
-/* This includes the modal-view, and an empty space (transparent) in which the user can click
-   to close the modal*/
-#game-modal-container {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	overflow-x: hidden;
 }
 
 /* For the english/spanish buttons that appear on the language menu of the index*/
