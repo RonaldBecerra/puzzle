@@ -20,8 +20,13 @@ const isMobileDevice = window.mobileAndTabletCheck();
 var language = null;
 const possible_languages = ["spanish", "english"];
 
-// Here we storage the file that will be used to save or load a game
-var fileToSaveOrRead = null;
+var acceptableFilesToSaveOrRead = {
+    types: [{
+        description: 'Text documents', 
+        accept: {'text/plain': ['.txt']}
+    }],
+    multiple: false,
+};
 
 /* ------ BEGIN: Variables that determine if the user is currently in a determined view ---------------
  * They can have the "false" value, but for the true case a string or a number may be used instead, since 
@@ -46,7 +51,6 @@ var chosenManifestation = -1; // It stores the index of the last chosen manifest
 // ------ BEGIN: Variables related to the board game ---------------
 var boardNumRowsColumns = 3; // There is always the same number of rows as columns
 var gameDimensionsObject = {}; // This will have some properties that will be calculated when starting the game
-var emptyPosition = null; // Number of the cell that will not have displayed any part of the image
 var startX, startY; // Coordinates of the point in which the user touches or clicks the screen
 var originCell = null; // Cell where the user started pressing
 var remainingTimeSeconds = 3600; // Time remaining to end the game, expressed in seconds.

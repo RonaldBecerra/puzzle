@@ -3,8 +3,9 @@
  *
  */
 
-// To load the view where the user can play with the puzzle
-function loadGameView(num){
+// To load the view where the user can play with the puzzle.
+// The "loadedInfo" param is for when we are loading a saved game.
+function loadGameView(num, loadedInfo=null){
 	changeToView("game_view");
 	gameView = true;
 
@@ -21,8 +22,16 @@ function loadGameView(num){
 		magnifiedImgPercentageDim: (100 * boardNumRowsColumns),
 	}
 	changeTextsInGame(language);
-	generateCells(num);
-	startGame();
+
+	// Case when the game is being played for the first time
+	if (null== loadedInfo){
+		generateCells(num);
+	}
+	else{ // Case when we are loading a previously saved game
+		document.getElementById("manifestation-image").innerHTML = loadedInfo.board;
+	}
+	
+	startGame(loadedInfo);
 
 	//Listeners for when the user starts pressing some point.
 	document.addEventListener('mousedown', startSelectionDuringGame);
@@ -81,7 +90,7 @@ function generateCells(num){
 	boardDiv.innerHTML = str;
 
 	// Here we make one of the cells to be empty
-	emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
+	let emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
 	let emptyCell = getCellByPosition(emptyPosition);
 	emptyCell.style.backgroundImage = "none";
 	emptyCell.style.outline = "none";
@@ -114,25 +123,34 @@ function isEmptyCell(cell){
 }
 
 // Once the cells are created, we can start the game
-// Also we need to restore the default values
-function startGame(){
+function startGame(loadedInfo=null){
+	// Also we need to restore the default values
 	gameEnded = false;
-	remainingTimeSeconds = 3600;
-	document.getElementById("game-time").style.color = "black";
+
+	if (null == loadedInfo){
+		remainingTimeSeconds = 3600;
+		document.getElementById("game-time").style.color = "black";
+		document.getElementById("game-time").innerHTML = "60:00";
+		document.getElementById("movements-number").innerHTML = "0";
+
+		shuffleCells();
+	}
+	else {
+		remainingTimeSeconds = loadedInfo.remainingTimeSeconds;
+		document.getElementById("game-time").style.color = loadedInfo.timeColor;
+		document.getElementById("game-time").innerHTML = loadedInfo.displayedTime;
+		document.getElementById("movements-number").innerHTML = loadedInfo.movementsNumber;	
+	}
 
 	// This could occur when the user has just ended the game and restarts it
 	if (gamePaused){
 		playOrPause();
 	}
 
-	document.getElementById("game-time").innerHTML = "60:00";
-	document.getElementById("movements-number").innerHTML = "0";
-
 	// If we don't put this and previously existed a time interval, the showed time will run faster,
 	// because it will have the two intervals running
 	stopTheClock();
 
-	shuffleCells();
 	runTheClock();
 }
 
@@ -152,8 +170,6 @@ function shuffleCells(){
 		permutation = _.shuffle(permutation);
 		possiblePuzzle = puzzleSolvable(permutation, numberPositions);
 	}
-
-	console.log("permutation = ", permutation);
 
 	// Here is where we put the cells in their new order
 	let newPosition;
