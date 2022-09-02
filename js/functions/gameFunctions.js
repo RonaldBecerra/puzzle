@@ -153,6 +153,8 @@ function shuffleCells(){
 		possiblePuzzle = puzzleSolvable(permutation, numberPositions);
 	}
 
+	console.log("permutation = ", permutation);
+
 	// Here is where we put the cells in their new order
 	let newPosition;
 	for (i=0; i < numberPositions; i++){
