@@ -76,12 +76,12 @@
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 #chooseManifestation-label{
 	height: 33%;
-	width: 50%;
+	width: 80vmin;
 }
 
 .manifestationsMenu-button{
 	height: 5.9%;
-	width: 27.5%;
+	width: 40vh;
 	font-size: 2.7vh;
 	border-radius: 5.5px;
 
