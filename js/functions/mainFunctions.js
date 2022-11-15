@@ -3,13 +3,6 @@
  *
  */
 
-// document.addEventListener("pause", onPause, false);
-
-// function onPause(){
-// 	// Se puede guardar el estado de la aplicación
-// }
-
-
 document.addEventListener("backbutton", onBackKeyDown, false);
 
 // This makes the back button to be ignored
@@ -88,9 +81,6 @@ function change_language(newLanguage){
 		else if (magnifiedMap){
 			loadMagnifiedMap(chosenManifestation);
 		}
-		else if (magnifiedDescription){
-			loadMagnifiedDescription(chosenManifestation);
-		}
 		else if (gameView){
 			changeTextsInGame(newLanguage);
 		}
@@ -100,7 +90,7 @@ function change_language(newLanguage){
 // In this function we also restore variables that indicate the state of the view to their default values
 function restoreDefaultValues(){
 	frontPage = relatedToApp = closingApp = choosingManifestation = manifestationView = 
-	magnifiedMap = magnifiedDescription = gameView = false;
+	magnifiedMap = gameView = false;
 
 	// Delete the listeners that could have been added. 
 	// If the function to remove is null, this doesn't do anything (does not throw an exception)
@@ -128,7 +118,6 @@ function changeToView(kind){
 // This returns the HTML elements located in the footer, except the default label and the save game button
 getFooterElements = () => ({
 	handToLeft: document.getElementById("handToLeft"),
-	magnifyingGlass: document.getElementById("magnifyingGlass"), 
 	handToRight: document.getElementById("handToRight"),
 })
 
@@ -214,14 +203,14 @@ function poblateMainTag(kind){
 				div.innerHTML =
 					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
 						<div>
-							<img id="manifestation-minimap" style="height:88%" onmouseout="this.style.boxShadow='none'">
+							<img id="manifestation-minimap" style="height:88%; width:auto" onmouseout="this.style.boxShadow='none'">
 							<div class="centeredFlex">
 								<div id="manifestation-label" 
 									style="height:100%; text-align:right; font-style:italic;">
 								</div>
 							</div>
 						</div>
-						<img id="manifestation-image">
+						<img id="manifestation-image" style="width:auto">
 						<div class="centeredFlex" style="overflow:hidden">
 							<div id="manifestation-description" style="text-align:left"></div>
 						</div>
@@ -232,12 +221,6 @@ function poblateMainTag(kind){
 		case "magnified_map": 
 			if (!magnifiedMap){
 				div.innerHTML = `<img id="magnified-map-image">`;
-			}
-			break;
-		// Where appears the description of the manifestation covering all the main view
-		case "magnified_description": 
-			if (!magnifiedDescription){
-				div.innerHTML = `<div id="magnified-description" style="text-align:left; overflow:hidden">`;
 			}
 			break;
 		// Where the user can play with the puzzle
@@ -351,20 +334,19 @@ function changeDisplaying(arrayDisplay, arrayNotDisplay){
  */
 function changeFooter(kind){
 	// These elements are hidden in some viewies, so by default we respawn them here
-	changeDisplaying(["magnifyingGlass", "handToRight"],[]);
+	changeDisplaying(["handToRight"],[]);
 
 	switch (kind){
 		// Presentation, instructions or credits
 		case "relatedToApp_view":
-			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "footer-save-game"]);
+			changeDisplaying(["footer-elements"], ["footer-label", "footer-save-game"]);
 			break;
 		// Where appears an image and a description of the manifestation
 		case "manifestation_view":
 			changeDisplaying(["footer-elements"], ["footer-label", "footer-save-game"]);
 			break;
 		case "magnified_map": // Where appears a map covering all the main view
-		case "magnified_description": // Where appears the description of the manifestation covering all the main view
-			changeDisplaying(["footer-elements"], ["footer-label", "magnifyingGlass", "handToRight", "footer-save-game"]);
+			changeDisplaying(["footer-elements"], ["footer-label", "handToRight", "footer-save-game"]);
 			break;
 		// Where the user can play with the puzzle
 		case "game_view":

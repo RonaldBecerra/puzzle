@@ -86,10 +86,7 @@ main {
 	justify-content: space-between; 
 	align-items: center;
 }
-/* Manifestation image */
-#manifestation-image{
-	height: 65%; 
-}
+
 /* Bottom of the manifestation image */
 #manifestation-image + div{
 	height: 20.7%;
@@ -97,7 +94,7 @@ main {
 /* ------------ END OF FORMAT FOR THE MANIFESTATIONS PREVIEW AND THE PUZZLE GAME --------------- */
 
 /* For the description that is below the image in the manifestation view*/
-#manifestation-description span, #magnified-description span{
+#manifestation-description span{
 	font-style: italic;
 	font-weight: bold;
 }

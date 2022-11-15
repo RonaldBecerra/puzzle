@@ -90,15 +90,12 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-#manifestation-viewAndGame-container{
-	width: 65%;
+/* Manifestation image */
+#manifestation-image{
+	height: 80%; 
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
-#manifestation-minimap{
-	width: 20%;
-}
-
 #manifestation-description{
 	width: 82.5%;
 	font-size: 1.11vw;
@@ -123,15 +120,6 @@
 #magnified-map-image{
 	width: 100%;
 	height: 100%;
-}
-
-#magnified-description{
-	width: 60%;
-	font-size: 3.2vh;
-	text-shadow: var(--sneaky-shadow);
-
-	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.2,1);
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 
@@ -189,7 +177,7 @@
 
 .footer_icon{
 	position: absolute;
-	width: 18%;
+	width: auto;
 	height: 60%;
 }
 .footer_icon:hover{

@@ -8,10 +8,9 @@ function loadManifestationView(num){
 	changeToView("manifestation_view");
 	manifestationView = true;
 
-	let {handToLeft, magnifyingGlass, handToRight} = getFooterElements();
+	let {handToLeft, handToRight} = getFooterElements();
 
 	handToLeft.onclick = () => changeToView('manifestations_menu');
-	magnifyingGlass.onclick = () => loadMagnifiedDescription(num);
 	handToRight.onclick = () => loadGameView(num);
 
 	// Central image
@@ -76,16 +75,6 @@ function loadMagnifiedMap(num){
 
 	// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
 	window.adjustMapDimensions = adjustMapDimensions;
-}
-
-// To load where appears a map covering all the main view
-function loadMagnifiedDescription(num){
-	changeToView("magnified_description");
-	magnifiedDescription = true;
-	setReturnToManifestatonView(num);
-
-	let description = document.getElementById("magnified-description");
-	description.innerHTML = manifestations_texts[language][num].description;
 }
 
 function setReturnToManifestatonView(num){
