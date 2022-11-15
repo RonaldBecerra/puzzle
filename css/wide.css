@@ -70,7 +70,7 @@
 /* For the images with text that represent the Presentation and Instructions views */
 #relatedToApp{
 	height: 90%;
-	width: 40%;
+	width: 32%;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
@@ -212,7 +212,7 @@
 
 /* Transparent part whose purpose is that the user can close the index by touching or clicking it */
 #index-empty{
-	width: 35%;
+	width: 60%;
 }
 
 /* Space so that the close button does not appear at the end */
@@ -227,7 +227,7 @@
 
 /* Same title that appears on the front page */
 #index-title {
-	width: 45%;
+	width: 50%;
 	height: 90%;
 }
 
@@ -235,10 +235,10 @@
 #index-label{
 	text-align: center;
 	font-family: 'Epistolar';
-	font-size: 1.4vw;
+	font-size: 1.3vw;
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.6,1);
+	transform:scale(1.2,1);
 }
 
 #index-hand {
@@ -252,7 +252,7 @@
 	font-size: 3vh;
 	
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.9,1);
+	transform:scale(1.1,1);
 }
 .index-clickableText:hover{
 	cursor: default;

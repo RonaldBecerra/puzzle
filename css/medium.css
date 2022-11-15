@@ -69,7 +69,8 @@
 
 #relatedToApp{
 	height: 90%;
-	width: 70%;
+	min-width: 60%;
+	max-width: 70%;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
@@ -207,7 +208,7 @@
 
 /* Transparent part whose purpose is that the user can close the index by touching or clicking it */
 #index-empty{
-	width: 30%;
+	width: 50%;
 }
 
 /* Space so that the close button does not appear at the end */
@@ -230,24 +231,23 @@
 #index-label{
 	text-align: center;
 	font-family: 'Epistolar';
-	font-size: 2.2vh;
+	font-size: 2vw;
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.4,1);
+	transform:scale(1,1);
 }
 
 #index-hand {
-	height: 21%;
-	width: 16%;
+	height: 25%;
+	width: 20%;
 	top: 2%;
 	left: 10%;
 }
 
 .index-clickableText{
-	font-size: 2.6vh;
-	
+	font-size: 2.25vh;
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.6,1);
+	transform:scale(1.3,1.1);
 }
 .index-clickableText:hover{
 	cursor: default;
