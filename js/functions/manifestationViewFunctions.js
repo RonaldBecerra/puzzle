@@ -52,22 +52,31 @@ function loadMagnifiedMap(num){
 	 * any way to manage it with vanilla css, so I do it through a listener.
 	 */
 	let adjustMapDimensions = () => {
-		if (sizeStyleSheet === 'narrow'){
-			let {width, height} = window.getComputedStyle(mapParent);
-			width = parseFloat(width);
-			height = parseFloat(height);
+		const {width, height} = window.getComputedStyle(mapParent);
+		const numWidth = parseFloat(width);
+		const numHeight = parseFloat(height);
 
-			if (height/width > 2.05){
-				height = width*2.05;
+		// This assumes that in all possible images of the maps, the relation between the two 
+		// dimensions is at most 1.45, which currently occurs.
+		if (1.45*numHeight > numWidth){
+			if (sizeStyleSheet === 'narrow'){
+				if (numHeight > 1.45*numWidth){
+					map.style.width = "auto";
+					map.style.height = width;
+				}
+				else {
+					map.style.width = height;
+					map.style.height = "auto";			
+				}
 			}
-			map.style.minWidth = height.toString()+"px";
-			map.style.height = width.toString()+"px";
+			else{
+				map.style.width = width;
+				map.style.height = "auto";
+			}
 		}
-		// Case when minWidth and height had been assigned in a narrow view, but
-		// we are returning to a non-narrow one.
-		else if (map.style.minWidth !== ''){
-			map.style.minWidth = '';
-			map.style.height = '';	
+		else {
+			map.style.width = "auto";
+			map.style.height = height;
 		}
 	}
 	adjustMapDimensions();

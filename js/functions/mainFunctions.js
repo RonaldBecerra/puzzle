@@ -152,6 +152,7 @@ function loadRelatedToApp(kind){
  */
 function poblateMainTag(kind){
 	let div = document.getElementsByTagName("main")[0];
+	div.style = "";
 
 	switch (kind){
 		// The initial page that appears when opening the app
@@ -210,12 +211,13 @@ function poblateMainTag(kind){
 								</div>
 							</div>
 						</div>
-						<img id="manifestation-image" style="width:auto">
+						<img id="manifestation-image">
 						<div class="centeredFlex" style="overflow:hidden">
 							<div id="manifestation-description" style="text-align:left"></div>
 						</div>
 					</div>`;
 			}
+			div.style.height = "overflow-y:auto";
 			break;
 		// Where appears a map covering all the main view
 		case "magnified_map": 

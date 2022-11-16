@@ -90,9 +90,13 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
+#manifestation-viewAndGame-container{
+	width: 92%;
+}
+
 /* Manifestation image */
 #manifestation-image{
-	height: 65%; 
+	height: auto; 
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */

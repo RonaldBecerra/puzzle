@@ -93,6 +93,7 @@
 /* Manifestation image */
 #manifestation-image{
 	height: 75%; 
+	width: auto !important;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
@@ -112,11 +113,6 @@
 #manifestation-label span{
 	font-size: 2.3vh;
 	font-weight: bold;
-}
-
-#magnified-map-image{
-	width: 100%;
-	height: 90%;
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 
