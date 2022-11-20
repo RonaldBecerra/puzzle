@@ -6,7 +6,7 @@
 /* ------------------- FORMAT FOR THE HEADER -------------------- */
 
 #hamburger-menu{
-	width: 12%;
+	width: 11%;
 }
 
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
@@ -53,17 +53,17 @@
 
 /* ------------------- FORMAT FOR THE FRONT PAGE -------------------- */
 #frontPage-title {
-	width: 45%;
-	height: 55%;
+	width: auto;
+	height: 58%;
 }
 
 #frontPage-hand {
-	height: 20%;
+	height: 15%;
 	left: 80%;
 	bottom: 6%;
 }
 #frontPage-hand:hover{
-	height: 21%;
+	height: 17%;
 }
 /* ------------------- END OF FORMAT FOR THE FRONT PAGE -------------------- */
 

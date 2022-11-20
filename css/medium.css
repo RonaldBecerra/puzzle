@@ -53,17 +53,17 @@
 
 /* ------------------- FORMAT FOR THE FRONT PAGE -------------------- */
 #frontPage-title {
-	width: 55%;
+	width: auto;
 	height: 47%;
 }
 
 #frontPage-hand {
-	height: 18%;
+	height: 14%;
 	left: 80%;
 	bottom: 6%;
 }
 #frontPage-hand:hover{
-	height: 19%;
+	height: 16%;
 }
 /* ------------------- END OF FORMAT FOR THE FRONT PAGE -------------------- */
 
