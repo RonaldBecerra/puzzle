@@ -1,7 +1,11 @@
-/* We don't want to display anything that is marked only for narrow */
+/* We don't want to display anything that is marked only for the other kind of views */
+.mediumOnly{
+	display: none;
+}
 .narrowOnly{
 	display: none;
 }
+
 
 /* ------------------- FORMAT FOR THE HEADER -------------------- */
 
@@ -70,7 +74,7 @@
 /* For the images with text that represent the Presentation and Instructions views */
 #relatedToApp{
 	height: 90%;
-	width: 32%;
+	width: auto;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
@@ -81,8 +85,8 @@
 
 .manifestationsMenu-button{
 	height: 5.9%;
-	width: 40vh;
-	font-size: 2.7vh;
+	width: 36vh;
+	font-size: 2.5vh;
 	border-radius: 5.5px;
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
@@ -90,32 +94,58 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-/* Manifestation image */
+#manifestation-viewAndGame-container{
+	width: 100%;
+	height: 95%;
+	flex-direction: row-reverse;
+}
+
+/* Manifestation image, for view and game */
 #manifestation-image{
-	height: 80%;
+	height: 100%;
 	width: auto !important;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
+#manifestation-mapAndLabel{
+	height: 100%;
+	display: flex; 
+	flex-direction: column-reverse; 
+	justify-content: space-between; 
+	align-items: center;
+}
+
 #manifestation-description{
 	width: 82.5%;
-	font-size: 1.11vw;
+	font-size: 1.4vw;
+	text-align: right;
+	padding-right: 5px;
+	overflow-y: auto; 
 	text-shadow: var(--sneaky-shadow);
+}
 
-	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
-	transform:scale(1.2,1);
+#manifestation-label-container{
+	height: 27.27%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 8px;
 }
 
 #manifestation-label{
-	font-size: 2.2vh;
+	font-size: 0.9vw;
 	text-shadow: var(--sneaky-shadow);
-
-	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
-	transform:scale(1,0.75);
 }
 #manifestation-label span{
-	font-size: 2.8vh;
+	font-size: 1.13vw;
 	font-weight: bold;
+}
+
+#manifestation-map{
+	height: auto;
+	width: 84.2%;
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 

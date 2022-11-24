@@ -1,4 +1,7 @@
-/* We don't want to display anything that is marked only for narrow */
+/* We don't want to display anything that is marked only for the other kind of views */
+.wideOnly{
+	display: none;
+}
 .narrowOnly{
 	display: none;
 }
@@ -69,8 +72,7 @@
 
 #relatedToApp{
 	height: 90%;
-	min-width: 60%;
-	max-width: 70%;
+	width: auto;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
@@ -90,21 +92,27 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-/* Manifestation image */
+/* Manifestation image, for view and game */
 #manifestation-image{
 	height: 75%; 
 	width: auto !important;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
+#manifestation-mapAndLabel{
+	
+}
+
 #manifestation-description{
 	width: 99%;
 	font-size: 1.8vh;
+	text-align: right;
 	text-shadow: var(--sneaky-shadow);
 }
 
 #manifestation-label{
 	font-size: 1.8vh;
+	text-align: left;
 	text-shadow: var(--sneaky-shadow);
 
 	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
@@ -113,6 +121,10 @@
 #manifestation-label span{
 	font-size: 2.3vh;
 	font-weight: bold;
+}
+
+#manifestation-map{
+	
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 

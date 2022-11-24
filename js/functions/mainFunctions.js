@@ -152,7 +152,6 @@ function loadRelatedToApp(kind){
  */
 function poblateMainTag(kind){
 	let div = document.getElementsByTagName("main")[0];
-	div.style = "";
 
 	switch (kind){
 		// The initial page that appears when opening the app
@@ -202,22 +201,20 @@ function poblateMainTag(kind){
 		case "manifestation_view":
 			if (!manifestationView){
 				div.innerHTML =
-					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
-						<div>
-							<img id="manifestation-minimap" style="height:88%; width:auto" onmouseout="this.style.boxShadow='none'">
-							<div class="centeredFlex">
-								<div id="manifestation-label" 
-									style="height:100%; text-align:right; font-style:italic;">
-								</div>
+					`<div id="manifestation-viewAndGame-container" class="centeredFlex" style="overflow-y:auto">
+						<div id="manifestation-mapAndLabel" style="flex-grow:1">
+							<img id="manifestation-map" class="webOnly" onmouseout="this.style.boxShadow='none'">
+							<img id="manifestation-minimap" class="narrowOnly" onmouseout="this.style.boxShadow='none'">
+							<div id="manifestation-label-container">
+								<div id="manifestation-label" style="font-style:italic"></div>
 							</div>
 						</div>
 						<img id="manifestation-image">
-						<div class="centeredFlex" style="overflow:hidden">
-							<div id="manifestation-description" style="text-align:left"></div>
+						<div class="centeredFlex" style="flex-grow:1">
+							<div id="manifestation-description" style="overflow:auto"></div>
 						</div>
 					</div>`;
 			}
-			div.style.height = "overflow-y:auto";
 			break;
 		// Where appears a map covering all the main view
 		case "magnified_map": 

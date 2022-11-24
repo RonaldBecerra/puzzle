@@ -8,7 +8,7 @@ function loadManifestationView(num){
 	changeToView("manifestation_view");
 	manifestationView = true;
 
-	let {handToLeft, handToRight} = getFooterElements();
+	const {handToLeft, handToRight} = getFooterElements();
 
 	handToLeft.onclick = () => changeToView('manifestations_menu');
 	handToRight.onclick = () => loadGameView(num);
@@ -16,20 +16,24 @@ function loadManifestationView(num){
 	// Central image
 	document.getElementById("manifestation-image").src = manifestations_figures[num].preview;
 
-	let color = manifestationsColors[num];
-	let varColor = 'var(--' + color + '-manifestation)';
+	const color = manifestationsColors[num];
+	const varColor = 'var(--' + color + '-manifestation)';
 
-	// Minimap
-	let minimap = document.getElementById("manifestation-minimap");
+	// Map and minimap
+	const map     = document.getElementById("manifestation-map");
+	const minimap = document.getElementById("manifestation-minimap");
+
+	map.src     = "img/maps/magnified_maps/" + color + "_" + language + ".png";
 	minimap.src = "img/maps/minimaps/" + color + ".png";
-	minimap.onclick = () => loadMagnifiedMap(num);
 
-	// We want to indicate the user that the minimap is clickable
-	minimap.onmouseover = function(){
-		minimap.style.boxShadow = 
-			"inset -2px -3px 10px -0.5px " + varColor + "," +
-			" inset 2px 3px 10px -0.5px " + varColor;
-	}
+	[map, minimap].forEach(function(element){
+		element.onclick = () => loadMagnifiedMap(num);
+		// We want to indicate the user that the map/minimap are clickable
+		element.onmouseover = () => {
+			element.style.boxShadow = "inset -2px -3px 10px -0.5px " + varColor + "," +
+									  " inset 2px 3px 10px -0.5px " + varColor;
+		};
+	})
 
 	// Label and description
 	let info = manifestations_texts[language][num];
