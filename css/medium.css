@@ -8,10 +8,6 @@
 
 /* ------------------- FORMAT FOR THE HEADER -------------------- */
 
-#hamburger-menu{
-	width: 20%;
-}
-
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
 #header-label{
 	width: 45%;
@@ -99,12 +95,6 @@
 	justify-content: flex-start;
 }
 
-/* Manifestation image, for view and game */
-#manifestation-image{
-	height: auto; 
-	width: 65vh !important;
-}
-
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-mapAndLabel{
 	height: 14.3%;
@@ -119,6 +109,11 @@
 	font-size: 2.1vh;
 	text-align: left;
 	text-shadow: var(--light-sneaky-shadow);
+}
+
+#manifestation-image{
+	height: auto; 
+	width: 65vh !important;
 }
 
 #manifestation-label-container{

@@ -105,11 +105,6 @@
 	justify-content: flex-start;
 }
 
-/* Manifestation image, for view and game */
-#manifestation-image{
-	height: auto; 
-}
-
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-mapAndLabel{
 	max-height: 14.3%;
@@ -127,6 +122,10 @@
 
 	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
 	transform:scale(1,0.9);
+}
+
+#manifestation-image{
+	height: auto; 
 }
 
 #manifestation-label-container{

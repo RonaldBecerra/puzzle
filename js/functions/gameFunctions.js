@@ -66,8 +66,13 @@ function changeTextsInGame(newLanguage){
 // Creates "div" elements inside the "manifestation-image" div,
 // that represent the sliding cells.
 function generateCells(num){
+	const image = manifestations_figures[num].game;
+
+	const fakeImage = document.getElementById("manifestation-image");
+	fakeImage.src = image;
+
 	// "div" where the cells of the manifestation image will be located
-	let boardDiv = document.getElementById("manifestation-image");
+	let boardDiv = document.getElementById("board-game");
 
 	// In principle, "order" is the number associated to the cell, but when cells are swaped,
 	// that attribute must be in the cell occupying which had its original position
@@ -77,7 +82,7 @@ function generateCells(num){
 	for(row = 0 ; row < boardNumRowsColumns; row++){
 		for(col = 0 ; col < boardNumRowsColumns; col++){
 			str += 
-				`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,num)+`">
+				`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,image)+`">
 					<span class="help-text" 
 						style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
 								font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
@@ -96,11 +101,11 @@ function generateCells(num){
 	emptyCell.style.outline = "none";
 }
 
-function generateCellStyle(col, row, num){
+function generateCellStyle(col, row, image){
 	let {cellPercentageDim, imageStartPositionFactor, magnifiedImgPercentageDim} = gameDimensionsObject;
 
 	return `
-		background-image: url(` + manifestations_figures[num].game + `);
+		background-image: url(` + image + `);
 		background-size: ` + magnifiedImgPercentageDim + `% ` + magnifiedImgPercentageDim + `%;
 		background-position: ` + (col*imageStartPositionFactor) +`% `+ (row*imageStartPositionFactor) + `%; 
 		height: ` + cellPercentageDim + `%;

@@ -38,7 +38,9 @@ function loadManifestationView(num){
 	// Label and description
 	let info = manifestations_texts[language][num];
 	document.getElementById("manifestation-label").innerHTML = info.label;
-	document.getElementById("manifestation-description").innerHTML = info.description;
+
+	let description = document.getElementById("manifestation-description");
+	description.innerHTML = info.description;
 }
 
 // To load where appears a map covering all the main view
