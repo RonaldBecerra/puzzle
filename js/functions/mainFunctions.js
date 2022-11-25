@@ -152,6 +152,7 @@ function loadRelatedToApp(kind){
  */
 function poblateMainTag(kind){
 	let div = document.getElementsByTagName("main")[0];
+	div.style = "overflow-y:auto";
 
 	switch (kind){
 		// The initial page that appears when opening the app
@@ -201,32 +202,35 @@ function poblateMainTag(kind){
 		case "manifestation_view":
 			if (!manifestationView){
 				div.innerHTML =
-					`<div id="manifestation-viewAndGame-container" class="centeredFlex" style="overflow-y:auto">
-						<div id="manifestation-mapAndLabel" style="flex-grow:1">
-							<img id="manifestation-map" class="webOnly" onmouseout="this.style.boxShadow='none'">
-							<img id="manifestation-minimap" class="narrowOnly" onmouseout="this.style.boxShadow='none'">
+					`<div id="manifestation-view-container" class="manifestation-viewAndGame-container centeredFlex">
+						<div id="manifestation-mapAndLabel">
+							<img id="manifestation-map" class="wideOnly" onmouseout="this.style.boxShadow='none'">
+							<img id="manifestation-minimap" class="mediumNarrowOnly" onmouseout="this.style.boxShadow='none'">
 							<div id="manifestation-label-container">
 								<div id="manifestation-label" style="font-style:italic"></div>
 							</div>
 						</div>
 						<img id="manifestation-image">
-						<div class="centeredFlex" style="flex-grow:1">
-							<div id="manifestation-description" style="overflow:auto"></div>
+						<div id="manifestation-description-container">
+							<div id="manifestation-description"></div>
 						</div>
 					</div>`;
 			}
+			div.style = "overflow-y:auto"; // This is for the lower text to be always visible
 			break;
 		// Where appears a map covering all the main view
 		case "magnified_map": 
 			if (!magnifiedMap){
 				div.innerHTML = `<img id="magnified-map-image">`;
 			}
+			// In the narrow version, the Map rotation causes an unwanted scroll to appear
+			div.style = "overflow:hidden";
 			break;
 		// Where the user can play with the puzzle
 		case "game_view": 
 			if (!gameView){
 				div.innerHTML =
-					`<div id="manifestation-viewAndGame-container" class="centeredFlex">
+					`<div id="manifestation-game-container" class="manifestation-viewAndGame-container centeredFlex">
 						<div>
 							<div id="hourglass-time-container" class="centeredFlex" style="height:100%; flex-direction:column">
 								<img id="clockImage" style="height:73%" src="img/icons/animated-hourglass.gif">

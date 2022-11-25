@@ -98,7 +98,7 @@
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 
-#manifestation-viewAndGame-container{
+.manifestation-viewAndGame-container{
 	width: 92%;
 	height: 100%; 
 	flex-direction: column; 
@@ -112,7 +112,8 @@
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-mapAndLabel{
-	height: 14.3%;
+	max-height: 14.3%;
+	min-height: 14.3%;
 	display: flex; 
 	flex-direction: row; 
 	justify-content: space-between; 
@@ -121,25 +122,25 @@
 
 #manifestation-description{
 	width: 99%;
-	font-size: 3vw;
+	font-size: 2vh;
 	text-align: left;
 
 	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
-	transform:scale(1,0.82);
+	transform:scale(1,0.9);
 }
 
 #manifestation-label-container{
 	display: flex;
-	justify-content: center;
+	flex-direction: row;
+	justify-content: flex-start;
 	align-items: center;
 }
 
 #manifestation-label{
-	height: 100%; 
 	font-size: 1.6vh;
 	text-align: right;
 	/* This is for a text to be smaller but not the font-size, just streched (width, height)*/
-	transform:scale(1,0.75);
+	transform:scale(1,0.79);
 
 }
 #manifestation-label span{
@@ -147,17 +148,13 @@
 	font-weight: bold;
 }
 
-#manifestation-image + div{
-	height: 20.7%;
-}
-
-#magnified-map-image{
-	transform: rotate(-90deg);
-}
-
 #manifestation-minimap{
 	height: 88%; 
 	width: auto;
+}
+
+#magnified-map-image{
+	transform:rotate(-90deg);
 }
 /* ------------------- END OF FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 

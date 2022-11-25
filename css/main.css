@@ -29,6 +29,7 @@
 
 	/* Shadow for letters, when we only want to make them look thicker without bolding them */
 	--sneaky-shadow: 1px 0px 0px;
+	--light-sneaky-shadow: 0.5px 0px 0px;
 }
 
 .whole {
@@ -70,7 +71,7 @@ main {
 }
 
 /* Format shared by the manifestations view and the puzzle game */
-#manifestation-viewAndGame-container > div, #manifestation-viewAndGame-container > img{
+.manifestation-viewAndGame-container > div, .manifestation-viewAndGame-container > img{
 	width: 100%;
 }
 
