@@ -51,6 +51,7 @@ function createManifestationsFigures(){
 		// We build the dictionary
 		manifestations_figures.push({
 			game:    elem + "game.jpg",
+			// In the petroglyph case we need a png image because a transparency is required
 			preview: elem + "preview." + (name!="petroglyph" ? "jpg" : "png"),
 		})
 	}

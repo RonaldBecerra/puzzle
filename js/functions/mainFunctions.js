@@ -95,6 +95,7 @@ function restoreDefaultValues(){
 	// Delete the listeners that could have been added. 
 	// If the function to remove is null, this doesn't do anything (does not throw an exception)
 	window.removeEventListener('resize', window.adjustMapDimensions);
+	window.removeEventListener('resize', window.adjustBoardDivDimensions);
 
 	document.removeEventListener('mousedown', startSelectionDuringGame);
 	document.removeEventListener('touchstart', startSelectionDuringGame);
@@ -250,7 +251,7 @@ function poblateMainTag(kind){
 						</div>
 
 						<!-- This is just a fake image (will never be displayed) but is used to get the board dimensions -->
-						<img id="manifestation-image" style="z-index:0; position:absolute">
+						<img id="manifestation-image" style="z-index:0; opacity:0; position:absolute">
 
 						<!-- Where the sliding cells are located -->
 						<div id="board-game"

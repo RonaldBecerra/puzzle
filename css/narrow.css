@@ -107,6 +107,7 @@
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
 #manifestation-mapAndLabel{
+	/* Setting both max-height and min-height with the same value forces the height to be only that value */
 	max-height: 14.3%;
 	min-height: 14.3%;
 	display: flex; 
