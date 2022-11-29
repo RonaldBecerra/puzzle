@@ -9,7 +9,9 @@ const game_texts = {
 		{content: "Lo sentimos, el tiempo se ha agotado.\n¡Suerte para la próxima!"}, // 5
 		{content: "¡Felicitaciones, ha conseguido resolver el puzzle!"}, // 6
 		{identifier:"footer-save-game", content: "Guardar partida"}, // 7
-		{content: "No se puede leer el archivo especificado"}, // 8
+		{content: "No se encontró ninguna partida salvada"}, // 8
+		{content: "No se puede leer el archivo especificado"}, // 9
+		{content: "La partida fue salvada exitosamente"}, // 10
 	],
 	english: [
 		{identifier:"movements-title", content:"Movements"}, // 0
@@ -20,6 +22,8 @@ const game_texts = {
 		{content: "Sorry, time has run out.\nGood luck next time!"}, // 5
 		{content: "Congratulations, you have managed to solve the puzzle!"}, // 6
 		{identifier:"footer-save-game", content: "Save game"}, // 7
-		{content: "Unable to read the specified file"}, // 8
+		{content: "No save game found"}, // 8
+		{content: "Unable to read the specified file"}, // 9
+		{content: "The game was saved successfully"}, // 10
 	],
 };

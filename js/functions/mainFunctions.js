@@ -254,7 +254,7 @@ function poblateMainTag(kind){
 							</div>
 						</div>
 
-						<!-- This is just a fake image (will never be displayed) but is used to get the board dimensions -->
+						<!-- This is just a fake image (will never be displayed), but is used to get the board dimensions -->
 						<img id="manifestation-image" style="z-index:0; opacity:0; position:absolute">
 
 						<!-- Where the sliding cells are located -->

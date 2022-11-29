@@ -16,94 +16,32 @@ function loadGameView(num, loadedInfo=null){
 		numberPositions: Math.pow(boardNumRowsColumns,2),
 
 		/* The following is a trick: since we need each cell to represent only a part of the
-		 * original image, what we actually do is increase the size of said image temporarily 
+		 * original image, what we actually do is to increase the size of said image temporarily 
 		 * when referring to it
 		 */
 		magnifiedImgPercentageDim: (100 * boardNumRowsColumns),
 	}
 	changeTextsInGame(language);
 
-	let startGameAndEstablishListeners = (loadedInfo=null) => {
-		startGame(loadedInfo);
+	const imageSrc = manifestations_figures[num].game;
 
-		//Listeners for when the user starts pressing some point.
-		document.addEventListener('mousedown', startSelectionDuringGame);
-		document.addEventListener('touchstart', startSelectionDuringGame);
-
-		/* Listeners for when the user is moving the selection, necessary in this case.
-		 * to ensure that the end selection listener is fired when the movement is too fast.
-		 *
-		 * NOTE: Putting passive as true is to prevent scrolling at the same time as sliding a cell.
-		 * But that means scrolling is not possible with the touch screen, neither zooming the view.
-		 */
-		document.addEventListener('mousemove', preventDefault, {passive:false});
-		document.addEventListener('touchmove', preventDefault, {passive:false});
-
-		// Listeners for when the user ends pressing some point
-		document.addEventListener('mouseup', endSelectionDuringGame);
-		document.addEventListener('touchend', endSelectionDuringGame);
-	}
-
-	// Case when the game is being played for the first time
-	if (null== loadedInfo){
-		// Since generateCells waits for an image to load, we pass as a function the instructions
-		// that must be executed after its execution
-		generateCells(num, startGameAndEstablishListeners);
-	}
-	else{ // Case when we are loading a previously saved game
-		document.getElementById("manifestation-image").innerHTML = loadedInfo.board;
-		startGameAndEstablishListeners(loadedInfo);
-	}
-}
-
-// Activated when the user is entering in this view, and also when then changes the language
-function changeTextsInGame(newLanguage){
-	let texts = game_texts[newLanguage];
-	for (i=0; i < texts.length; i++){
-		let elem = texts[i];
-		let id = elem.identifier;
-		if (null != id){
-			document.getElementById(id).innerHTML = elem.content;
-		}
-	}
-}
-
-// Creates "div" elements inside the "manifestation-image" div,
-// that represent the sliding cells.
-function generateCells(num, furtherInstructions){
-	const image = manifestations_figures[num].game;
+	// This image will never be displayed, but will be used to get the board dimensions
 	const fakeImage = document.getElementById("manifestation-image");
-	fakeImage.src = image;
+	fakeImage.src = imageSrc;
 
 	fakeImage.onload = function(){
 		// "div" where the cells of the manifestation image will be located
 		let boardDiv = document.getElementById("board-game");
 
-		// In principle, "order" is the number associated to the cell, but when cells are swaped,
-		// that attribute must be in the cell occupying which had its original position
-		let order = 0; 
-		
-		let str = ""
-		for(row = 0 ; row < boardNumRowsColumns; row++){
-			for(col = 0 ; col < boardNumRowsColumns; col++){
-				str += 
-					`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,image)+`">
-						<span class="help-text" 
-							style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
-									font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
-						>` + order + 
-						`</span>
-					</div>`;
-				order += 1;
-			}
+		// Case when the game is being played for the first time
+		if (null== loadedInfo){
+			// Since generateCells waits for an image to load, we pass as a function the instructions
+			// that must be executed after its execution
+			generateCells(imageSrc, boardDiv);
 		}
-		boardDiv.innerHTML = str;
-
-		// Here we make one of the cells to be empty
-		let emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
-		let emptyCell = getCellByPosition(emptyPosition);
-		emptyCell.style.backgroundImage = "none";
-		emptyCell.style.outline = "none";
+		else{ // Case when we are loading a previously saved game
+			boardDiv.innerHTML = loadedInfo.board;
+		}
 
 		// We make the boardDiv match the same size as the fakeImage
 		let adjustBoardDivDimensions = (timeToWait=30) => {
@@ -123,12 +61,75 @@ function generateCells(num, furtherInstructions){
 		// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
 		window.adjustBoardDivDimensions = adjustBoardDivDimensions;
 
-		// The first time we don't need to wait because the image was already loaded
+		// The first time, this adjust function does not need to wait because the image was already loaded
 		adjustBoardDivDimensions(0);
 
-		// Activate the function that was passed (that starts the game)
-		furtherInstructions();
+		startGame(loadedInfo);
+
+		addGameListeners();
 	}
+}
+
+// Adds all necessary listeners for the game
+function addGameListeners(){
+	//Listeners for when the user starts pressing some point.
+	document.addEventListener('mousedown', startSelectionDuringGame);
+	document.addEventListener('touchstart', startSelectionDuringGame);
+
+	/* Listeners for when the user is moving the selection, necessary in this case.
+	 * to ensure that the end selection listener is fired when the movement is too fast.
+	 *
+	 * NOTE: Putting passive as true is to prevent scrolling at the same time as sliding a cell.
+	 * But that means scrolling is not possible with the touch screen, neither zooming the view.
+	 */
+	document.addEventListener('mousemove', preventDefault, {passive:false});
+	document.addEventListener('touchmove', preventDefault, {passive:false});
+
+	// Listeners for when the user ends pressing some point
+	document.addEventListener('mouseup', endSelectionDuringGame);
+	document.addEventListener('touchend', endSelectionDuringGame);
+}
+
+// Activated when the user is entering in this view, and also when then changes the language
+function changeTextsInGame(newLanguage){
+	let texts = game_texts[newLanguage];
+	for (i=0; i < texts.length; i++){
+		let elem = texts[i];
+		let id = elem.identifier;
+		if (null != id){
+			document.getElementById(id).innerHTML = elem.content;
+		}
+	}
+}
+
+// Creates "div" elements inside the "manifestation-image" div,
+// that represent the sliding cells.
+function generateCells(imageSrc, boardDiv){
+	// In principle, "order" is the number associated to the cell, but when cells are swaped,
+	// that attribute must be in the cell occupying which had its original position
+	let order = 0; 
+	
+	let str = ""
+	for(row = 0 ; row < boardNumRowsColumns; row++){
+		for(col = 0 ; col < boardNumRowsColumns; col++){
+			str += 
+				`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,imageSrc)+`">
+					<span class="help-text" 
+						style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
+								font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
+					>` + order + 
+					`</span>
+				</div>`;
+			order += 1;
+		}
+	}
+	boardDiv.innerHTML = str;
+
+	// Here we make one of the cells to be empty
+	let emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
+	let emptyCell = getCellByPosition(emptyPosition);
+	emptyCell.style.backgroundImage = "none";
+	emptyCell.style.outline = "none";
 }
 
 function generateCellStyle(col, row, image){

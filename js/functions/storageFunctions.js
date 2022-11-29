@@ -3,6 +3,7 @@
  * This function establishes how the content will look like, and calls
  * another function that is which will in fact save the content in a file.
  */
+
 async function saveGame() {
 	// In case the game help was displayed, we need to first hide it
 	await document.querySelectorAll(".help-text").forEach(e => {
@@ -16,31 +17,40 @@ async function saveGame() {
 		timeColor: document.getElementById("game-time").style.color,
 		displayedTime: document.getElementById("game-time").innerHTML,
 		movementsNumber: document.getElementById("movements-number").innerHTML,
-		board: document.getElementById("manifestation-image").innerHTML,
+		board: document.getElementById("board-game").innerHTML,
 	}
 	saveFile(JSON.stringify(objectToSave));
 }
 
 // Receives a strings and writes it in a file
 async function saveFile(contentToSave){
-	// create a new handle
-	const newHandle = await window.showSaveFilePicker(acceptableFilesToSaveOrRead);
+	// Notice that currently we can only save a single game, 
+	// which will be automatically selected when loading again
+	if (isMobileDevice){
+		windowLocalStorage.setItem("savedGame", contentToSave);
+	}
+	else {
+		// create a new handle
+		const newHandle = await window.showSaveFilePicker(acceptableFilesToSaveOrRead);
 
-	// create a FileSystemWritableFileStream to write to
-	const writableStream = await newHandle.createWritable();
+		// create a FileSystemWritableFileStream to write to
+		const writableStream = await newHandle.createWritable();
 
-	// write our file
-	await writableStream.write(contentToSave);
+		// write our file
+		await writableStream.write(contentToSave);
 
-	// close the file and write the contents to disk.
-	await writableStream.close();
+		// close the file and write the contents to disk.
+		await writableStream.close();
+	}
+	// Alert: "The game was saved successfully"
+	alert(game_texts[language][10].content);
 }
 
 
 // To load a file representing a state of the game, and return to that state.
 async function loadGame(){
 	let readText = await loadFile();
-	let errorMessage = game_texts[language][8].content;
+	let errorMessage = isMobileDevice ? game_texts[language][8].content : game_texts[language][9].content;
 
 	// Case when the file could not be loaded
 	if (null == readText){
@@ -76,14 +86,19 @@ async function loadGame(){
  * Otherwise, it returns null.
  */
 async function loadFile(){
-	let fileHandle = await openFileFromDirectory();
-
-	if (null != fileHandle){
-		let fileData = await fileHandle.getFile();
-		let textData = await fileData.text();
-		return textData;
+	if (isMobileDevice){
+		return windowLocalStorage.getItem("savedGame");
 	}
-	return null;
+	else {
+		let fileHandle = await openFileFromDirectory();
+
+		if (null != fileHandle){
+			let fileData = await fileHandle.getFile();
+			let textData = await fileData.text();
+			return textData;
+		}
+		return null;
+	}
 }
 
 // Makes the user select a file from the operating system directory.

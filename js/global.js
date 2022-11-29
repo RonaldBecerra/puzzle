@@ -10,12 +10,17 @@ window.mobileAndTabletCheck = function() {
     return check;
 };
 
+// It is "true" in case a mobile device is used, like a phone or a tablet, and "false" in case a PC is used
+const isMobileDevice = window.mobileAndTabletCheck();
+
+
+// Cache that is used to save a game in a mobile device, because I still don't know a way to access the file system. 
+// Maybe Android/Kotlin would be mandatory for that functionality
+const windowLocalStorage = window.localStorage;
+
 // String that indicates the kind of stylesheet used at the moment: 
 // 'wide', 'medium' or 'narrow';
 var sizeStyleSheet = null;
-
-// It is "true" in case a mobile device is used, like a phone or a tablet, and "false" in case a PC is used
-const isMobileDevice = window.mobileAndTabletCheck();
 
 var language = null;
 const possible_languages = ["spanish", "english"];
