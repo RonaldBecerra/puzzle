@@ -233,19 +233,21 @@ function poblateMainTag(kind){
 				div.innerHTML =
 					`<div id="manifestation-game-container" class="manifestation-viewAndGame-container centeredFlex">
 						<div id="game-timeAndMovements">
-							<div id="hourglass-time-container" class="centeredFlex" style="height:100%; flex-direction:column">
-								<img id="clockImage" style="height:73%" src="img/icons/animated-hourglass.gif">
-								<div class="centeredFlex" style="flex-grow:1; width:100%">
-									<div id="game-time" style="text-align:center, color:black"></div>
+							<div>
+								<div id="hourglass-time-container" class="centeredFlex" style="flex-direction:column">
+									<img id="clockImage" src="img/icons/animated-hourglass.gif">
+									<div class="centeredFlex" style="flex-grow:1; width:100%">
+										<div id="game-time" style="text-align:center, color:black"></div>
+									</div>
 								</div>
-							</div>
 
-							<div id="movements-container" style="height:100%; flex-direction:column">
-								<div class="centeredFlex" style="height:73%; align-items:flex-end">
-									<div id="movements-title"></div>
-								</div>
-								<div class="centeredFlex"style="display:flex; flex-grow:1; width:100%">
-									<div id="movements-number" style=""></div>
+								<div id="movements-container" class="centeredFlex" style="height:100%">
+									<div id="movements-title-container" class="centeredFlex">
+										<div id="movements-title"></div>
+									</div>
+									<div id="movements-number-container" class="centeredFlex" style="width:100%">
+										<div id="movements-number"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -261,8 +263,8 @@ function poblateMainTag(kind){
 						</div>
 
 						<!-- Play/pause, help and restart buttons -->
-						<div id="game-buttons">
-							<div class="gameButtons-container centeredFlex" style="flex-direction:row; height:70%; width: 100">
+						<div id="gameButtons-sector">
+							<div id="gameButtons-container" class="centeredFlex" style="width: 100">
 								<div class="centeredFlex">
 									<img id="playOrPauseImg" src="img/icons/pause.png" onclick="playOrPause()">
 								</div>

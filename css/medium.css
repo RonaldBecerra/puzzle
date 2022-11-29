@@ -148,7 +148,9 @@
 	width: 20%;
 	font-size: 2.6vmin;
 }
-#hourglass-time-container img{
+
+#clockImage{
+	height: 73%;
 	width: 90%;
 }
 
@@ -159,24 +161,28 @@
 	transform:scale(1.15,1);
 }
 
+#movements-title-container{
+	height: 73%;
+}
+
 /* Play/pause, help and restart buttons */
-.gameButtons-container > div{
+#gameButtons-container > div{
 	width: 12%;
 	height: 100%;
 }
-.gameButtons-container > div > img{
+#gameButtons-container > div > img{
 	height: 48%;
 	max-width: 70%;
 }
-.gameButtons-container > div > img:hover{
+#gameButtons-container > div > img:hover{
 	height: 53%;
 }
 /* The play/pause buttons look bigger than they should, so we treat them differently */
-.gameButtons-container > div:first-child > img{
+#gameButtons-container > div:first-child > img{
 	height: 44%;
 	max-width: 65%;
 }
-.gameButtons-container > div:first-child > img:hover{
+#gameButtons-container > div:first-child > img:hover{
 	height: 49%;
 }
 /* ------------------- END OF FORMAT FOR THE GAME VIEW -------------------- */

@@ -118,7 +118,6 @@ function generateCells(num){
 
 function generateCellStyle(col, row, image){
 	let {cellPercentageDim, imageStartPositionFactor, magnifiedImgPercentageDim} = gameDimensionsObject;
-
 	return `
 		background-image: url(` + image + `);
 		background-size: ` + magnifiedImgPercentageDim + `% ` + magnifiedImgPercentageDim + `%;
@@ -127,8 +126,8 @@ function generateCellStyle(col, row, image){
 		width: ` + cellPercentageDim + `%;
 		left: ` + (col*cellPercentageDim) + `%;
 		top: ` + (row*cellPercentageDim) + `%;
-		outline: 1px solid white; // 1px solid #961907
-	`;
+		outline: 1px solid white; 
+	`; // 1px solid #961907 (previous assigned value for outline)
 }
 
 // Receives as a parameter the position of the cell 
