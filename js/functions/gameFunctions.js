@@ -102,18 +102,23 @@ function generateCells(num){
 
 	// We make the boardDiv match the same size as the fakeImage
 	let adjustBoardDivDimensions = () => {
-		const {width, height} = window.getComputedStyle(fakeImage);
-		// Setting both max-height and min-height with the same value forces the height to be only that value
-		boardDiv.style.minWidth = boardDiv.style.maxWidth = width;
-		boardDiv.style.minHeight = boardDiv.style.minHeight = height;
+		// We need to wait a little because the fakeImage might not be created or updated yet
+		setTimeout(()=>
+			{
+				const {width, height} = window.getComputedStyle(fakeImage);
+				// Setting both max-height and min-height with the same value forces the height to be only that value
+				boardDiv.style.minWidth = boardDiv.style.maxWidth = width;
+				boardDiv.style.minHeight = boardDiv.style.minHeight = height;
+			}, 
+			30
+		);
 	}
 	window.addEventListener('resize', adjustBoardDivDimensions);
 
 	// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
 	window.adjustBoardDivDimensions = adjustBoardDivDimensions;
 
-	// To make the first call we need to wait a little because the fakeImage might not be created yet 
-	setTimeout(()=>{adjustBoardDivDimensions()}, 30);
+	adjustBoardDivDimensions();
 }
 
 function generateCellStyle(col, row, image){

@@ -92,12 +92,17 @@
 	width: 65vh;
 	height: 100%;
 	flex-direction: column; 
-	justify-content: flex-start;
+}
+.manifestation-viewAndGame-container > div:first-child{
+	height: 14.3%;
 }
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
+#manifestation-view-container{
+	justify-content: flex-start;
+}
+
 #manifestation-mapAndLabel{
-	height: 14.3%;
 	display: flex; 
 	flex-direction: row; 
 	justify-content: space-between; 
@@ -144,9 +149,26 @@
 
 
 /* ------------------- FORMAT FOR THE GAME VIEW -------------------- */
+#manifestation-game-container{
+	justify-content: center;
+}
+
+#game-timeAndMovements{
+	width: 100%;
+}
+#game-timeAndMovements > div{
+	height: 100%;
+	width: 100%;
+	display: flex; 
+	flex-direction: row;
+	justify-content: space-between; 
+	align-items: center;	
+}
+
 #hourglass-time-container{
+	height: 100%;
 	width: 20%;
-	font-size: 2.6vmin;
+	font-size: 2.1vh;
 }
 
 #clockImage{
@@ -155,17 +177,29 @@
 }
 
 #movements-container{
+	flex-direction: column;
 	width: 20%;
-	font-size: 2.3vmin;
+	font-size: 2vh;
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.15,1);
 }
 
 #movements-title-container{
+	display: flex;
+	align-items: flex-end;
 	height: 73%;
 }
 
 /* Play/pause, help and restart buttons */
+#gameButtons-sector{
+	padding-top: 1%;
+	height: 13%;
+}
+
+#gameButtons-container{
+	height: 100%;
+}
+
 #gameButtons-container > div{
 	width: 12%;
 	height: 100%;

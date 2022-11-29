@@ -232,7 +232,7 @@ function poblateMainTag(kind){
 			if (!gameView){
 				div.innerHTML =
 					`<div id="manifestation-game-container" class="manifestation-viewAndGame-container centeredFlex">
-						<div id="game-timeAndMovements">
+						<div id="game-timeAndMovements" style="z-index:1">
 							<div>
 								<div id="hourglass-time-container" class="centeredFlex" style="flex-direction:column">
 									<img id="clockImage" src="img/icons/animated-hourglass.gif">
@@ -257,14 +257,14 @@ function poblateMainTag(kind){
 
 						<!-- Where the sliding cells are located -->
 						<div id="board-game"
-							style="display:flex; flex-flow:row wrap; justify-content:flex-start; z-index:2;
+							style="display:flex; flex-flow:row wrap; justify-content:flex-start; z-index:1;
 									align-items:flex-start; background-color:rgba(105, 44, 44, 0.2); box-shadow: 3px 3px grey"
 						>
 						</div>
 
 						<!-- Play/pause, help and restart buttons -->
 						<div id="gameButtons-sector">
-							<div id="gameButtons-container" class="centeredFlex" style="width: 100">
+							<div id="gameButtons-container" class="centeredFlex">
 								<div class="centeredFlex">
 									<img id="playOrPauseImg" src="img/icons/pause.png" onclick="playOrPause()">
 								</div>
