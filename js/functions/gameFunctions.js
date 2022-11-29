@@ -23,32 +23,37 @@ function loadGameView(num, loadedInfo=null){
 	}
 	changeTextsInGame(language);
 
+	let startGameAndEstablishListeners = (loadedInfo=null) => {
+		startGame(loadedInfo);
+
+		//Listeners for when the user starts pressing some point.
+		document.addEventListener('mousedown', startSelectionDuringGame);
+		document.addEventListener('touchstart', startSelectionDuringGame);
+
+		/* Listeners for when the user is moving the selection, necessary in this case.
+		 * to ensure that the end selection listener is fired when the movement is too fast.
+		 *
+		 * NOTE: Putting passive as true is to prevent scrolling at the same time as sliding a cell.
+		 * But that means scrolling is not possible with the touch screen, neither zooming the view.
+		 */
+		document.addEventListener('mousemove', preventDefault, {passive:false});
+		document.addEventListener('touchmove', preventDefault, {passive:false});
+
+		// Listeners for when the user ends pressing some point
+		document.addEventListener('mouseup', endSelectionDuringGame);
+		document.addEventListener('touchend', endSelectionDuringGame);
+	}
+
 	// Case when the game is being played for the first time
 	if (null== loadedInfo){
-		generateCells(num);
+		// Since generateCells waits for an image to load, we pass as a function the instructions
+		// that must be executed after its execution
+		generateCells(num, startGameAndEstablishListeners);
 	}
 	else{ // Case when we are loading a previously saved game
 		document.getElementById("manifestation-image").innerHTML = loadedInfo.board;
+		startGameAndEstablishListeners(loadedInfo);
 	}
-	
-	startGame(loadedInfo);
-
-	//Listeners for when the user starts pressing some point.
-	document.addEventListener('mousedown', startSelectionDuringGame);
-	document.addEventListener('touchstart', startSelectionDuringGame);
-
-	/* Listeners for when the user is moving the selection, necessary in this case.
-	 * to ensure that the end selection listener is fired when the movement is too fast.
-	 *
-	 * NOTE: Putting passive as true is to prevent scrolling at the same time as sliding a cell.
-	 * But that means scrolling is not possible with the touch screen, neither zooming the view.
-	 */
-	document.addEventListener('mousemove', preventDefault, {passive:false});
-	document.addEventListener('touchmove', preventDefault, {passive:false});
-
-	// Listeners for when the user ends pressing some point
-	document.addEventListener('mouseup', endSelectionDuringGame);
-	document.addEventListener('touchend', endSelectionDuringGame);
 }
 
 // Activated when the user is entering in this view, and also when then changes the language
@@ -65,60 +70,65 @@ function changeTextsInGame(newLanguage){
 
 // Creates "div" elements inside the "manifestation-image" div,
 // that represent the sliding cells.
-function generateCells(num){
+function generateCells(num, furtherInstructions){
 	const image = manifestations_figures[num].game;
-
 	const fakeImage = document.getElementById("manifestation-image");
 	fakeImage.src = image;
 
-	// "div" where the cells of the manifestation image will be located
-	let boardDiv = document.getElementById("board-game");
+	fakeImage.onload = function(){
+		// "div" where the cells of the manifestation image will be located
+		let boardDiv = document.getElementById("board-game");
 
-	// In principle, "order" is the number associated to the cell, but when cells are swaped,
-	// that attribute must be in the cell occupying which had its original position
-	let order = 0; 
-	
-	let str = ""
-	for(row = 0 ; row < boardNumRowsColumns; row++){
-		for(col = 0 ; col < boardNumRowsColumns; col++){
-			str += 
-				`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,image)+`">
-					<span class="help-text" 
-						style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
-								font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
-					>` + order + 
-					`</span>
-				</div>`;
-			order += 1;
+		// In principle, "order" is the number associated to the cell, but when cells are swaped,
+		// that attribute must be in the cell occupying which had its original position
+		let order = 0; 
+		
+		let str = ""
+		for(row = 0 ; row < boardNumRowsColumns; row++){
+			for(col = 0 ; col < boardNumRowsColumns; col++){
+				str += 
+					`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,image)+`">
+						<span class="help-text" 
+							style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
+									font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
+						>` + order + 
+						`</span>
+					</div>`;
+				order += 1;
+			}
 		}
+		boardDiv.innerHTML = str;
+
+		// Here we make one of the cells to be empty
+		let emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
+		let emptyCell = getCellByPosition(emptyPosition);
+		emptyCell.style.backgroundImage = "none";
+		emptyCell.style.outline = "none";
+
+		// We make the boardDiv match the same size as the fakeImage
+		let adjustBoardDivDimensions = (timeToWait=30) => {
+			// We need to wait a little because the fakeImage might not be updated yet
+			setTimeout(() => 
+				{
+					let {width, height} = window.getComputedStyle(fakeImage);
+					// Setting both max-height and min-height with the same value forces the height to be only that value
+					boardDiv.style.minWidth = boardDiv.style.maxWidth = width;
+					boardDiv.style.minHeight = boardDiv.style.minHeight = height;	
+				}, 
+				timeToWait
+			);
+		}
+		window.addEventListener('resize', adjustBoardDivDimensions);
+
+		// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
+		window.adjustBoardDivDimensions = adjustBoardDivDimensions;
+
+		// The first time we don't need to wait because the image was already loaded
+		adjustBoardDivDimensions(0);
+
+		// Activate the function that was passed (that starts the game)
+		furtherInstructions();
 	}
-	boardDiv.innerHTML = str;
-
-	// Here we make one of the cells to be empty
-	let emptyPosition = getRandomInt(0,Math.pow(boardNumRowsColumns,2)-1);
-	let emptyCell = getCellByPosition(emptyPosition);
-	emptyCell.style.backgroundImage = "none";
-	emptyCell.style.outline = "none";
-
-	// We make the boardDiv match the same size as the fakeImage
-	let adjustBoardDivDimensions = () => {
-		// We need to wait a little because the fakeImage might not be created or updated yet
-		setTimeout(()=>
-			{
-				const {width, height} = window.getComputedStyle(fakeImage);
-				// Setting both max-height and min-height with the same value forces the height to be only that value
-				boardDiv.style.minWidth = boardDiv.style.maxWidth = width;
-				boardDiv.style.minHeight = boardDiv.style.minHeight = height;
-			}, 
-			30
-		);
-	}
-	window.addEventListener('resize', adjustBoardDivDimensions);
-
-	// Store the function "adjustMapDimensions" in the global scope to be able to remove that listener later
-	window.adjustBoardDivDimensions = adjustBoardDivDimensions;
-
-	adjustBoardDivDimensions();
 }
 
 function generateCellStyle(col, row, image){
