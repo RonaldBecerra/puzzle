@@ -102,18 +102,20 @@
 	width: 92%;
 	height: 100%; 
 	flex-direction: column; 
-	justify-content: flex-start;
 }
-
-/* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
-#manifestation-mapAndLabel{
+.manifestation-viewAndGame-container > div:first-child{
 	/* Setting both max-height and min-height with the same value forces the height to be only that value */
 	max-height: 14.3%;
 	min-height: 14.3%;
-	display: flex; 
+}
+
+/* ------------------- FORMAT FOR THE MANIFESTATIONS VIEW -------------------- */
+#manifestation-view-container{
+	justify-content: flex-start;
+}
+
+#manifestation-mapAndLabel{
 	flex-direction: row; 
-	justify-content: space-between; 
-	align-items: center;
 }
 
 #manifestation-description{
@@ -127,13 +129,6 @@
 
 #manifestation-image{
 	height: auto; 
-}
-
-#manifestation-label-container{
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
 }
 
 #manifestation-label{
@@ -160,6 +155,15 @@
 
 
 /* ------------------- FORMAT FOR THE GAME VIEW -------------------- */
+#game-timeAndMovements{
+	width: 100%;
+}
+#game-timeAndMovements > div{
+	height: 100%;
+	width: 100%;
+	justify-content: space-between; 	
+}
+
 #hourglass-time-container{
 	height:100%;
 	width: 24%;
@@ -172,6 +176,7 @@
 }
 
 #movements-container{
+	flex-direction: column;
 	width: 24%;
 	font-size: 2.7vmin;
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
@@ -188,9 +193,13 @@
 }
 
 /* Play/pause, help and restart buttons */
+#gameButtons-sector{
+	padding-top: 1%;
+	height: 13%;
+}
+
 #gameButtons-container{
-	flex-direction: row; 
-	height: 70%;
+	height: 100%;
 }
 
 #gameButtons-container > div{

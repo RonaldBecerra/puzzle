@@ -204,10 +204,12 @@ function poblateMainTag(kind){
 			if (!manifestationView){
 				div.innerHTML =
 					`<div id="manifestation-view-container" class="manifestation-viewAndGame-container centeredFlex">
-						<div id="manifestation-mapAndLabel">
+						<div id="manifestation-mapAndLabel" style="display:flex; justify-content:space-between; align-items:center">
 							<img id="manifestation-map" class="wideOnly" onmouseout="this.style.boxShadow='none'">
 							<img id="manifestation-minimap" class="mediumNarrowOnly" onmouseout="this.style.boxShadow='none'">
-							<div id="manifestation-label-container">
+							<div id="manifestation-label-container" 
+								style="display:flex; flex-direction:row; justify-content:flex-start; align-items:center"
+							>
 								<div id="manifestation-label" style="font-style:italic"></div>
 							</div>
 						</div>
@@ -233,7 +235,7 @@ function poblateMainTag(kind){
 				div.innerHTML =
 					`<div id="manifestation-game-container" class="manifestation-viewAndGame-container centeredFlex">
 						<div id="game-timeAndMovements" style="z-index:1">
-							<div>
+							<div style="display:flex; flex-direction:row; align-items:center">
 								<div id="hourglass-time-container" class="centeredFlex" style="flex-direction:column">
 									<img id="clockImage" src="img/icons/animated-hourglass.gif">
 									<div class="centeredFlex" style="flex-grow:1; width:100%">

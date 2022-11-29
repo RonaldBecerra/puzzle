@@ -103,10 +103,7 @@
 }
 
 #manifestation-mapAndLabel{
-	display: flex; 
 	flex-direction: row; 
-	justify-content: space-between; 
-	align-items: center;
 }
 
 #manifestation-description{
@@ -119,13 +116,6 @@
 #manifestation-image{
 	height: auto; 
 	width: 65vh !important;
-}
-
-#manifestation-label-container{
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
 }
 
 #manifestation-label{
@@ -149,20 +139,13 @@
 
 
 /* ------------------- FORMAT FOR THE GAME VIEW -------------------- */
-#manifestation-game-container{
-	justify-content: center;
-}
-
 #game-timeAndMovements{
 	width: 100%;
 }
 #game-timeAndMovements > div{
 	height: 100%;
 	width: 100%;
-	display: flex; 
-	flex-direction: row;
 	justify-content: space-between; 
-	align-items: center;	
 }
 
 #hourglass-time-container{
@@ -190,6 +173,10 @@
 	height: 73%;
 }
 
+#movements-number-container{
+	flex-grow: 1;
+}
+
 /* Play/pause, help and restart buttons */
 #gameButtons-sector{
 	padding-top: 1%;
@@ -205,19 +192,19 @@
 	height: 100%;
 }
 #gameButtons-container > div > img{
-	height: 48%;
+	height: 4.5vh;
 	max-width: 70%;
 }
 #gameButtons-container > div > img:hover{
-	height: 53%;
+	height: 4.97vh;
 }
 /* The play/pause buttons look bigger than they should, so we treat them differently */
 #gameButtons-container > div:first-child > img{
-	height: 44%;
+	height: 4.125vh;
 	max-width: 65%;
 }
 #gameButtons-container > div:first-child > img:hover{
-	height: 49%;
+	height: 4.59vh;
 }
 /* ------------------- END OF FORMAT FOR THE GAME VIEW -------------------- */
 
