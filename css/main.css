@@ -133,6 +133,6 @@ main {
 }
 
 @font-face {
-	font-family: Epistolar;
-	src: url(../ttf/EPISTOLAR.ttf);
+	font-family: "Epistolar";
+	src: url("../ttf/EPISTOLAR.ttf") format("opentype");
 }
