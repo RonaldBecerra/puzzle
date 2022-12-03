@@ -73,12 +73,12 @@
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 #chooseManifestation-label{
-	height: 30%;
+	height: 38%;
 	width: 67vh;
 }
 
 .manifestationsMenu-button{
-	height: 5.8%;
+	height: 7%;
 	width: 42vh;
 	font-size: 2.4vh;
 	border-radius: 5px;
@@ -209,7 +209,7 @@
 /* ------------------- END OF FORMAT FOR THE GAME VIEW -------------------- */
 
 #exitView{
-	width: 65%;
+	width: auto;
 	height: 58%;
 }
 
@@ -260,8 +260,8 @@
 
 /* Same title that appears on the front page */
 #index-title {
-	width: 60%;
-	height: 90%;
+	width: auto;
+	height: 85%;
 }
 
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
@@ -272,13 +272,6 @@
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1,1);
-}
-
-#index-hand {
-	height: 25%;
-	width: 20%;
-	top: 2%;
-	left: 10%;
 }
 
 .index-clickableText{
@@ -297,7 +290,13 @@
 	display: flex; 
 	justify-content: space-between;
 }
-#index-languageMenu div, #index-languageMenu a{
-	width: 13%;
+
+/* For the english/spanish buttons that appear on the language menu of the index*/
+.index-language_icon{
+	position:absolute; 
+	height: 60%;
+}
+.index-language_icon:hover{
+	height: 70%;
 }
 /* ------------------- END OF FORMAT FOR THE INDEX -------------------- */

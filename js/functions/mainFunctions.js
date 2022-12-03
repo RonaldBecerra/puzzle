@@ -176,7 +176,7 @@ function poblateMainTag(kind){
 			if (!relatedToApp){
 				div.innerHTML =
 					`<div class="whole" 
-							style="display:flex; flex-direction:row; justify-content:center; align-items:flex-end; bottom:2%">
+							style="display:flex; flex-direction:row; justify-content:center; align-items:flex-end; bottom:5%">
 						<img id="relatedToApp">
 					</div>`;
 			}

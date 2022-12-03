@@ -78,12 +78,12 @@
 
 /* ------------------- FORMAT FOR THE MANIFESTATIONS MENU -------------------- */
 #chooseManifestation-label{
-	height: 33%;
-	width: 80vmin;
+	height: 45%;
+	width: 70vmin;
 }
 
 .manifestationsMenu-button{
-	height: 5.9%;
+	height: 7.3%;
 	width: 36vh;
 	font-size: 2.5vh;
 	border-radius: 5.5px;
@@ -230,7 +230,7 @@
 /* ------------------- END OF FORMAT FOR THE GAME VIEW -------------------- */
 
 #exitView{
-	width: 50%;
+	width: auto;
 	height: 60%;
 }
 
@@ -266,7 +266,7 @@
 
 /* Transparent part whose purpose is that the user can close the index by touching or clicking it */
 #index-empty{
-	width: 60%;
+	width: 70%;
 }
 
 /* Space so that the close button does not appear at the end */
@@ -281,7 +281,7 @@
 
 /* Same title that appears on the front page */
 #index-title {
-	width: 50%;
+	width: auto;
 	height: 90%;
 }
 
@@ -289,17 +289,10 @@
 #index-label{
 	text-align: center;
 	font-family: 'Epistolar';
-	font-size: 1.3vw;
+	font-size: 1.2vw;
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.2,1);
-}
-
-#index-hand {
-	height: 30%;
-	width: 12%;
-	top: 2%;
-	left: 10%;
 }
 
 .index-clickableText{
@@ -319,7 +312,13 @@
 	display: flex; 
 	justify-content: space-between;
 }
-#index-languageMenu div, #index-languageMenu a{
-	width: 13%;
+
+/* For the english/spanish buttons that appear on the language menu of the index*/
+.index-language_icon{
+	position:absolute; 
+	height: 60%;
+}
+.index-language_icon:hover{
+	height: 70%;
 }
 /* ------------------- END OF FORMAT FOR THE INDEX -------------------- */

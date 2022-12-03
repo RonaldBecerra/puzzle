@@ -123,15 +123,6 @@ main {
 	align-items: center;
 }
 
-/* For the english/spanish buttons that appear on the language menu of the index*/
-.index-language_icon{
-	position:absolute; 
-	height: 70%;
-}
-.index-language_icon:hover{
-	height: 80%;
-}
-
 @font-face {
 	font-family: "Epistolar";
 	src: url("../ttf/EPISTOLAR.ttf") format("opentype");

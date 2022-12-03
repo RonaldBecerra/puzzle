@@ -224,8 +224,8 @@
 /* ------------------- END OF FORMAT FOR THE GAME VIEW -------------------- */
 
 #exitView{
-	width: 85%;
-	height: 45%;
+	width: auto;
+	height: 38%;
 }
 
 /* ------------------- FORMAT FOR THE FOOTER -------------------- */
@@ -275,7 +275,7 @@
 
 /* Same title that appears on the front page */
 #index-title {
-	width: 63%;
+	width: auto;
 	height: 75%;
 }
 
@@ -287,13 +287,6 @@
 
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.5,1.3);
-}
-
-#index-hand {
-	height: 18%;
-	width: 18%;
-	top: 2%;
-	left: 8%;
 }
 
 .index-clickableText{
@@ -313,7 +306,13 @@
 	display: flex; 
 	justify-content: space-between;
 }
-#index-languageMenu div, #index-languageMenu a{
-	width: 13%;
+
+/* For the english/spanish buttons that appear on the language menu of the index*/
+.index-language_icon{
+	position:absolute; 
+	height: 70%;
+}
+.index-language_icon:hover{
+	height: 80%;
 }
 /* ------------------- END OF FORMAT FOR THE INDEX -------------------- */

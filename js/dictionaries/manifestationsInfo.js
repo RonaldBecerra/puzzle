@@ -44,15 +44,13 @@ function createManifestationsFigures(){
 
 	// We convert the manifestations_options elements to the corresponding directories names
 	for (i=0; i < texts.length; i++){
-		let name = texts[i].toLowerCase();
-		let elem = name.replaceAll(' ','_');
+		let elem = texts[i].toLowerCase().replaceAll(' ','_');
 		elem = prefix + elem + "/";
 	
 		// We build the dictionary
 		manifestations_figures.push({
 			game:    elem + "game.jpg",
-			// In the petroglyph case we need a png image because a transparency is required
-			preview: elem + "preview." + (name!="petroglyph" ? "jpg" : "png"),
+			preview: elem + "preview.jpg",
 		})
 	}
 }
