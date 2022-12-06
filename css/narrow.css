@@ -281,10 +281,7 @@
 
 /* The part that says "EDUCATIONAL SLIDING PUZZLE" */
 #index-label{
-	text-align: center;
-	font-family: 'Epistolar';
 	font-size: 2.5vw;
-
 	/* This is for a text to be bigger but not the font-size, just streched (width, height)*/
 	transform:scale(1.5,1.3);
 }
