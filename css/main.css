@@ -125,5 +125,5 @@ main {
 
 @font-face {
 	font-family: "Epistolar";
-	src: url("EPISTOLAR.TTF") format("opentype");
+	src: url("fonts/EPISTOLAR.TTF") format("opentype");
 }
