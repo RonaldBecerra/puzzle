@@ -109,13 +109,16 @@ function generateCells(imageSrc, boardDiv){
 	// that attribute must be in the cell occupying which had its original position
 	let order = 0; 
 	
+	// The numbers would be too big in the 6x6 case if we left them with the same size as in the other dimensions
+	let numbersFontSize = (boardNumRowsColumns==6) ? "6" : "8";
+
 	let str = ""
 	for(row = 0 ; row < boardNumRowsColumns; row++){
 		for(col = 0 ; col < boardNumRowsColumns; col++){
 			str += 
 				`<div class="slidingCell centeredFlex" order="`+order+`" style="`+generateCellStyle(col,row,imageSrc)+`">
 					<span class="help-text" 
-						style="display:none; user-select:none; font-family:Arial; font-size:8vmin; 
+						style="display:none; user-select:none; font-family:Arial; font-size:` + numbersFontSize + `vmin; 
 								font-weight:bold; color:white; -webkit-text-stroke: 1px black;"
 					>` + order + 
 					`</span>
