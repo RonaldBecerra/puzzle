@@ -53,10 +53,10 @@
 /* For the english/spanish buttons that appear on the language menu */
 .language_icon{
 	position:absolute; 
-	height: 60%;
+	height: 50%;
 }
 .language_icon:hover{
-	height: 70%;
+	height: 60%;
 }
 
 /* ------------------- END OF FORMAT FOR THE HEADER -------------------- */
